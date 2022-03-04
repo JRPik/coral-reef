@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "coral-reef",
-    "slug": "coral-reef",
+    "name": "coral_reef_project",
+    "slug": "coral_reef_project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
