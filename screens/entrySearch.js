@@ -6,38 +6,18 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
-export default function Login ({navigation}){
+export default function EntrySearch ({navigation}){
 
 
 
   const pressedHandler=()=>{
-
     navigation.navigate('Logon');
   }
-  const pressedHandler2=()=>{
-    navigation.navigate('Home');
-  }
-
 
     return(
 <SafeAreaView style={styles.container}>
 <View style={{ paddingTop: '10%' }}>
-  <View style={styles.imageContainer}>
-  <Image style={styles.image} source={require('../images/logo.jpg')} />
-  </View>
- 
-  
-  <View style={{ paddingLeft: '15%'}}>
-    <TextInput style={styles.textbox} placeholder="User ID" />
-    <TextInput style={styles.textbox} placeholder="Password" />
-  </View>
-  <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler2}>
-    <Text style={{textAlign: 'center', color: 'white'}}>Login</Text>
-  </TouchableOpacity>
-  <Text style={styles.text2} >Don't Have an Account?</Text>
-  <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
-    <Text style={{textAlign: 'center', color: 'white'}}>Create Account</Text>
-  </TouchableOpacity>
+<Text>Home Screen</Text>
 </View>
 <StatusBar style="auto" />
 </SafeAreaView>
