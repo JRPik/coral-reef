@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity,Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity,Image, ScrollView, KeyboardAvoidingView } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -16,16 +16,16 @@ export default function Login ({navigation}){
 
     return(
 <SafeAreaView style={styles.container}>
-<View style={{ paddingTop: '10%' }}>
-  <View style={styles.imageContainer}>
+<ScrollView style={{ paddingTop: '10%' }}>
+  <KeyboardAvoidingView style={styles.imageContainer}>
   <Image style={styles.image} source={require('../images/logo.jpg')} />
-  </View>
+  </KeyboardAvoidingView>
  
   
-  <View style={{ paddingLeft: '15%'}}>
+  <KeyboardAvoidingView style={{ paddingLeft: '15%'}}>
     <TextInput style={styles.textbox} placeholder="User ID" />
-    <TextInput style={styles.textbox} placeholder="Password" />
-  </View>
+    <TextInput secureTextEntry={true} style={styles.textbox} placeholder="Password" />
+  </KeyboardAvoidingView>
   <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("Button Pressed")}>
     <Text style={{textAlign: 'center', color: 'white'}}>Login</Text>
   </TouchableOpacity>
@@ -33,7 +33,7 @@ export default function Login ({navigation}){
   <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
     <Text style={{textAlign: 'center', color: 'white'}}>Create Account</Text>
   </TouchableOpacity>
-</View>
+</ScrollView>
 <StatusBar style="auto" />
 </SafeAreaView>
 
