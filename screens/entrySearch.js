@@ -12,6 +12,7 @@ export default function EntrySearch ({navigation}){
 
   const pressedHandler=()=>{
     navigation.navigate('Logon');
+    
   }
 
     return(
