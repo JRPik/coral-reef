@@ -42,6 +42,6 @@ const screens={
 
 }
 
-const Drawer= createDrawerNavigator(screens);
+const Drawer = createDrawerNavigator(screens);
 
 export default Drawer

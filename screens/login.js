@@ -1,49 +1,61 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity,Image } from 'react-native';
-import AppLoading from 'expo-app-loading';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
+import AppLoading from "expo-app-loading";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+export default function Login({ navigation }) {
+  const pressedHandler = () => {
+    navigation.navigate("Logon");
+  };
+  const pressedHandler2 = () => {
+    navigation.navigate("Home");
+  };
 
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <KeyboardAvoidingView style={styles.imageContainer}>
+          <Image style={styles.image} source={require("../images/logo.jpg")} />
+        </KeyboardAvoidingView>
 
-
-export default function Login ({navigation}){
-
-
-
-  const pressedHandler=()=>{
-
-    navigation.navigate('Logon');
-  }
-  const pressedHandler2=()=>{
-    navigation.navigate('Home');
-  }
-
-
-    return(
-<SafeAreaView style={styles.container}>
-<View style={{ paddingTop: '10%' }}>
-  <View style={styles.imageContainer}>
-  <Image style={styles.image} source={require('../images/logo.jpg')} />
-  </View>
- 
-  
-  <View style={{ paddingLeft: '15%'}}>
-    <TextInput style={styles.textbox} placeholder="User ID" />
-    <TextInput style={styles.textbox} placeholder="Password" />
-  </View>
-  <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler2}>
-    <Text style={{textAlign: 'center', color: 'white'}}>Login</Text>
-  </TouchableOpacity>
-  <Text style={styles.text2} >Don't Have an Account?</Text>
-  <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
-    <Text style={{textAlign: 'center', color: 'white'}}>Create Account</Text>
-  </TouchableOpacity>
-</View>
-<StatusBar style="auto" />
-</SafeAreaView>
-
-    )
-    }
+        <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
+          <TextInput style={styles.textbox} placeholder="User ID" />
+          <TextInput
+            secureTextEntry={true}
+            style={styles.textbox}
+            placeholder="Password"
+          />
+        </KeyboardAvoidingView>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={pressedHandler2}
+        >
+          <Text style={{ textAlign: "center", color: "white" }}>Login</Text>
+        </TouchableOpacity>
+        <Text style={styles.text2}>Don't Have an Account?</Text>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={pressedHandler}
+        >
+          <Text style={{ textAlign: "center", color: "white" }}>
+            Create Account
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
+}
 
 
 

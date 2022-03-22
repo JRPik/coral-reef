@@ -1,33 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import AppLoading from 'expo-app-loading';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
+import AppLoading from "expo-app-loading";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+export default function Logon() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <KeyboardAvoidingView style={{ paddingTop: "40%" }}>
+          <Text style={styles.text}>Create an Account</Text>
+          <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
+            <TextInput style={styles.textbox} placeholder="Email" />
+            <TextInput
+              secureTextEntry={true}
+              style={styles.textbox}
+              placeholder="Password"
+            />
+            <TextInput
+              secureTextEntry={true}
+              style={styles.textbox}
+              placeholder="Confirm Password"
+            />
+          </KeyboardAvoidingView>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => console.log("Button Pressed")}
+          >
+            <Text style={{ textAlign: "center", color: "white" }}>Login</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </ScrollView>
 
-
-
-export default function Logon (){
-    return(
-
-<SafeAreaView style={styles.container}>
-
-<View style={{ paddingTop: '60%' }}>
-  <Text style={styles.text}>Create an Account</Text>
-  <View style={{ paddingLeft: '15%' }}>
-    <TextInput style={styles.textbox} placeholder="Email" />
-    <TextInput style={styles.textbox} placeholder="Password" />
-    <TextInput style={styles.textbox} placeholder="Confirm Password" />
-  </View>
-  <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("Button Pressed")}>
-    <Text style={{textAlign: 'center', color: 'white'}}>Login</Text>
-  </TouchableOpacity>
-</View>
-<StatusBar style="auto" />
-
-</SafeAreaView>
-
-    )
-    }
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
+}
 
     const styles = StyleSheet.create({
         container: {
