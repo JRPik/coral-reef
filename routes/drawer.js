@@ -38,10 +38,13 @@ const screens={
             }
         }
     },
-    
-
 }
 
-const Drawer = createDrawerNavigator(screens);
+const Drawer = createDrawerNavigator(
+    screens,
+    {
+        drawerPosition: 'right'
+    },
+    );
 
 export default Drawer

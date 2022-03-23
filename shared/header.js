@@ -8,10 +8,10 @@ const openMenu=()=>{
 }
 return(
     <View style={styles.header}>
-        <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} />
         <View>
             <Text>Coral Spotlight</Text>
         </View>
+        <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} />
     </View>
 
 )
@@ -36,6 +36,6 @@ const styles=StyleSheet.create({
     },
     icon:{
         position:'absolute',
-        left:-60
+        right: 20,
     }
 })
