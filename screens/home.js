@@ -34,7 +34,10 @@ export default function Home ({navigation}){
 <ScrollView>
 
 <View style={{flex:1,alignItems:'center'}}>
-<MainCoral name={data.corals[0].name} image={data.corals[0].image}/>
+  
+  <MainCoral name={data.corals[0].name} image={data.corals[0].image} 
+/>
+
 </View>
 
 <View style={{flex:1.5,marginTop:10,backgroundColor:"#F0FFF0",flexWrap:'wrap', flexDirection:'row', justifyContent:'space-evenly'}}>

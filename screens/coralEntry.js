@@ -6,16 +6,19 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
-export default function CoralEntries({navigation}){
+export default function CoralEntry ({navigation}){
 
 
 
-
+  const pressedHandler=()=>{
+    navigation.navigate('Logon');
+    
+  }
 
     return(
 <SafeAreaView style={styles.container}>
 <View style={{ paddingTop: '10%' }}>
-<Text>Home Screen</Text>
+<Text>aioooo</Text>
 </View>
 <StatusBar style="auto" />
 </SafeAreaView>

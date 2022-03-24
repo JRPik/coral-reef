@@ -18,13 +18,16 @@ const screens={
             return{
             headerLeft:()=>null,
             headerTitle:()=><Header navigation={navigation}/>,
-            gestureEnabled: false
+            gestureEnabled: false,
+            
             }
         }
         
     }
 }
 
-const HomeStack= createStackNavigator(screens);
 
-export default createAppContainer(HomeStack);
+
+export const HomeStack= createStackNavigator(screens);
+
+export const Navigator = createAppContainer(HomeStack);
