@@ -18,8 +18,10 @@ const MainCoral = (props) => (
 
 CoralPosts = (props)=>(
   <View style={[styles.square]}>
-  <Image source={props.image} style={styles.imageSquare} />
-  <Text style={styles.text}>{props.name}</Text>
+    <TouchableOpacity style={styles.imageSquare}>
+      <Image source={props.image} style={styles.imageSquare}/>
+      <Text style={styles.text}>{props.name}</Text>
+    </TouchableOpacity>
 </View>
 )
 
@@ -68,54 +70,45 @@ export default function Home ({navigation}){
 
 const styles = StyleSheet.create({
 
-  card:{
-    height:'100%',
-width:'95%',
-justifyContent: 'flex-start',
-alignItems: 'center',
-flexDirection:'row',
-backgroundColor: "#F0FFF0",
-
-borderRadius: 8,
-shadowColor: 'black',
-shadowOpacity: 0.3,
-shadowRadius: 8,
-shadowOffset: { height: 1, width: 0.3 }
- },
+card:{
+  height:'100%',
+  width:'95%',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  flexDirection:'row',
+  backgroundColor: "#F0FFF0",
+  shadowColor: 'black',
+  shadowOpacity: 0.3,
+  shadowRadius: 8,
+  shadowOffset: { height: 1, width: 0.3 }
+},
 image:{
   width:250,
   height:250,
   resizeMode:'contain',
   marginRight:10,
-  borderRadius:10
 },
 text:{
-  backgroundColor:'white',
-  width:'99%',
-  borderRadius:5,
-  marginBottom:2
+  width:'100%',
+  marginBottom:2,
+  paddingLeft: 15,
 },
 square:{
   width:'45%',
-  borderWidth:0.22,
+  borderWidth:2,
   justifyContent:'center',
   alignItems:'center',
-  borderRadius:5,
+  borderRadius: 5,
   marginTop:10,
-  backgroundColor:"#DCDCDC",
-
-shadowColor: 'black',
-shadowOpacity: 0.3,
-shadowRadius: 8,
-shadowOffset: { height: 1, width: 0.3 }
+  borderColor: 'rgba(158, 150, 150, .5)'
 },
 imageSquare:{
   width:'100%',
   height:150,
   resizeMode:'contain',
-  flexBasis:'50%',
+  flexBasis:'70%',
   marginTop:4,
-  marginBottom:4
+  justifyContent: 'center',
 },
 container: {
   flex: 1,

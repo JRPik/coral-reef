@@ -4,6 +4,8 @@ import Home from '../screens/home'
 import NewEntry from '../screens/newEntry';
 import EntrySearch from '../screens/entrySearch';
 import CoralEntries from '../screens/coralEntries';
+import Login from '../screens/login';
+import { tintColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 const screens={
     
     Home: {
@@ -35,6 +37,14 @@ const screens={
         navigationOptions:({navigation})=>{
             return{
                 title:'Coral Entries'
+            }
+        }
+    },
+    Logout: {
+        screen: Login,
+        navigationOptions:({navigation})=>{
+            return{
+                title:'Logout',
             }
         }
     },

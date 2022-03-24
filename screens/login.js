@@ -10,8 +10,13 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  CantoraOne_400Regular,
+} from '@expo-google-fonts/dev';
+
 
 export default function Login({ navigation }) {
   const pressedHandler = () => {
@@ -20,7 +25,15 @@ export default function Login({ navigation }) {
   const pressedHandler2 = () => {
     navigation.navigate("Home");
   };
+  let [fontsLoaded] = useFonts({
+    CantoraOne_400Regular,
+  });
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  else 
+  {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -40,7 +53,7 @@ export default function Login({ navigation }) {
           style={styles.buttonContainer}
           onPress={pressedHandler2}
         >
-          <Text style={{ textAlign: "center", color: "white" }}>Login</Text>
+          <Text style={{ textAlign: "center", color: "white", fontFamily: 'CantoraOne_400Regular' }}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.text2}>Don't Have an Account?</Text>
         <TouchableOpacity
@@ -56,7 +69,7 @@ export default function Login({ navigation }) {
     </SafeAreaView>
   );
 }
-
+}
 
 
 const styles = StyleSheet.create({
@@ -88,7 +101,7 @@ const styles = StyleSheet.create({
     text: {
       marginTop:70,
       fontSize: 20,
-      textAlign: 'center'
+      textAlign: 'center',
     },
     textbox: {
       backgroundColor: 'white',
