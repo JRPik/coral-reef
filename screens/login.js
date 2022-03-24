@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
           style={styles.buttonContainer}
           onPress={pressedHandler}
         >
-          <Text style={{ textAlign: "center", color: "white" }}>
+          <Text style={{ textAlign: "center", color: "white", fontFamily: 'CantoraOne_400Regular'  }}>
             Create Account
           </Text>
         </TouchableOpacity>
@@ -111,14 +111,15 @@ const styles = StyleSheet.create({
       borderRadius: 5,  
       shadowColor: 'black',
       shadowOpacity: 0.3,
-     
+      fontFamily: 'CantoraOne_400Regular',
       shadowOffset: { height: 1, width: 0.3 }
       },
       text2: {
         marginBottom:15,
         marginTop:15,
         fontSize: 15,
-        textAlign: 'center'
+        textAlign: 'center', 
+        fontFamily: 'CantoraOne_400Regular' 
       },
     buttonContainer: {
       backgroundColor: '#22CA7B',
