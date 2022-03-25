@@ -22,16 +22,23 @@ const MainCoral = (props) => (
 );
 
 CoralPosts = (props) => (
+
   <View style={[styles.square]}>
-    <TouchableOpacity style={styles.imageSquare}>
+    <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
       <Text style={styles.text}>{props.name}</Text>
     </TouchableOpacity>
   </View>
+  
 );
 
 //component to be rendered
 export default function Home({ navigation }) {
+  const pressMain=()=>{
+    navigation.navigate("Coral");
+  }
+
+
   let [fontsLoaded] = useFonts({
     CantoraOne_400Regular,
   });
@@ -42,12 +49,16 @@ export default function Home({ navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
+          <TouchableOpacity onPress={pressMain}>
           <View style={{ flex: 1, alignItems: "center" }}>
+            
             <MainCoral
               name={data.corals[0].name}
               image={data.corals[0].image}
             />
           </View>
+          </TouchableOpacity>
+         
 
           <View
             style={{
@@ -60,11 +71,16 @@ export default function Home({ navigation }) {
             }}
           >
             {data.corals.map((coral) => (
+            
+
+           
               <CoralPosts
+                func={pressMain}
                 key={coral.id}
                 name={coral.name}
                 image={coral.image}
               />
+                
             ))}
           </View>
 

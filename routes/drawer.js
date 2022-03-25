@@ -18,10 +18,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
 import { borderBottomColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { useFonts, CantoraOne_400Regular } from "@expo-google-fonts/dev";
+import CoralEntry from "../screens/coralEntry";
+import { InStack } from "./inStack";
 
 const screens = {
   Home: {
-    screen: Home,
+    screen: InStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Thing",

@@ -18,7 +18,7 @@ export default function Header({ navigation }) {
     return (
       <View style={styles.header}>
         <View>
-          <Text style={styles.headerText}>Coral Spotlight</Text>
+          <Text style={styles.headerText}>Coral Restauration</Text>
         </View>
         <MaterialIcons
           name="menu"
