@@ -11,36 +11,43 @@ import {
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, CantoraOne_400Regular } from "@expo-google-fonts/dev";
+import {
+  useFonts,
+  RobotoCondensed_300Light,
+  RobotoCondensed_300Light_Italic,
+  RobotoCondensed_400Regular,
+  RobotoCondensed_400Regular_Italic,
+  RobotoCondensed_700Bold,
+  RobotoCondensed_700Bold_Italic,
+} from "@expo-google-fonts/dev";
 
 //main coral component
 const MainCoral = (props) => (
   <View style={[styles.card]}>
+    <Text style={styles.cardText}>{props.name}</Text>
     <Image source={props.image} style={styles.image} />
-    <Text style={{ fontFamily: "CantoraOne_400Regular" }}>{props.name}</Text>
   </View>
 );
 
 CoralPosts = (props) => (
-
   <View style={[styles.square]}>
     <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
       <Text style={styles.text}>{props.name}</Text>
     </TouchableOpacity>
   </View>
-  
 );
 
 //component to be rendered
 export default function Home({ navigation }) {
-  const pressMain=()=>{
+  const pressMain = () => {
     navigation.navigate("Coral");
-  }
-
+  };
 
   let [fontsLoaded] = useFonts({
-    CantoraOne_400Regular,
+    RobotoCondensed_400Regular_Italic,
+    RobotoCondensed_700Bold_Italic,
+    RobotoCondensed_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -50,37 +57,31 @@ export default function Home({ navigation }) {
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <TouchableOpacity onPress={pressMain}>
-          <View style={{ flex: 1, alignItems: "center" }}>
-            
-            <MainCoral
-              name={data.corals[0].name}
-              image={data.corals[0].image}
-            />
-          </View>
+            <View style={{ flex: 1, alignItems: "center" }}>
+              <MainCoral
+                name={data.corals[0].name}
+                image={data.corals[0].image}
+              />
+            </View>
           </TouchableOpacity>
-         
 
           <View
             style={{
               flex: 1.5,
               marginTop: 10,
-              backgroundColor: "#F0FFF0",
+              //backgroundColor: "#F0FFF0",
               flexWrap: "wrap",
               flexDirection: "row",
               justifyContent: "space-evenly",
             }}
           >
             {data.corals.map((coral) => (
-            
-
-           
               <CoralPosts
                 func={pressMain}
                 key={coral.id}
                 name={coral.name}
                 image={coral.image}
               />
-                
             ))}
           </View>
 
@@ -95,14 +96,19 @@ const styles = StyleSheet.create({
   card: {
     height: "100%",
     width: "95%",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#F0FFF0",
-    shadowColor: "black",
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    shadowOffset: { height: 1, width: 0.3 },
+    backgroundColor: "white",
+    borderRadius: 5,
+    elevation: 5,
+  },
+  cardText: {
+    position: "absolute",
+    textAlign: "center",
+    top: "3%",
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 20,
   },
   image: {
     width: 250,
@@ -113,17 +119,17 @@ const styles = StyleSheet.create({
   text: {
     width: "100%",
     marginBottom: 2,
-    paddingLeft: 15,
-    fontFamily: "CantoraOne_400Regular",
+    textAlign: "center",
+    fontFamily: "RobotoCondensed_400Regular_Italic",
   },
   square: {
     width: "45%",
-    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     marginTop: 10,
-    borderColor: "rgba(158, 150, 150, .5)",
+    elevation: 3,
+    backgroundColor: "white",
   },
   imageSquare: {
     width: "100%",
@@ -135,7 +141,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#F3F3F3",
     alignContent: "center",
   },
 });

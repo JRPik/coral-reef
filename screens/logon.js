@@ -11,11 +11,19 @@ import {
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, CantoraOne_400Regular } from "@expo-google-fonts/dev";
+import {
+  useFonts,
+  RobotoCondensed_300Light,
+  RobotoCondensed_300Light_Italic,
+  RobotoCondensed_400Regular,
+  RobotoCondensed_400Regular_Italic,
+  RobotoCondensed_700Bold,
+  RobotoCondensed_700Bold_Italic,
+} from "@expo-google-fonts/dev";
 
 export default function Logon() {
   let [fontsLoaded] = useFonts({
-    CantoraOne_400Regular,
+    RobotoCondensed_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -49,7 +57,7 @@ export default function Logon() {
                 style={{
                   textAlign: "center",
                   color: "white",
-                  fontFamily: "CantoraOne_400Regular",
+                  fontFamily: "RobotoCondensed_400Regular",
                 }}
               >
                 Login
@@ -73,7 +81,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     textAlign: "center",
-    fontFamily: "CantoraOne_400Regular",
+    fontFamily: "RobotoCondensed_400Regular",
   },
   textbox: {
     backgroundColor: "white",
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
     width: "75%",
     margin: 10,
     borderRadius: 5,
-    fontFamily: "CantoraOne_400Regular",
+    fontFamily: "RobotoCondensed_400Regular",
     shadowColor: "black",
     shadowOpacity: 0.3,
     shadowRadius: 8,

@@ -12,20 +12,18 @@ const screens = {
   Login: {
     screen: Login,
     navigationOptions: {
-      headerTitle: ()=>{
+      headerTitle: () => {
         <Text
-        style={{
-          textAlign: "center",
-          flex: 1,
-          fontFamily: "CantoraOne_400Regular",
-          fontSize: 22,
-        }}
-      >
-        Login
-      </Text>
-      }
-       
-      ,
+          style={{
+            textAlign: "center",
+            flex: 1,
+            fontFamily: "RobotoCondensed_700Bold",
+            fontSize: 22,
+          }}
+        >
+          Login
+        </Text>;
+      },
     },
   },
   Logon: {
@@ -36,7 +34,7 @@ const screens = {
           style={{
             paddingLeft: "20%",
             flex: 1,
-            fontFamily: "CantoraOne_400Regular",
+            fontFamily: "RobotoCondensed_700Bold",
             fontSize: 22,
           }}
         >

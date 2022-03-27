@@ -12,7 +12,15 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
-import { useFonts, CantoraOne_400Regular } from "@expo-google-fonts/dev";
+import {
+  useFonts,
+  RobotoCondensed_300Light,
+  RobotoCondensed_300Light_Italic,
+  RobotoCondensed_400Regular,
+  RobotoCondensed_400Regular_Italic,
+  RobotoCondensed_700Bold,
+  RobotoCondensed_700Bold_Italic,
+} from "@expo-google-fonts/dev";
 
 export default function Login({ navigation }) {
   const pressedHandler = () => {
@@ -22,7 +30,7 @@ export default function Login({ navigation }) {
     navigation.navigate("Home");
   };
   let [fontsLoaded] = useFonts({
-    CantoraOne_400Regular,
+    RobotoCondensed_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -54,7 +62,7 @@ export default function Login({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "CantoraOne_400Regular",
+                fontFamily: "RobotoCondensed_400Regular",
               }}
             >
               Login
@@ -69,7 +77,7 @@ export default function Login({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "CantoraOne_400Regular",
+                fontFamily: "RobotoCondensed_400Regular",
               }}
             >
               Create Account
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     shadowColor: "black",
     shadowOpacity: 0.3,
-    fontFamily: "CantoraOne_400Regular",
+    fontFamily: "RobotoCondensed_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
   },
   text2: {
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 15,
     textAlign: "center",
-    fontFamily: "CantoraOne_400Regular",
+    fontFamily: "RobotoCondensed_400Regular",
   },
   buttonContainer: {
     backgroundColor: "#22CA7B",

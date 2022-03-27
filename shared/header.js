@@ -2,14 +2,23 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
-import { useFonts, CantoraOne_400Regular } from "@expo-google-fonts/dev";
+import {
+  useFonts,
+  RobotoCondensed_300Light,
+  RobotoCondensed_300Light_Italic,
+  RobotoCondensed_400Regular,
+  RobotoCondensed_400Regular_Italic,
+  RobotoCondensed_700Bold,
+  RobotoCondensed_700Bold_Italic,
+} from "@expo-google-fonts/dev";
 
 export default function Header({ navigation }) {
   const openMenu = () => {
     navigation.toggleDrawer();
   };
   let [fontsLoaded] = useFonts({
-    CantoraOne_400Regular,
+    RobotoCondensed_400Regular,
+    RobotoCondensed_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -18,7 +27,7 @@ export default function Header({ navigation }) {
     return (
       <View style={styles.header}>
         <View>
-          <Text style={styles.headerText}>Coral Restauration</Text>
+          <Text style={styles.headerText}>Coral Restoration </Text>
         </View>
         <MaterialIcons
           name="menu"
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerText: {
-    fontFamily: "CantoraOne_400Regular",
+    fontFamily: "RobotoCondensed_700Bold",
     fontSize: 20,
   },
   icon: {
