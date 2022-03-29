@@ -151,7 +151,7 @@ const data = {
     {
       id: 1,
       name: "Elkhorn Coral",
-      image: require("../images/Elkhorncoral.jpg"),
+      image: require("../images/Elkhorn_Coral_CR.jpg"),
     },
     {
       id: 2,
