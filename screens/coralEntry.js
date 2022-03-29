@@ -10,10 +10,7 @@ export default function CoralEntry ({navigation}){
 
 
 
-  const pressedHandler=()=>{
-    navigation.navigate('Logon');
-    
-  }
+  
 
     return(
 <SafeAreaView style={styles.container}>
