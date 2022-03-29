@@ -18,7 +18,7 @@ export default function CoralEntry ({navigation}){
     return(
 <SafeAreaView style={styles.container}>
 <View style={{ paddingTop: '10%' }}>
-<Text>aioooo</Text>
+<Text>Coral Specification Page</Text>
 </View>
 <StatusBar style="auto" />
 </SafeAreaView>

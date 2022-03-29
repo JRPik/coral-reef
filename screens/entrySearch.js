@@ -3,22 +3,16 @@ import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity,Image } f
 import AppLoading from 'expo-app-loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-
-
 export default function EntrySearch ({navigation}){
 
-
-
   const pressedHandler=()=>{
-    navigation.navigate('Logon');
-    
+    navigation.navigate('Logon'); 
   }
 
     return(
 <SafeAreaView style={styles.container}>
 <View style={{ paddingTop: '10%' }}>
-<Text>Home Screen</Text>
+<Text>Entry Search</Text>
 </View>
 <StatusBar style="auto" />
 </SafeAreaView>
