@@ -34,6 +34,8 @@ CoralPosts = (props) => (
     <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
       <Text style={styles.text}>{props.name}</Text>
+      <Text style={styles.text}>{props.location}</Text>
+      <Text style={styles.text}>{props.diver}</Text>
     </TouchableOpacity>
   </View>
 );
@@ -61,6 +63,8 @@ export default function Home({ navigation }) {
               <MainCoral
                 name={data.corals[0].name}
                 image={data.corals[0].image}
+                location={data.corals[0].location}
+                diver={data.corals[0].diver}
               />
             </View>
           </TouchableOpacity>
@@ -79,8 +83,10 @@ export default function Home({ navigation }) {
               <CoralPosts
                 func={pressMain}
                 key={coral.id}
-                name={coral.name}
+                name={"Name of Coral: " + coral.name}
                 image={coral.image}
+                location={"Location: " + coral.location}
+                diver={"Diver's Name: " + coral.diver}
               />
             ))}
           </View>
@@ -127,16 +133,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    marginTop: 10,
+    marginTop: 5,
     elevation: 3,
     backgroundColor: "white",
   },
   imageSquare: {
     width: "100%",
-    height: 150,
+    height: 160,
     resizeMode: "contain",
     flexBasis: "70%",
     marginTop: 4,
+    marginBottom: 2,
     justifyContent: "center",
   },
   container: {
@@ -152,46 +159,64 @@ const data = {
       id: 1,
       name: "Elkhorn Coral",
       image: require("../images/Carysfort_Reef/Elkhorn_Coral_CR.jpg"),
+      location: "Carysfort Reef",
+      diver: "Diver 1",
     },
     {
       id: 2,
-      name: "Boulder Star",
-      image: require("../images/Carysfort_Reef/Boulder _Star_(OA)_Coral_Day_1.jpg"),
+      name: "Boulder Star Coral",
+      image: require("../images/Carysfort_Reef/Boulder_Star_(OA)_Coral_Day_1.jpg"),
+      location: "Carysfort Reef",
+      diver: "Diver 2",
     },
     {
       id: 3,
       name: "Boulder Star Coral",
       image: require("../images/Carysfort_Reef/Boulder_Star_(OA)_Coral_003.jpg"),
+      location: "Carysfort Reef",
+      diver: "Diver 2",
     },
     {
       id: 4,
       name: "Mountainous Star Coral",
       image: require("../images/Carysfort_Reef/Mountainous_Star_(OF)_Coral_158.jpg"),
+      location: "Carysfort Reef",
+      diver: "Diver 3",
     },
     {
       id: 5,
       name: "Staghorn Coral",
       image: require("../images/Carysfort_Reef/Staghorn_CoraL_CR.jpg"),
+      location: "Carysfort Reef",
+      diver: "Diver 2",
     },
     {
       id: 6,
       name: "Mountainous Star Coral",
       image: require("../images/Cheeca_Rocks/Mountainous_Star_(OF)_coral_ChR.jpg"),
+      location: "Cheeca Rocks",
+      diver: "Diver 1",
     },
     {
       id: 7,
       name: "Staghorn Coral",
       image: require("../images/Looe_Key/Staghorn_Coral_LK.jpg"),
+      location: "Looe Key",
+      diver: "Diver 3",
     },
     {
       id: 8,
       name: "Staghorn Coral",
       image: require("../images/Pickles_Reef/Staghorn_Coral_PR.jpg"),
+      location: "Pickles Reef",
+      diver: "Diver 1",
     },
 {
       id: 9,
       name: "Elkhorn Coral",
       image: require("../images/Sombrero_Reef/Elkhorn_Coral_SR.jpg"),
+      location: "Sombrero Reef",
+      diver: "Diver 2",
     },
   ],
 };
