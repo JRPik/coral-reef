@@ -114,19 +114,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     top: "3%",
     fontFamily: "RobotoCondensed_700Bold_Italic",
-    fontSize: 20,
+    fontSize: 15,
   },
   image: {
     width: 250,
     height: 250,
     resizeMode: "contain",
     marginRight: 10,
+    marginTop: 5,
   },
   text: {
     width: "100%",
     marginBottom: 2,
     textAlign: "center",
     fontFamily: "RobotoCondensed_400Regular_Italic",
+    fontSize: 10,
   },
   square: {
     width: "45%",
@@ -211,7 +213,7 @@ const data = {
       location: "Pickles Reef",
       diver: "Diver 1",
     },
-{
+    {
       id: 9,
       name: "Elkhorn Coral",
       image: require("../images/Sombrero_Reef/Elkhorn_Coral_SReef.jpg"),
