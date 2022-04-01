@@ -1,27 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Image,
+import { Platform, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Image,
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
+RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
+RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
 
 export default function NewEntry({ navigation }) {
   const [date, setDate] = useState(new Date());
@@ -141,10 +127,23 @@ export default function NewEntry({ navigation }) {
   }
 }
 const styles = StyleSheet.create({
+  buttonContainer: {
+    marginTop: 10,
+    backgroundColor: "#22CA7B",
+    width: "25%",
+    alignSelf: "flex-end",
+    borderRadius: 20,
+    padding: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
     alignContent: "center",
+  },
+  image: {
+    width: 250,
+    height: 250,
+    resizeMode: "contain",
   },
   imageContainer: {
     justifyContent: "center",
@@ -158,16 +157,16 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
   },
-
-  image: {
-    width: 250,
-    height: 250,
-    resizeMode: "contain",
-  },
   text: {
     padding: 10,
     fontSize: 18,
     fontFamily: "RobotoCondensed_400Regular",
+  },
+  text2: {
+    marginBottom: 15,
+    marginTop: 15,
+    fontSize: 15,
+    textAlign: "center",
   },
   textbox: {
     backgroundColor: "white",
@@ -178,19 +177,5 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 0.3,
     shadowOffset: { height: 1, width: 0.3 },
-  },
-  text2: {
-    marginBottom: 15,
-    marginTop: 15,
-    fontSize: 15,
-    textAlign: "center",
-  },
-  buttonContainer: {
-    marginTop: 10,
-    backgroundColor: "#22CA7B",
-    width: "25%",
-    alignSelf: "flex-end",
-    borderRadius: 20,
-    padding: 10,
   },
 });

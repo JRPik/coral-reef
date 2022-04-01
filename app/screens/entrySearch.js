@@ -4,15 +4,9 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
+RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
+RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
 
 const data = [
   { reef: "Carysfort Reef", coral: "Boulder Star" },
@@ -107,6 +101,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F3F3F3",
   },
+  list: {
+    marginHorizontal: 8,
+    marginVertical: 16,
+    paddingLeft: 10,
+  },
   text: {
     fontFamily: "RobotoCondensed_400Regular",
     fontSize: 15,
@@ -118,10 +117,5 @@ const styles = StyleSheet.create({
   },
   searchText: {
     fontFamily: "RobotoCondensed_400Regular",
-  },
-  list: {
-    marginHorizontal: 8,
-    marginVertical: 16,
-    paddingLeft: 10,
   },
 });

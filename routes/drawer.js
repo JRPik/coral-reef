@@ -1,32 +1,22 @@
+//imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  FlatList,
-} from "react-native";
-import Home from "../screens/home";
-import NewEntry from "../screens/newEntry";
-import EntrySearch from "../screens/entrySearch";
-import CoralEntries from "../screens/coralEntries";
+import {Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, FlatList,} 
+from "react-native";
 import { StackActions } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
-import { borderBottomColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
-import CoralEntry from "../screens/coralEntry";
+import { borderBottomColor } 
+from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
+RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
+RobotoCondensed_700Bold_Italic,} from "@expo-google-fonts/dev";
+
+//imports from our code
+import Home from "../app/screens/home";
+import NewEntry from "../app/screens/newEntry";
+import EntrySearch from "../app/screens/entrySearch";
+import CoralEntries from "../app/screens/coralEntries";
+import CoralEntry from "../app/screens/coralEntry";
 import { InStack } from "./inStack";
 
 const screens = {
@@ -73,12 +63,7 @@ const menuData = [
   { icon: "home", name: "Home", screenName: "Home", key: 1 },
   { icon: "book", name: " New Entry", screenName: "NewEntry", key: 2 },
   { icon: "search", name: "Entry Search", screenName: "EntrySearch", key: 3 },
-  {
-    icon: "folder-open",
-    name: "Coral Entries",
-    screenName: "CoralEntries",
-    key: 4,
-  },
+  { icon: "folder-open", name: "Coral Entries", screenName: "CoralEntries", key: 4 },
   { icon: "sign-out", name: "Log Out", key: 5 },
 ];
 
@@ -133,24 +118,16 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.43)",
     paddingTop: 70,
   },
-  menuItem: {
-    flexDirection: "row",
-
-    borderStyle: "solid",
-    borderBottomWidth: 2,
-    borderBottomColor: "black",
-  },
   icon: {
     paddingTop: 10,
     paddingLeft: 5,
   },
-  menuItemText: {
-    fontSize: 15,
-    fontWeight: "300",
-    margin: 15,
-    fontFamily: "RobotoCondensed_400Regular",
+  menuItem: {
+    flexDirection: "row",
+    borderStyle: "solid",
+    borderBottomWidth: 2,
+    borderBottomColor: "black",
   },
-
   menuItemText: {
     fontSize: 15,
     fontWeight: "300",

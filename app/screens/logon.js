@@ -73,6 +73,13 @@ export default function Logon() {
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: "#22CA7B",
+    width: "45%",
+    alignSelf: "center",
+    borderRadius: 20,
+    padding: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -94,12 +101,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
-  },
-  buttonContainer: {
-    backgroundColor: "#22CA7B",
-    width: "45%",
-    alignSelf: "center",
-    borderRadius: 20,
-    padding: 10,
   },
 });

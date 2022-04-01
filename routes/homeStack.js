@@ -1,10 +1,13 @@
+//imports from our thrid-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import React from "react";
-import Login from "../screens/login";
-import Logon from "../screens/logon";
+
+//imports from our code
+import Login from "../app/screens/login";
+import Logon from "../app/screens/logon";
 import Drawer from "../routes/drawer";
 import Header from "../shared/header";
 

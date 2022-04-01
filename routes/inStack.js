@@ -1,10 +1,13 @@
+//imports from our third-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { Text } from "react-native";
 import React from "react";
 
-import Home from "../screens/home";
-import CoralEntry from "../screens/coralEntry";
+///imports from our code
+import Home from "../app/screens/home";
+import CoralEntry from "../app/screens/coralEntry";
+
 const screens = {
   Home: {
     screen: Home,
@@ -30,7 +33,7 @@ const screens = {
     screen: CoralEntry,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: "Coral",
+        headerTitle: "Coral Info",
         gestureEnabled: false,
       };
     },

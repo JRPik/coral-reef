@@ -42,7 +42,7 @@ export default function Login({ navigation }) {
           <KeyboardAvoidingView style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../images/logo.jpg")}
+              source={require("../assets/images/logo.jpg")}
             />
           </KeyboardAvoidingView>
 
@@ -91,15 +91,26 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: "#22CA7B",
+    width: "45%",
+    alignSelf: "center",
+    borderRadius: 20,
+    padding: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
     alignContent: "center",
   },
+  image: {
+    width: 250,
+    height: 250,
+    resizeMode: "contain",
+  },
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
-
     backgroundColor: "white",
     margin: 16,
     borderRadius: 8,
@@ -108,16 +119,17 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
   },
-
-  image: {
-    width: 250,
-    height: 250,
-    resizeMode: "contain",
-  },
   text: {
     marginTop: 70,
     fontSize: 20,
     textAlign: "center",
+  },
+  text2: {
+    marginBottom: 15,
+    marginTop: 15,
+    fontSize: 15,
+    textAlign: "center",
+    fontFamily: "RobotoCondensed_400Regular",
   },
   textbox: {
     backgroundColor: "white",
@@ -129,19 +141,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     fontFamily: "RobotoCondensed_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
-  },
-  text2: {
-    marginBottom: 15,
-    marginTop: 15,
-    fontSize: 15,
-    textAlign: "center",
-    fontFamily: "RobotoCondensed_400Regular",
-  },
-  buttonContainer: {
-    backgroundColor: "#22CA7B",
-    width: "45%",
-    alignSelf: "center",
-    borderRadius: 20,
-    padding: 10,
   },
 });
