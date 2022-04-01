@@ -1,10 +1,12 @@
+//import from our third-party libraries
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity,Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image 
+} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-
+//import from our code
+import colors from '../config/colors';
 
 export default function CoralEntries({navigation}){
 
@@ -29,7 +31,7 @@ export default function CoralEntries({navigation}){
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: '#22CA7B',
+    backgroundColor: colors.primary,
     width: '45%',
     alignSelf: 'center',
     borderRadius: 20,
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backGroundOne,
     alignContent: 'center'
   },
   image:{
@@ -48,10 +50,10 @@ const styles = StyleSheet.create({
   imageContainer:{
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backGroundOne,
     margin: 16,
     borderRadius: 8,
-    shadowColor: 'gray',
+    shadowColor: colors.shadowTwo,
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 }
@@ -68,12 +70,12 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   textbox: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backGroundOne,
     height: 40,
     width: '75%',
     margin: 10,
     borderRadius: 5,  
-    shadowColor: 'black',
+    shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
     shadowOffset: { height: 1, width: 0.3 }
   },

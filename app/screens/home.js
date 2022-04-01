@@ -1,25 +1,15 @@
+//import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic, 
+RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold, 
+RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+
+//import from our code
+import colors from "../config/colors";
 
 //main coral component
 const MainCoral = (props) => (
@@ -105,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
     borderRadius: 5,
     elevation: 5,
   },
@@ -118,7 +108,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#F3F3F3",
+    backgroundColor: colors.backGroundTwo,
     alignContent: "center",
   },
   image: {
@@ -151,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 5,
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
   },
 });
 

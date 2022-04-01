@@ -1,5 +1,6 @@
+//import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Image,
+import { Platform, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Image
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
@@ -8,6 +9,9 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
 RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
 RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+
+//import from our code
+import colors from "../config/colors";
 
 export default function NewEntry({ navigation }) {
   const [date, setDate] = useState(new Date());
@@ -129,7 +133,7 @@ export default function NewEntry({ navigation }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    backgroundColor: "#22CA7B",
+    backgroundColor: colors.primary,
     width: "25%",
     alignSelf: "flex-end",
     borderRadius: 20,
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
     alignContent: "center",
   },
   image: {
@@ -148,11 +152,10 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
-
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
     margin: 16,
     borderRadius: 8,
-    shadowColor: "gray",
+    shadowColor: colors.shadowTwo,
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
@@ -169,12 +172,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textbox: {
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
     height: 40,
     width: "75%",
     margin: 10,
     borderRadius: 5,
-    shadowColor: "black",
+    shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
     shadowOffset: { height: 1, width: 0.3 },
   },

@@ -1,3 +1,4 @@
+//import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, FlatList } from "react-native";
 import AppLoading from "expo-app-loading";
@@ -7,6 +8,10 @@ import React, { useEffect, useState } from "react";
 import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
 RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
 RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+
+//import from our code
+import colors from "../config/colors";
 
 const data = [
   { reef: "Carysfort Reef", coral: "Boulder Star" },
@@ -99,7 +104,7 @@ export default function EntrySearch({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F3F3",
+    backgroundColor: colors.backGroundTwo,
   },
   list: {
     marginHorizontal: 8,
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 15,
     margin: 5,
-    backgroundColor: "white",
+    backgroundColor: colors.backGroundOne,
     borderRadius: 5,
     elevation: 5,
   },
