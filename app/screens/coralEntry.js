@@ -1,10 +1,12 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image 
+} from "react-native";
+import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //import from our code
-import colors from "../config/colors";
+import colors from '../config/colors';
 
 export default function CoralEntry({ navigation }) {
   return (
@@ -16,7 +18,7 @@ export default function CoralEntry({ navigation }) {
       <View style={styles.deleteIcon}></View>
       <StatusBar style="auto" />
     </SafeAreaView>
-  );
+  );g
 }
 
 const styles = StyleSheet.create({
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
   },
-  closeIcon: {
+  closeIcon:{
     width: 50,
     height: 50,
     backgroundColor: colors.primary,
@@ -84,5 +86,5 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 15,
     textAlign: "center",
-  },
+  }, 
 });
