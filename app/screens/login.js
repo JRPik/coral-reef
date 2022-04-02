@@ -1,12 +1,17 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,
-KeyboardAvoidingView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic, 
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";

@@ -5,14 +5,13 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 //import from our code
 import colors from "../config/colors";
 
+//Array of data with all the coral and reefs we service
 const data = [
   { reef: "Carysfort Reef", coral: "Boulder Star" },
   { reef: "Carysfort Reef", coral: "Elkhorn" },
@@ -25,15 +24,18 @@ const data = [
 ];
 
 export default function EntrySearch({ navigation }) {
+  //States used to get the data
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
+  //puts the data into those values (could be made into an online data pull)
   useEffect(() => {
     setFilteredDataSource(data);
     setMasterDataSource(data);
   }, []);
 
+  //Function that filters the results
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
     if (text) {
@@ -48,19 +50,19 @@ export default function EntrySearch({ navigation }) {
       setSearch(text);
     } else {
       // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
       setFilteredDataSource(masterDataSource);
       setSearch(text);
     }
   };
+
+  //Function that alerts when clicked (will be changed to go to pages)
   const getItem = (item) => {
-    // Function for click on an item
     alert(item.reef + "\n" + item.coral);
   };
 
+  //Function that styles each entry in the FlatList
   const ItemView = ({ item }) => {
     return (
-      // Flat List Item
       <Text style={styles.text} onPress={() => getItem(item)}>
         {item.reef + ": " + item.coral}
       </Text>
@@ -71,6 +73,7 @@ export default function EntrySearch({ navigation }) {
     navigation.navigate("Logon");
   };
 
+  //Allows the fonts to be loaded
   let [fontsLoaded] = useFonts({
     RobotoCondensed_400Regular,
   });
