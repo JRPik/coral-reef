@@ -35,10 +35,10 @@ CoralPosts = (props) => (
     <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
     </TouchableOpacity>
-    <View>
-      <Text style={styles.text}>{props.name}</Text>
-      <Text style={styles.text}>{props.location}</Text>
-      <Text style={styles.text}>{props.diver}</Text>
+    <View >
+      <Text style={styles.entriesText}>{props.name}</Text>
+      <Text style={styles.entriesText}>{props.location}</Text>
+      <Text style={styles.entriesText}>{props.diver}</Text>
     </View>
   </View>
 );
@@ -105,7 +105,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   newestCoral: {
     height: "100%",
-    width: "93%",
+    width: "95%",
     justifyContent: "flex-start",
     borderWidth: 2,
     borderColor: colors.primary,
@@ -138,27 +138,24 @@ const styles = StyleSheet.create({
     height: 160,
     resizeMode: "contain",
     flexBasis: "70%",
-    marginTop: 4,
-    marginBottom: 2,
     justifyContent: "center",
   },
-  text: {
-    width: "100%",
-    marginBottom: 2,
+  entriesText: {
+    marginBottom: 5,
     textAlign: "center",
     fontFamily: "Roboto_400Regular_Italic",
     fontSize: 10,
   },
 
   entriesSquare: {
-    width: "45%",
+    width: "30%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     marginTop: 5,
     elevation: 3,
     backgroundColor: colors.backGroundOne,
-    borderWidth: 5,
+    borderWidth: 2,
     borderColor: colors.primary,
   },
 });
