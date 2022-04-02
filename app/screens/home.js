@@ -13,20 +13,22 @@ import colors from "../config/colors";
 
 //main coral component
 const MainCoral = (props) => (
-  <View style={[styles.card]}>
-    <Text style={styles.cardText}>{props.name}</Text>
-    <Image source={props.image} style={styles.image} />
+  <View style={[styles.newestCoral]}>
+    <Image source={props.image} style={styles.newestImage} />
+    <Text style={styles.newestCoralText}>{props.name}</Text>
   </View>
 );
 
 CoralPosts = (props) => (
-  <View style={[styles.square]}>
+  <View style={[styles.entriesSquare]}>
     <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
+    </TouchableOpacity>
+    <View> 
       <Text style={styles.text}>{props.name}</Text>
       <Text style={styles.text}>{props.location}</Text>
       <Text style={styles.text}>{props.diver}</Text>
-    </TouchableOpacity>
+    </View>
   </View>
 );
 
@@ -88,35 +90,37 @@ export default function Home({ navigation }) {
   }
 }
 
+//container is the whole page below the coral spotlight.
 const styles = StyleSheet.create({
-  card: {
+  newestCoral: {
     height: "100%",
-    width: "95%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: "93%",
+    justifyContent: "flex-start",
+    borderWidth: 2,
+    borderColor: colors.primary,
     flexDirection: "row",
     backgroundColor: colors.backGroundOne,
     borderRadius: 5,
     elevation: 5,
+    padding: 10,
   },
-  cardText: {
-    position: "absolute",
-    textAlign: "center",
-    top: "3%",
+  newestCoralText: {
+    position: "relative",
+    //textAlign: "center",
     fontFamily: "RobotoCondensed_700Bold_Italic",
     fontSize: 15,
+    padding: 15,
   },
   container: {
     flex: 1,
     backgroundColor: colors.backGroundTwo,
     alignContent: "center",
   },
-  image: {
-    width: 250,
+  newestImage: {
+    //width: 250,
+    width: "45%",
     height: 250,
     resizeMode: "contain",
-    marginRight: 10,
-    marginTop: 5,
   },
   imageSquare: {
     width: "100%",
@@ -134,7 +138,8 @@ const styles = StyleSheet.create({
     fontFamily: "RobotoCondensed_400Regular_Italic",
     fontSize: 10,
   },
-  square: {
+
+  entriesSquare: {
     width: "45%",
     justifyContent: "center",
     alignItems: "center",
@@ -142,6 +147,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     elevation: 3,
     backgroundColor: colors.backGroundOne,
+    borderWidth: 5,
+    borderColor: colors.primary,
   },
 });
 
