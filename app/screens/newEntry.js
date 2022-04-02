@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -83,7 +83,7 @@ export default function NewEntry({ navigation }) {
   };
 
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -123,7 +123,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Select Time
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 18,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
   },
   text2: {
     marginBottom: 15,

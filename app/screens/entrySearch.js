@@ -5,7 +5,7 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
-import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 //import from our code
@@ -75,7 +75,7 @@ export default function EntrySearch({ navigation }) {
 
   //Allows the fonts to be loaded
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -115,15 +115,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   text: {
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
     fontSize: 15,
     padding: 15,
     margin: 5,
-    backgroundColor: colors.backGroundOne,
+    backgroundColor: colors.primary,
+    color: colors.backGroundOne,
     borderRadius: 5,
     elevation: 5,
   },
   searchText: {
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
   },
 });

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
-import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -24,7 +24,7 @@ export default function Login({ navigation }) {
     navigation.navigate("Home");
   };
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -56,7 +56,7 @@ export default function Login({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Login
@@ -71,7 +71,7 @@ export default function Login({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Create Account
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 15,
     textAlign: "center",
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
   },
   textbox: {
     backgroundColor: colors.backGroundOne,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
   },
 });

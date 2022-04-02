@@ -1,12 +1,23 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic, 
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold, 
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_400Regular_Italic,
+  Roboto_700Bold_Italic,
+} from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -24,7 +35,7 @@ CoralPosts = (props) => (
     <TouchableOpacity style={styles.imageSquare} onPress={props.func}>
       <Image source={props.image} style={styles.imageSquare} />
     </TouchableOpacity>
-    <View> 
+    <View>
       <Text style={styles.text}>{props.name}</Text>
       <Text style={styles.text}>{props.location}</Text>
       <Text style={styles.text}>{props.diver}</Text>
@@ -39,9 +50,9 @@ export default function Home({ navigation }) {
   };
 
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular_Italic,
-    RobotoCondensed_700Bold_Italic,
-    RobotoCondensed_400Regular,
+    Roboto_400Regular_Italic,
+    Roboto_700Bold_Italic,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
   newestCoralText: {
     position: "relative",
     //textAlign: "center",
-    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontFamily: "Roboto_700Bold_Italic",
     fontSize: 15,
     padding: 15,
   },
@@ -135,7 +146,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 2,
     textAlign: "center",
-    fontFamily: "RobotoCondensed_400Regular_Italic",
+    fontFamily: "Roboto_400Regular_Italic",
     fontSize: 10,
   },
 
