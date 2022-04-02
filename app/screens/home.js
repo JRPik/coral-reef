@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
 
   entriesSquare: {
-    width: "30%",
+    width: "45%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,

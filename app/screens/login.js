@@ -32,6 +32,11 @@ export default function Login({ navigation }) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
+        <Image 
+              resizeMode="contain"
+              styles={styles.backgroundImage}
+              source={require("../assets/images/coralBakcground.jpg")}
+            />
         <ScrollView>
           <KeyboardAvoidingView style={styles.imageContainer}>
             <Image
@@ -96,6 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.backGroundOne,
     alignContent: "center",
+    image: require("../assets/images/CoralBackground.jpg"), 
   },
   image: {
     width: 250,
