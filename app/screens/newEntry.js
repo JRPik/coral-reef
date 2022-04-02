@@ -6,7 +6,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
@@ -106,7 +105,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Select Date

@@ -32,11 +32,6 @@ export default function Login({ navigation }) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
-        <Image 
-              resizeMode="contain"
-              styles={styles.backgroundImage}
-              source={require("../assets/images/coralBakcground.jpg")}
-            />
         <ScrollView>
           <KeyboardAvoidingView style={styles.imageContainer}>
             <Image

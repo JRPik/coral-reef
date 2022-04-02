@@ -1,11 +1,9 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
   Image,
   ScrollView,
@@ -16,7 +14,7 @@ import {
   useFonts,
   Roboto_400Regular,
   Roboto_400Regular_Italic,
-  Roboto_700Bold_Italic,
+  Roboto_700Bold_Italic
 } from "@expo-google-fonts/dev";
 
 //import from our code

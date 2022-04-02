@@ -11,7 +11,6 @@ import {
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 //import from our code
 import colors from "../config/colors";

@@ -1,8 +1,6 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image 
-} from "react-native";
-import AppLoading from "expo-app-loading";
+import { StyleSheet, Text, View} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //import from our code
