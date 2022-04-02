@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.backGroundOne,
     alignContent: "center",
-    image: require("../assets/images/CoralBackground.jpg"), 
   },
   image: {
     width: 250,
