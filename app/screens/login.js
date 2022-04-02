@@ -1,6 +1,7 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
 import {
+  ImageBackground,
   StyleSheet,
   Text,
   TextInput,
@@ -15,6 +16,7 @@ import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
+import { color } from "react-native-reanimated";
 
 export default function Login({ navigation }) {
   const pressedHandler = () => {
@@ -31,6 +33,10 @@ export default function Login({ navigation }) {
     return <AppLoading />;
   } else {
     return (
+      <ImageBackground
+        style={styles.imageBackground}
+        source={require("../assets/images/coralBackground.jpg")}
+      >
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <KeyboardAvoidingView style={styles.imageContainer}>
@@ -41,7 +47,10 @@ export default function Login({ navigation }) {
           </KeyboardAvoidingView>
 
           <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
-            <TextInput style={styles.textbox} placeholder="User ID" />
+            <TextInput 
+              style={styles.textbox} 
+              placeholder="User ID" 
+            />
             <TextInput
               secureTextEntry={true}
               style={styles.textbox}
@@ -55,7 +64,7 @@ export default function Login({ navigation }) {
             <Text
               style={{
                 textAlign: "center",
-                color: "white",
+                color: colors.backGroundOne,
                 fontFamily: "Roboto_400Regular",
               }}
             >
@@ -70,7 +79,7 @@ export default function Login({ navigation }) {
             <Text
               style={{
                 textAlign: "center",
-                color: "white",
+                color: colors.backGroundOne,
                 fontFamily: "Roboto_400Regular",
               }}
             >
@@ -80,6 +89,7 @@ export default function Login({ navigation }) {
         </ScrollView>
         <StatusBar style="auto" />
       </SafeAreaView>
+    </ImageBackground>
     );
   }
 }
@@ -93,14 +103,18 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   container: {
-    flex: 1,
-    backgroundColor: colors.backGroundOne,
+    //flex: 1,
+    //backgroundColor: colors.backGroundOne,
     alignContent: "center",
   },
   image: {
     width: 250,
     height: 250,
     resizeMode: "contain",
+  },
+  imageBackground: {
+    //resizeMode: "contain",
+    flex: 1,
   },
   imageContainer: {
     justifyContent: "center",
