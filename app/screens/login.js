@@ -1,22 +1,13 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  KeyboardAvoidingView,
-} from "react-native";
+import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, Image, ScrollView,
+KeyboardAvoidingView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
-import { color } from "react-native-reanimated";
 
 export default function Login({ navigation }) {
   const pressedHandler = () => {
@@ -36,26 +27,26 @@ export default function Login({ navigation }) {
   } else {
     return (
       <ImageBackground
-      style={styles.imageBackground}
-      source={require("../assets/images/coralReefBackground.jpg")}
+        style={styles.imageBackground}
+        source={require("../assets/images/coralReefBackground.jpg")}
       >
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView>
           <ScrollView>
-            <KeyboardAvoidingView style={styles.logoImageCont}>
+            <KeyboardAvoidingView style={styles.logoImageContiner}>
               <Image
-              style={styles.logoImage}
-              source={require("../assets/images/logo.jpg")}/>
+                style={styles.logoImage}
+                source={require("../assets/images/logo.jpg")}/>
             </KeyboardAvoidingView>
             
             <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
               <TextInput
-              style={styles.textbox}
-              placeholder="User ID"
+                style={styles.inputTextbox}
+                placeholder="User ID"
               />
               <TextInput
-              secureTextEntry={true}
-              style={styles.textbox}
-              placeholder="Password"
+                secureTextEntry={true}
+                style={styles.inputTextbox}
+                placeholder="Password"
               />
             </KeyboardAvoidingView>
           
@@ -70,10 +61,13 @@ export default function Login({ navigation }) {
             <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
               <Text style={styles.buttonText}>
                 Create Account
-              </Text>
+              </Text>              
             </TouchableOpacity>
+
           </ScrollView>
+
           <StatusBar style="auto" />
+
         </SafeAreaView>
       </ImageBackground>
     );
@@ -93,31 +87,6 @@ const styles = StyleSheet.create({
     color: colors.backGroundOne,
     fontWeight: "bold",
   },
-  container: {
-    //flex: 1,
-    //backgroundColor: colors.backGroundOne,
-    //alignContent: "center",
-  },
-  imageBackground: {
-    //resizeMode: "contain",
-    flex: 1,
-  },
-  logoImage: {
-    width: 250,
-    height: 250,
-    resizeMode: "contain",
-  },
-  logoImageCont: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.backGroundOne,
-    margin: 10,
-    borderRadius: 50,
-    //shadowColor: colors.shadowTwo,
-    //shadowOpacity: 0.3,
-    //shadowRadius: 8,
-    //shadowOffset: { height: 1, width: 0.3 },
-  },
   haveAcctText: {
     marginBottom: 15,
     marginTop: 15,
@@ -126,7 +95,11 @@ const styles = StyleSheet.create({
     color: colors.backGroundOne,
     fontWeight: "bold",
   },
-  textbox: {
+  imageBackground: {
+    //resizeMode: "contain",
+    flex: 1,
+  },
+  inputTextbox: {
     backgroundColor: colors.backGroundOne,
     height: 40,
     width: "80%",
@@ -137,5 +110,17 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
     paddingLeft: 5,
+  },
+  logoImage: {
+    width: 250,
+    height: 250,
+    resizeMode: "contain",
+  },
+  logoImageContiner: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.backGroundOne,
+    margin: 60,
+    borderRadius: 50,
   },
 });
