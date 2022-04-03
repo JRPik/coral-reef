@@ -1,5 +1,7 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,
 KeyboardAvoidingView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,8 +12,28 @@ RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
+import { app } from '../../firebase';
 
 export default function Login({ navigation }) {
+  // Use states to track changes in input fields
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const auth = getAuth(app);
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      navigation.navigate("Home");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  }
+
   const pressedHandler = () => {
     navigation.navigate("Logon");
   };
@@ -36,16 +58,23 @@ export default function Login({ navigation }) {
           </KeyboardAvoidingView>
 
           <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
-            <TextInput style={styles.textbox} placeholder="User ID" />
+            <TextInput 
+              style={styles.textbox}
+              value = {email}
+              placeholder="Email"
+              onChangeText={text => setEmail(text)}
+            />
             <TextInput
               secureTextEntry={true}
               style={styles.textbox}
               placeholder="Password"
+              onChangeText={text => setPassword(text)}
+              value = {password}
             />
           </KeyboardAvoidingView>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={pressedHandler2}
+            onPress={signIn}
           >
             <Text
               style={{
