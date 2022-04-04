@@ -1,22 +1,14 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import {Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, FlatList,} 
-from "react-native";
-import { StackActions } from "@react-navigation/native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
-import { borderBottomColor } 
-from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic,} from "@expo-google-fonts/dev";
+import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 
 //imports from our code
-import Home from "../app/screens/home";
 import NewEntry from "../app/screens/newEntry";
 import EntrySearch from "../app/screens/entrySearch";
 import CoralEntries from "../app/screens/coralEntries";
-import CoralEntry from "../app/screens/coralEntry";
 import { InStack } from "./inStack";
 
 const screens = {

@@ -2,13 +2,11 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,
+import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, Image, ScrollView,
 KeyboardAvoidingView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic, 
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -37,27 +35,32 @@ export default function Login({ navigation }) {
   const pressedHandler = () => {
     navigation.navigate("Logon");
   };
+  
   const pressedHandler2 = () => {
     navigation.navigate("Home");
   };
+  
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
-
+  
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <KeyboardAvoidingView style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require("../assets/images/logo.jpg")}
-            />
-          </KeyboardAvoidingView>
-
-          <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
+      <ImageBackground
+        style={styles.imageBackground}
+        source={require("../assets/images/coralReefBackground.jpg")}
+      >
+        <SafeAreaView>
+          <ScrollView>
+            <KeyboardAvoidingView style={styles.logoImageContiner}>
+              <Image
+                style={styles.logoImage}
+                source={require("../assets/images/logo.jpg")}/>
+            </KeyboardAvoidingView>
+            
+            <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
             <TextInput 
               style={styles.textbox}
               value = {email}
@@ -71,93 +74,79 @@ export default function Login({ navigation }) {
               onChangeText={text => setPassword(text)}
               value = {password}
             />
-          </KeyboardAvoidingView>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={signIn}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
-              }}
-            >
-              Login
-            </Text>
-          </TouchableOpacity>
-          <Text style={styles.text2}>Don't Have an Account?</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={pressedHandler}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
-              }}
-            >
-              Create Account
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
-        <StatusBar style="auto" />
-      </SafeAreaView>
+            </KeyboardAvoidingView>
+          
+            <TouchableOpacity style={styles.buttonContainer} onPress={signIn}>
+              <Text style={styles.buttonText}>
+                Login
+              </Text>
+            </TouchableOpacity>
+          
+            <Text style={styles.haveAcctText}>Don't Have an Account?</Text>
+          
+            <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
+              <Text style={styles.buttonText}>
+                Create Account
+              </Text>              
+            </TouchableOpacity>
+
+          </ScrollView>
+
+          <StatusBar style="auto" />
+
+        </SafeAreaView>
+      </ImageBackground>
     );
-  }
+  } 
 }
 
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: colors.primary,
-    width: "45%",
+    width: "30%",
     alignSelf: "center",
     borderRadius: 20,
     padding: 10,
   },
-  container: {
-    flex: 1,
-    backgroundColor: colors.backGroundOne,
-    alignContent: "center",
-  },
-  image: {
-    width: 250,
-    height: 250,
-    resizeMode: "contain",
-  },
-  imageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.backGroundOne,
-    margin: 16,
-    borderRadius: 8,
-    shadowColor: colors.shadowTwo,
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    shadowOffset: { height: 1, width: 0.3 },
-  },
-  text: {
-    marginTop: 70,
-    fontSize: 20,
+  buttonText: {
     textAlign: "center",
+    color: colors.backGroundOne,
+    fontWeight: "bold",
   },
-  text2: {
+  haveAcctText: {
     marginBottom: 15,
     marginTop: 15,
     fontSize: 15,
     textAlign: "center",
-    fontFamily: "RobotoCondensed_400Regular",
+    color: colors.backGroundOne,
+    fontWeight: "bold",
   },
-  textbox: {
+  imageBackground: {
+    //resizeMode: "contain",
+    flex: 1,
+  },
+  inputTextbox: {
     backgroundColor: colors.backGroundOne,
     height: 40,
-    width: "75%",
+    width: "80%",
     margin: 10,
     borderRadius: 5,
     shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
+    paddingLeft: 5,
+  },
+  logoImage: {
+    width: 250,
+    height: 250,
+    resizeMode: "contain",
+  },
+  logoImageContiner: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.backGroundOne,
+    margin: 60,
+    borderRadius: 50,
   },
 });

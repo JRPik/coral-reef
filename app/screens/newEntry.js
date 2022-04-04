@@ -1,25 +1,30 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Image
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
 
 export default function NewEntry({ navigation }) {
+  //States used to set date and time
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [dateText, setDateText] = useState("Empty");
   const [timeText, setTimeText] = useState("Empty");
 
+  //When changed show it
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
@@ -27,9 +32,18 @@ export default function NewEntry({ navigation }) {
 
     let tempDate = new Date(currentDate);
 
+    let amPM = "a.m";
+
     let properHour = tempDate.getHours();
+    if (properHour > 12) {
+      properHour = tempDate.getHours() - 12;
+      amPM = "p.m.";
+    } else {
+      amPM = "a.m.";
+    }
+
     if (properHour < 10) {
-      properHour = "0" + tempDate.getHours();
+      properHour = "0" + properHour;
     }
 
     let properMinutes = tempDate.getMinutes();
@@ -42,6 +56,7 @@ export default function NewEntry({ navigation }) {
       properSecs = "0" + tempDate.getSeconds();
     }
 
+    //The format that the date is displayed
     let fDate =
       tempDate.getMonth() +
       1 +
@@ -49,8 +64,9 @@ export default function NewEntry({ navigation }) {
       tempDate.getDate() +
       "/" +
       tempDate.getFullYear();
-
-    let fTime = properHour + ":" + properMinutes + ":" + properSecs;
+    //Format at which the time is displayed
+    let fTime =
+      properHour + ":" + properMinutes + ":" + properSecs + " " + amPM;
 
     setDateText(fDate);
     setTimeText(fTime);
@@ -66,7 +82,7 @@ export default function NewEntry({ navigation }) {
   };
 
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -89,7 +105,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Select Date
@@ -106,7 +122,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto_400Regular",
               }}
             >
               Select Time
@@ -163,7 +179,7 @@ const styles = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 18,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
   },
   text2: {
     marginBottom: 15,

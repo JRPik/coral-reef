@@ -1,8 +1,7 @@
 //imports from our thrid-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { NavigationContainer } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import React from "react";
 
 //imports from our code
