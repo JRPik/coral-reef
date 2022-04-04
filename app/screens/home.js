@@ -9,23 +9,24 @@ import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
 //import from our code
 import colors from "../config/colors";
 
-//main coral component
+//Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (
   <View style={[styles.newestCoralContainer]}>
     <Image source={props.image} style={styles.newestCoralImage} />
-    <Text style={styles.newestCoralText}>{props.name}</Text>
+    <Text style={styles.newestCoralText}>{props.name} </Text>
   </View>
 );
 
+//Information that is gathered to present our other entries. These entries are from
+//everyone who has the app and has uploaded information to it
 CoralPosts = (props) => (
   <View style={[styles.entryContainer]}>
     <TouchableOpacity style={styles.entryImage} onPress={props.func}>
-      <Image source={props.image} style={styles.entryImage} />
+      <Image source={props.image} style={styles.entryImage}/>
     </TouchableOpacity>
     <View >
       <Text style={styles.entryText}>{props.name}</Text>
       <Text style={styles.entryText}>{props.location}</Text>
-      <Text style={styles.entryText}>{props.diver}</Text>
     </View>
   </View>
 );
@@ -51,17 +52,16 @@ export default function Home({ navigation }) {
         <SafeAreaView>
           <ScrollView>
             <TouchableOpacity onPress={pressMain}>
-              <View style={{ flex: 1, alignItems: "center" }}>
+              <View style={styles.mainCoralInfo}>
                 <MainCoral
                   name={data.corals[0].name}
                   image={data.corals[0].image}
                   location={data.corals[0].location}
-                  //diver={data.corals[0].diver}
                 />
               </View>
             </TouchableOpacity>
 
-            <View style={styles.entriesContainer}>
+            <View style={styles.entriesInfo}>
               {data.corals.map((coral) => (
                 <CoralPosts
                   func={pressMain}
@@ -69,7 +69,6 @@ export default function Home({ navigation }) {
                   name={"Coral Name: " + coral.name}
                   image={coral.image}
                   location={"Location: " + coral.location}
-                  //diver={"Diver's Name: " + coral.diver}
                 />
               ))}
             </View>
@@ -89,9 +88,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backGroundTwo,
     alignContent: "center",
     padding: 40,
-
   },
-  entriesContainer: {
+  entriesInfo: {
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -115,10 +113,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   entryText: {
-    marginBottom: 5,
+    paddingBottom: 9,
     textAlign: "center",
     fontSize: 10,
     fontWeight: "bold",
+  },
+  mainCoralInfo: {
+    flex: 1, 
+    alignItems: "center" ,
   },
   newestCoralContainer: {
     height: "100%",
@@ -151,64 +153,55 @@ const data = {
       id: 1,
       name: "Elkhorn Coral",
       image: require("../assets/images/Carysfort_Reef/Elkhorn_Coral_CReef.jpg"),
-      location: "Carysfort Reef",
-      //diver: "Diver 1",
+      location: "Carysfort Reef"
     },
     {
       id: 2,
       name: "Boulder Star Coral",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_Day_1.jpg"),
-      location: "Carysfort Reef",
-      //diver: "Diver 2",
+      location: "Carysfort Reef"
     },
     {
       id: 3,
       name: "Boulder Star Coral",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_003.jpg"),
-      location: "Carysfort Reef",
-      //diver: "Diver 2",
+      location: "Carysfort Reef"
     },
     {
       id: 4,
       name: "Mountainous Star Coral",
       image: require("../assets/images/Carysfort_Reef/Mountainous_Star_Coral_(OF)_158.jpg"),
-      location: "Carysfort Reef",
-      //diver: "Diver 3",
+      location: "Carysfort Reef"
     },
     {
       id: 5,
       name: "Staghorn Coral",
       image: require("../assets/images/Carysfort_Reef/Staghorn_CoraL_CReef.jpg"),
-      location: "Carysfort Reef",
-      //diver: "Diver 2",
+      location: "Carysfort Reef"
     },
     {
       id: 6,
       name: "Mountainous Star Coral",
       image: require("../assets/images/Cheeca_Rocks/Mountainous_Star_Coral_(OF)_ChR.jpg"),
-      location: "Cheeca Rocks",
-      //diver: "Diver 1",
+      location: "Cheeca Rocks"
     },
     {
       id: 7,
       name: "Staghorn Coral",
       image: require("../assets/images/Looe_Key/Staghorn_Coral_LKey.jpg"),
-      location: "Looe Key",
-      //diver: "Diver 3",
+      location: "Looe Key"
     },
     {
       id: 8,
       name: "Staghorn Coral",
       image: require("../assets/images/Pickles_Reef/Staghorn_Coral_PReef.jpg"),
-      location: "Pickles Reef",
-      //diver: "Diver 1",
+      location: "Pickles Reef"
     },
     {
       id: 9,
       name: "Elkhorn Coral",
       image: require("../assets/images/Sombrero_Reef/Elkhorn_Coral_SReef.jpg"),
-      location: "Sombrero Reef",
-      diver: "Diver 2",
+      location: "Sombrero Reef"
     },
   ],
 };
