@@ -1,10 +1,10 @@
 //import from our third-party libraries
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
+import { ImageBackground, Image, ScrollView, StyleSheet, Text, TouchableOpacity, 
+  View } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular, Roboto_400Regular_Italic, Roboto_700Bold_Italic
-} from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -23,9 +23,9 @@ CoralPosts = (props) => (
       <Image source={props.image} style={styles.entryImage} />
     </TouchableOpacity>
     <View >
-      <Text style={styles.entriesText}>{props.name}</Text>
-      <Text style={styles.entriesText}>{props.location}</Text>
-      <Text style={styles.entriesText}>{props.diver}</Text>
+      <Text style={styles.entryText}>{props.name}</Text>
+      <Text style={styles.entryText}>{props.location}</Text>
+      <Text style={styles.entryText}>{props.diver}</Text>
     </View>
   </View>
 );
@@ -37,8 +37,6 @@ export default function Home({ navigation }) {
   };
 
   let [fontsLoaded] = useFonts({
-    Roboto_400Regular_Italic,
-    Roboto_700Bold_Italic,
     Roboto_400Regular,
   });
 
@@ -46,59 +44,68 @@ export default function Home({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <TouchableOpacity onPress={pressMain}>
-            <View style={{ flex: 1, alignItems: "center" }}>
-              <MainCoral
-                name={data.corals[0].name}
-                image={data.corals[0].image}
-                location={data.corals[0].location}
-                //diver={data.corals[0].diver}
-              />
-            </View>
-          </TouchableOpacity>
+      <ImageBackground
+        style={styles.imageBackground}
+        source={require("../assets/images/coralBackground.jpg")}
+      >
+        <SafeAreaView>
+          <ScrollView>
+            <TouchableOpacity onPress={pressMain}>
+              <View style={{ flex: 1, alignItems: "center" }}>
+                <MainCoral
+                  name={data.corals[0].name}
+                  image={data.corals[0].image}
+                  location={data.corals[0].location}
+                  //diver={data.corals[0].diver}
+                />
+              </View>
+            </TouchableOpacity>
 
-          <View style={styles.entriesContainer}>
-            {data.corals.map((coral) => (
-              <CoralPosts
-                func={pressMain}
-                key={coral.id}
-                name={"Coral Name: " + coral.name}
-                image={coral.image}
-                location={"Location: " + coral.location}
-                //diver={"Diver's Name: " + coral.diver}
-              />
-            ))}
-          </View>
+            <View style={styles.entriesContainer}>
+              {data.corals.map((coral) => (
+                <CoralPosts
+                  func={pressMain}
+                  key={coral.id}
+                  name={"Coral Name: " + coral.name}
+                  image={coral.image}
+                  location={"Location: " + coral.location}
+                  //diver={"Diver's Name: " + coral.diver}
+                />
+              ))}
+            </View>
 
           <StatusBar style="auto" />
-        </ScrollView>
-      </SafeAreaView>
+
+          </ScrollView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  imageBackground: {
+    flex: 1,
+    backgroundColor: colors.backGroundTwo,
+    alignContent: "center",
+    padding: 40,
+
+  },
   entriesContainer: {
-    flex: 1.5,
-    marginTop: 20,
-    backgroundColor: "#F0FFF0",
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
   entryContainer: {
-    width: "45%",
+    width: "35%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
-    marginTop: 5,
-    elevation: 3,
-    backgroundColor: colors.backGroundOne,
+    marginTop: 50,
+    backgroundColor: colors.backGroundTwo,
     borderWidth: 2,
     borderColor: colors.primary,
     justifyContent: "space-evenly",
+    borderRadius: 70,
   },
   entryImage: {
     width: "100%",
@@ -126,8 +133,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   newestCoralImage: {
-    //width: 250,
-    width: "45%",
+    width: "50%",
     height: 250,
     resizeMode: "contain",
   },
@@ -136,19 +142,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
     padding: 15,
-  },
-
-
-  container: {
-    flex: 1,
-    backgroundColor: colors.backGroundTwo,
-    alignContent: "center",
-  },
-  
-
-  
-  
-  
+  },  
 });
 
 const data = {
