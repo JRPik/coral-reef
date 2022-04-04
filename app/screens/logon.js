@@ -1,4 +1,4 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -12,8 +12,10 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
-//import from our code
+//IMPORT FROM OUR CODE
 import colors from "../config/colors";
+//import AppText from "../components/AppText";
+//import MyHeading from "../components/MyHeading";
 
 export default function Logon() {
   let [fontsLoaded] = useFonts({

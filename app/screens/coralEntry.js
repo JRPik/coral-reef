@@ -1,16 +1,18 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-//import from our code
-import colors from '../config/colors';
+//IMPORT FROM OUR CODE
+import colors from "../config/colors";
+import AppText from "../components/AppText";
+//import MyHeading from "../components/MyHeading";
 
 export default function CoralEntry({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ paddingTop: "10%" }}>
-        <Text>Coral Specification Page</Text>
+        <AppText>Coral Specification Page</AppText>
       </View>
       <View style={styles.closeIcon}></View>
       <View style={styles.deleteIcon}></View>

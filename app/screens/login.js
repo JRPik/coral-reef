@@ -1,4 +1,4 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, Image, ScrollView,
 KeyboardAvoidingView } from "react-native";
@@ -6,8 +6,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
-//import from our code
+//IMPORT FROM OUR CODE
 import colors from "../config/colors";
+//import AppText from "../components/AppText";
+//import MyHeading from "../components/MyHeading";
 
 export default function Login({ navigation }) {
   const pressedHandler = () => {

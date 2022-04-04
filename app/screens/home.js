@@ -1,4 +1,4 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, Image, ScrollView, StyleSheet, Text, TouchableOpacity, 
   View } from "react-native";
@@ -6,14 +6,16 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
 
-//import from our code
+//IMPORT FROM OUR CODE
 import colors from "../config/colors";
+import AppText from "../components/AppText";
+import MyHeading from "../components/MyHeading";
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (
   <View style={[styles.newestCoralContainer]}>
     <Image source={props.image} style={styles.newestCoralImage} />
-    <Text style={styles.newestCoralText}>{props.name} </Text>
+    <MyHeading style={styles.newestCoralText}>{props.name} </MyHeading>
   </View>
 );
 
@@ -25,8 +27,8 @@ CoralPosts = (props) => (
       <Image source={props.image} style={styles.entryImage}/>
     </TouchableOpacity>
     <View >
-      <Text style={styles.entryText}>{props.name}</Text>
-      <Text style={styles.entryText}>{props.location}</Text>
+      <AppText style={styles.entryText}>{props.name}</AppText>
+      <AppText style={styles.entryText}>{props.location}</AppText>
     </View>
   </View>
 );
@@ -112,12 +114,6 @@ const styles = StyleSheet.create({
     flexBasis: "70%",
     justifyContent: "center",
   },
-  entryText: {
-    paddingBottom: 9,
-    textAlign: "center",
-    fontSize: 10,
-    fontWeight: "bold",
-  },
   mainCoralInfo: {
     flex: 1, 
     alignItems: "center" ,
@@ -131,7 +127,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: colors.backGroundOne,
     borderRadius: 5,
-    elevation: 5,
     padding: 10,
   },
   newestCoralImage: {
@@ -142,7 +137,7 @@ const styles = StyleSheet.create({
   newestCoralText: {
     position: "relative",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 20,
     padding: 15,
   },  
 });

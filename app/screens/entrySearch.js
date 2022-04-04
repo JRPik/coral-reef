@@ -1,4 +1,4 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, FlatList } from "react-native";
 import AppLoading from "expo-app-loading";
@@ -7,8 +7,10 @@ import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
-//import from our code
+//IMPORT FROM OUR CODE
 import colors from "../config/colors";
+//import AppText from "../components/AppText";
+//import MyHeading from "../components/MyHeading";
 
 //Array of data with all the coral and reefs we service
 const data = [

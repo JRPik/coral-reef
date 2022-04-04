@@ -1,4 +1,4 @@
-//import from our third-party libraries
+//IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import {
   Platform,
@@ -13,8 +13,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
-//import from our code
+//IMPORT FROM OUR CODE
 import colors from "../config/colors";
+//import AppText from "../components/AppText";
+//import MyHeading from "../components/MyHeading";
 
 export default function NewEntry({ navigation }) {
   //States used to set date and time

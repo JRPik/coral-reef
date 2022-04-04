@@ -7,6 +7,7 @@ import React from "react";
 ///imports from our code
 import Home from "../app/screens/home";
 import CoralEntry from "../app/screens/coralEntry";
+import MyTitles from "../app/components/MyTitles";
 
 const screens = {
   Home: {
@@ -15,15 +16,9 @@ const screens = {
       return {
         headerLeft: () => null,
         headerTitle: () => (
-          <Text
-            style={{
-              textAlign: "center",
-              fontFamily: "RobotoCondensed_400Regular",
-              fontSize: 18,
-            }}
-          >
+          <MyTitles>
             Coral Spotlight
-          </Text>
+          </MyTitles>
         ),
         gestureEnabled: false,
       };
