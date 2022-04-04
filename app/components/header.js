@@ -4,15 +4,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
 import {
   useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
   RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
   RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
 } from "@expo-google-fonts/dev";
 
-export default function Header({ navigation }) {
+function Header({ navigation }) {
   const openMenu = () => {
     navigation.toggleDrawer();
   };
@@ -56,3 +52,5 @@ const styles = StyleSheet.create({
     right: 20,
   },
 });
+
+export default Header;
