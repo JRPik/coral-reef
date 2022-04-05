@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "coral_reef_project",
-    "slug": "coral_reef_project",
+    "name": "Coral Reef Project",
+    "slug": "coral-reef-project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./app/assets/images/favicon.png"
-    }
+    },
+    "description": "A place where divers will be able to input and store their corals progress.",
+    "githubUrl": "https://github.com/JRPik/coral-reef.git"
   }
 }

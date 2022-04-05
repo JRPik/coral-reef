@@ -1,7 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, Image, ScrollView, StyleSheet, Text, TouchableOpacity, 
-  View } from "react-native";
+  View, Platform } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
@@ -9,13 +9,13 @@ import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-import MyHeading from "../components/MyHeading";
+//import MyHeading from "../components/MyHeading";
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (
   <View style={[styles.newestCoralContainer]}>
     <Image source={props.image} style={styles.newestCoralImage} />
-    <MyHeading style={styles.newestCoralText}>{props.name} </MyHeading>
+    <Text style={styles.newestCoralText}>{props.name} </Text>
   </View>
 );
 
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   entryContainer: {
-    width: "35%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 50,
@@ -105,14 +104,32 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
     justifyContent: "space-evenly",
-    borderRadius: 70,
+    ...Platform.select({
+      ios:{
+        width: "35%",
+        borderRadius: 50,
+      },
+      android:{
+        width: "45%",
+        height: 170,
+        borderRadius: 30,
+        marginRight: 10,
+      },
+    }),
   },
   entryImage: {
-    width: "100%",
-    height: 170,
     resizeMode: "contain",
     flexBasis: "70%",
+    width: "100%",
     justifyContent: "center",
+    ...Platform.select({
+      ios:{
+        height: 170,
+      },
+      android:{
+        height: 160,
+      },
+    }),
   },
   mainCoralInfo: {
     flex: 1, 
@@ -120,7 +137,6 @@ const styles = StyleSheet.create({
   },
   newestCoralContainer: {
     height: "100%",
-    width: "94%",
     justifyContent: "flex-start",
     borderWidth: 2,
     borderColor: colors.primary,
@@ -128,17 +144,41 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backGroundOne,
     borderRadius: 5,
     padding: 10,
+    ...Platform.select({
+      ios:{
+        width: "85%",
+      },
+      android:{
+        width: "100%",
+      },
+    }),
   },
   newestCoralImage: {
-    width: "50%",
-    height: 250,
     resizeMode: "contain",
+    ...Platform.select({
+      ios:{
+        width: "55%",
+        height: 250,
+      },
+      android:{
+        width: "60%",
+        height: 150,
+      },
+    }),
   },
   newestCoralText: {
     position: "relative",
     fontWeight: "bold",
-    fontSize: 20,
-    padding: 15,
+    ...Platform.select({
+      ios:{
+        fontSize: 20,
+        paddingLeft: 8,
+      },
+      android:{
+        fontSize: 21,
+        paddingLeft: 10,
+      },
+    }),
   },  
 });
 
@@ -146,55 +186,55 @@ const data = {
   corals: [
     {
       id: 1,
-      name: "Elkhorn Coral",
+      name: "Elkhorn",
       image: require("../assets/images/Carysfort_Reef/Elkhorn_Coral_CReef.jpg"),
       location: "Carysfort Reef"
     },
     {
       id: 2,
-      name: "Boulder Star Coral",
+      name: "Boulder Star",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_Day_1.jpg"),
       location: "Carysfort Reef"
     },
     {
       id: 3,
-      name: "Boulder Star Coral",
+      name: "Boulder Star",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_003.jpg"),
       location: "Carysfort Reef"
     },
     {
       id: 4,
-      name: "Mountainous Star Coral",
+      name: "Mountainous Star",
       image: require("../assets/images/Carysfort_Reef/Mountainous_Star_Coral_(OF)_158.jpg"),
       location: "Carysfort Reef"
     },
     {
       id: 5,
-      name: "Staghorn Coral",
+      name: "Staghorn",
       image: require("../assets/images/Carysfort_Reef/Staghorn_CoraL_CReef.jpg"),
       location: "Carysfort Reef"
     },
     {
       id: 6,
-      name: "Mountainous Star Coral",
+      name: "Mountainous Star",
       image: require("../assets/images/Cheeca_Rocks/Mountainous_Star_Coral_(OF)_ChR.jpg"),
       location: "Cheeca Rocks"
     },
     {
       id: 7,
-      name: "Staghorn Coral",
+      name: "Staghorn",
       image: require("../assets/images/Looe_Key/Staghorn_Coral_LKey.jpg"),
       location: "Looe Key"
     },
     {
       id: 8,
-      name: "Staghorn Coral",
+      name: "Staghorn",
       image: require("../assets/images/Pickles_Reef/Staghorn_Coral_PReef.jpg"),
       location: "Pickles Reef"
     },
     {
       id: 9,
-      name: "Elkhorn Coral",
+      name: "Elkhorn",
       image: require("../assets/images/Sombrero_Reef/Elkhorn_Coral_SReef.jpg"),
       location: "Sombrero Reef"
     },
