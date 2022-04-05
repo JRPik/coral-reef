@@ -28,8 +28,8 @@ CoralPosts = (props) => (
     </TouchableOpacity>
     <View >
       <AppText>{props.name}</AppText>
-      </View>
-      <View>
+    </View>
+    <View>
       <AppText>{props.location}</AppText>
     </View>
   </View>
