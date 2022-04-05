@@ -9,7 +9,6 @@ import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-//import MyHeading from "../components/MyHeading";
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (

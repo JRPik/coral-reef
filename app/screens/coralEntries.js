@@ -1,6 +1,6 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Platform} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //IMPORT FROM OUR CODE
@@ -56,12 +56,28 @@ const styles = StyleSheet.create({
     marginTop: 70,
     fontSize: 20,
     textAlign: "center",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   text2: {
     marginBottom: 15,
     marginTop: 15,
     fontSize: 15,
     textAlign: "center",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   textbox: {
     backgroundColor: colors.backGroundOne,
@@ -72,5 +88,13 @@ const styles = StyleSheet.create({
     shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
     shadowOffset: { height: 1, width: 0.3 },
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
 });

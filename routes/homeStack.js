@@ -1,7 +1,7 @@
 //imports from our thrid-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { Text } from "react-native";
+import { Text, Platform } from "react-native";
 import React from "react";
 
 //imports from our code
@@ -19,8 +19,15 @@ const screens = {
         style={{
           textAlign: "center",
           flex: 1,
-          fontFamily: "RobotoCondensed_700Bold",
           fontSize: 22,
+          ...Platform.select({
+            ios:{
+                fontFamily: "Avenir",
+            },
+            android:{
+                fontFamily: "Roboto",
+            },
+          }),
         }}
         >        
         Login

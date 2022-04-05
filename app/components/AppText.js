@@ -16,12 +16,8 @@ function AppText({children}) {
 //if a style is different then put it in it specific platform.
 const styles = StyleSheet.create({
     text: {
-        fontSize: 12,
-        
         textAlign: "center",
         fontWeight: "bold",
-        
-
         ...Platform.select({
             ios:{
                 fontSize: 12,

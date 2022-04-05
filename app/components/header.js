@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     }),
   },
   headerText: {
-    //fontFamily: "RobotoCondensed_700Bold",
     fontSize: 20,
     ...Platform.select({
       ios:{

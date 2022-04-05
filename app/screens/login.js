@@ -8,7 +8,8 @@ import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
-import LoginButton from "../components/LoginButton";
+import GreenButton from "../components/GreenButton";
+import MyTextInput from "../components/MyTextInput";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
 
@@ -42,25 +43,23 @@ export default function Login({ navigation }) {
             </KeyboardAvoidingView>
             
             <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
-              <TextInput
-                style={styles.inputTextbox}
+              <MyTextInput
                 placeholder="User ID"
               />
-              <TextInput
+              <MyTextInput
                 secureTextEntry={true}
-                style={styles.inputTextbox}
                 placeholder="Password"
               />
             </KeyboardAvoidingView>
           
             <TouchableOpacity onPress={pressedHandler2}>
-              <LoginButton title="Login" />
+              <GreenButton title="Login" />
             </TouchableOpacity>
           
             <Text style={styles.haveAcctText}>Don't Have an Account?</Text>
           
             <TouchableOpacity onPress={pressedHandler}>
-              <LoginButton title="Create Account" />   
+              <GreenButton title="Create Account" />   
             </TouchableOpacity>
 
           </ScrollView>
@@ -75,8 +74,7 @@ export default function Login({ navigation }) {
 
 const styles = StyleSheet.create({
   haveAcctText: {
-    marginBottom: 15,
-    marginTop: 15,
+    marginTop: 5,
     fontSize: 15,
     textAlign: "center",
     color: colors.backGroundOne,
@@ -84,14 +82,15 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios:{
           fontFamily: "Avenir",
+          marginBottom: -15,
       },
       android:{
           fontFamily: "Roboto",
+          
       },
     }),
   },
   imageBackground: {
-    //resizeMode: "contain",
     flex: 1,
   },
   inputTextbox: {

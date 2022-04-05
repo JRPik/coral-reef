@@ -1,6 +1,6 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, FlatList } from "react-native";
+import { StyleSheet, Text, View, TextInput, FlatList, Platform } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
@@ -126,6 +126,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   searchText: {
-    fontFamily: "Roboto_400Regular",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
 });

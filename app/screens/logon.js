@@ -10,7 +10,7 @@ import colors from "../config/colors";
 //import AppText from "../components/AppText";
 import MyHeading from "../components/MyHeading";
 import MyTextInput from "../components/MyTextInput";
-import LoginButton from "../components/LoginButton";
+import GreenButton from "../components/GreenButton";
 
 export default function Logon() {
   let [fontsLoaded] = useFonts({
@@ -36,7 +36,7 @@ export default function Logon() {
             <TouchableOpacity
               onPress={() => console.log("Button Pressed")}
             >
-              <LoginButton title="Login"/>
+              <GreenButton title="Login"/>
             </TouchableOpacity>
           
           </KeyboardAvoidingView>

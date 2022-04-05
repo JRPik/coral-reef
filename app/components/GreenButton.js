@@ -3,7 +3,7 @@ import { View , StyleSheet, Text, Platform} from 'react-native';
 import React from 'react';
 import colors from '../config/colors';
 
-function LoginButton({title}) {
+function GreenButton({title}) {
     return (
         <View style={styles.buttonContainer}>
             <Text style={styles.buttonText}>{title}</Text>
@@ -21,10 +21,12 @@ const styles = StyleSheet.create({
             ios:{
                 width: "30%",
                 fontFamily: "Avenir",
+                marginTop: 20,
             },
             android:{
                 width: "40%",
                 fontFamily: "Roboto",
+                marginTop: 10,
             },
         }),
     },
@@ -35,4 +37,4 @@ const styles = StyleSheet.create({
       },
 });
 
-export default LoginButton;
+export default GreenButton;

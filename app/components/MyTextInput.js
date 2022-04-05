@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignContent: "center",
         ...Platform.select({
             ios:{
-                width: "40%",
+                width: "80%",
                 backgroundColor: colors.backGroundOne,
             },
             android:{
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         padding: 10,
         ...Platform.select({
             ios:{
-                width: "200%",
+                width: "95%",
                 fontFamily: "Avenir",
                 shadowColor: colors.shadowOne,
                 shadowOpacity: 0.3,
