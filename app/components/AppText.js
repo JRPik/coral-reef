@@ -17,18 +17,21 @@ function AppText({children}) {
 const styles = StyleSheet.create({
     text: {
         fontSize: 12,
-        paddingBottom: 5,
+        
         textAlign: "center",
         fontWeight: "bold",
+        
 
         ...Platform.select({
             ios:{
                 fontSize: 12,
                 fontFamily: "Avenir",
+                paddingVertical: 2,
             },
             android:{
-                fontSize: 11,
+                fontSize: 10,
                 fontFamily: "Roboto",
+                paddingBottom: 14,
             },
         }),
     },

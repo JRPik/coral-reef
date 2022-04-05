@@ -27,8 +27,10 @@ CoralPosts = (props) => (
       <Image source={props.image} style={styles.entryImage}/>
     </TouchableOpacity>
     <View >
-      <AppText style={styles.entryText}>{props.name}</AppText>
-      <AppText style={styles.entryText}>{props.location}</AppText>
+      <AppText>{props.name}</AppText>
+      </View>
+      <View>
+      <AppText>{props.location}</AppText>
     </View>
   </View>
 );
@@ -108,26 +110,30 @@ const styles = StyleSheet.create({
       ios:{
         width: "35%",
         borderRadius: 50,
+        overflow: "hidden",
       },
       android:{
         width: "45%",
-        height: 170,
+        height: 120,
         borderRadius: 30,
         marginRight: 10,
+        overflow: "hidden",
       },
     }),
   },
   entryImage: {
-    resizeMode: "contain",
-    flexBasis: "70%",
-    width: "100%",
     justifyContent: "center",
     ...Platform.select({
       ios:{
-        height: 170,
+        width:"100%",
+        height: 150,
+        flexBasis: "100%",
       },
       android:{
-        height: 160,
+        width: "100%",
+        height: "10%",
+        flexBasis: "92%",
+        paddingBottom: 15,
       },
     }),
   },
