@@ -13,10 +13,17 @@ function MyHeading({children}) {
 const styles = StyleSheet.create({
     text: {
         fontSize: 18,
-        fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
         paddingBottom: 5,
         textAlign: "center",
         fontWeight: "bold",
+        ...Platform.select({
+            ios:{
+                fontFamily: "Avenir",
+            },
+            android:{
+                fontFamily: "Roboto",
+            },
+          }),
     },
 });
 

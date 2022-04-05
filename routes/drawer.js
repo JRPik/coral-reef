@@ -1,6 +1,6 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
 import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     paddingTop: 10,
-    paddingLeft: 5,
+    paddingLeft: 10,
   },
   menuItem: {
     flexDirection: "row",
@@ -124,7 +124,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "300",
     margin: 15,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontWeight: "bold",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+          
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
 });
 

@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
@@ -181,7 +181,14 @@ const styles = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 18,
-    fontFamily: "Roboto_400Regular",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   text2: {
     marginBottom: 15,

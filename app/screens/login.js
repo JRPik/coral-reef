@@ -1,13 +1,14 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, Image, ScrollView,
-KeyboardAvoidingView } from "react-native";
+KeyboardAvoidingView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
+import LoginButton from "../components/LoginButton";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
 
@@ -52,18 +53,14 @@ export default function Login({ navigation }) {
               />
             </KeyboardAvoidingView>
           
-            <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler2}>
-              <Text style={styles.buttonText}>
-                Login
-              </Text>
+            <TouchableOpacity onPress={pressedHandler2}>
+              <LoginButton title="Login" />
             </TouchableOpacity>
           
             <Text style={styles.haveAcctText}>Don't Have an Account?</Text>
           
-            <TouchableOpacity style={styles.buttonContainer} onPress={pressedHandler}>
-              <Text style={styles.buttonText}>
-                Create Account
-              </Text>              
+            <TouchableOpacity onPress={pressedHandler}>
+              <LoginButton title="Create Account" />   
             </TouchableOpacity>
 
           </ScrollView>
@@ -77,18 +74,6 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    backgroundColor: colors.primary,
-    width: "30%",
-    alignSelf: "center",
-    borderRadius: 20,
-    padding: 10,
-  },
-  buttonText: {
-    textAlign: "center",
-    color: colors.backGroundOne,
-    fontWeight: "bold",
-  },
   haveAcctText: {
     marginBottom: 15,
     marginTop: 15,
@@ -96,6 +81,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.backGroundOne,
     fontWeight: "bold",
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   imageBackground: {
     //resizeMode: "contain",
@@ -109,9 +102,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
-    fontFamily: "Roboto_400Regular",
     shadowOffset: { height: 1, width: 0.3 },
     paddingLeft: 5,
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   logoImage: {
     width: 250,

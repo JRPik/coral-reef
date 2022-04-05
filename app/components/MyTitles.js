@@ -10,9 +10,18 @@ function MyTitles({children}) {
 const styles = StyleSheet.create({
     text: {
         fontSize: 18,
-        fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
         textAlign: "center",
         fontWeight: "bold",
+        ...Platform.select({
+            ios:{
+                fontSize: 18,
+                fontFamily: "Avenir",
+            },
+            android:{
+                fontSize: 20,
+                fontFamily: "Roboto"
+            },
+        }),
     },
 });
 

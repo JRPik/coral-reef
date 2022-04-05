@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
             },
             android:{
                 fontSize: 11,
-                fontFamily: "Roboto"
+                fontFamily: "Roboto",
             },
         }),
     },
