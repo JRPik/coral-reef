@@ -35,4 +35,4 @@ const screens = {
   },
 };
 
-export const InStack = createStackNavigator(screens);
+export const MainStack = createStackNavigator(screens);

@@ -9,11 +9,14 @@ import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 import NewEntry from "../app/screens/newEntry";
 import EntrySearch from "../app/screens/entrySearch";
 import CoralEntries from "../app/screens/coralEntries";
-import { InStack } from "./inStack";
+import { MainStack } from "./mainStack";
+import { NewEntryStack } from "./newEntryStack";
+import { EntrySearchStack } from "./entrySearchStack";
+import { UserEntryStack } from "./userEntriesStack";
 
 const screens = {
   Home: {
-    screen: InStack,
+    screen: MainStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Thing",
@@ -21,7 +24,7 @@ const screens = {
     },
   },
   NewEntry: {
-    screen: NewEntry,
+    screen: NewEntryStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "New Entry",
@@ -29,7 +32,7 @@ const screens = {
     },
   },
   EntrySearch: {
-    screen: EntrySearch,
+    screen: EntrySearchStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Entry Search",
@@ -37,10 +40,10 @@ const screens = {
     },
   },
   CoralEntries: {
-    screen: CoralEntries,
+    screen:UserEntryStack,
     navigationOptions: ({ navigation }) => {
       return {
-        title: "Coral Entries",
+        title: "My Entries",
       };
     },
   },

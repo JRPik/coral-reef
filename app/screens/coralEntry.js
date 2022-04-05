@@ -11,14 +11,14 @@ import AppText from "../components/AppText";
 export default function CoralEntry({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ paddingTop: "10%" }}>
+      <View style={{backgroundColor:'black'}}>
         <AppText>Coral Specification Page</AppText>
       </View>
       <View style={styles.closeIcon}></View>
       <View style={styles.deleteIcon}></View>
       <StatusBar style="auto" />
     </SafeAreaView>
-  );g
+  );
 }
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   closeIcon:{
     width: 50,
     height: 50,
-    backgroundColor: colors.primary,
+    backgroundColor: "red",
     position: "absolute",
     top: 40,
     left: 30,

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     ...Platform.select({
       ios:{
-          fontSize: 25,
+          fontSize: 20,
           fontFamily: "Avenir",
           fontWeight: "bold",
       },
