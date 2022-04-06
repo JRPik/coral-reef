@@ -1,13 +1,6 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
 import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
@@ -15,13 +8,13 @@ import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 //imports from our code
 import NewEntry from "../app/screens/newEntry";
 import EntrySearch from "../app/screens/entrySearch";
-import CoralEntries from "../app/screens/coralEntries";
-import GroupCoralEntries from "../app/screens/GroupCoralEntries";
+import UserCoralEntries from "../app/screens/userCoralEntries";
+import GroupCoralEntries from "../app/screens/groupCoralEntries";
 import { MainStack } from "./mainStack";
 import { NewEntryStack } from "./newEntryStack";
 import { EntrySearchStack } from "./entrySearchStack";
 import { UserEntryStack } from "./userEntriesStack";
-import { GroupEntriesStack } from "./GroupEntriesStack";
+import { GroupEntriesStack } from "./groupEntriesStack";
 
 const screens = {
   Home: {
@@ -48,7 +41,7 @@ const screens = {
       };
     },
   }, //END OF ENTRYSEARCH
-  CoralEntries: {
+  UserCoralEntries: {
     screen: UserEntryStack,
     navigationOptions: ({ navigation }) => {
       return {
@@ -75,18 +68,8 @@ const menuData = [
   { icon: "home", name: "Home", screenName: "Home", key: 1 },
   { icon: "book", name: " New Entry", screenName: "NewEntry", key: 2 },
   { icon: "search", name: "Entry Search", screenName: "EntrySearch", key: 3 },
-  {
-    icon: "folder-open",
-    name: "User's Coral Entries",
-    screenName: "CoralEntries",
-    key: 4,
-  },
-  {
-    icon: "folder-open",
-    name: "Group Coral Entries",
-    screenName: "GroupEntries",
-    key: 5,
-  },
+  { icon: "folder-open", name: "User's Coral Entries", screenName: "UserCoralEntries", key: 4 },
+  { icon: "folder-open", name: "Group Coral Entries", screenName: "GroupEntries", key: 5 },
   { icon: "sign-out", name: "Log Out", key: 6 },
 ]; //END OF MENUDATA ARRAY
 

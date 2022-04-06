@@ -6,7 +6,7 @@ import React from "react";
 
 ///imports from our code
 import Home from "../app/screens/home";
-import CoralEntry from "../app/screens/coralEntry";
+import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
 
 const screens = {
@@ -25,7 +25,7 @@ const screens = {
     },
   },
   Coral: {
-    screen: CoralEntry,
+    screen: UserCoralEntries,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: "Coral Specification",

@@ -43,7 +43,7 @@ CoralPosts = (props) => (
 );
 
 //component to be rendered
-export default function GroupCoralEntries({ navigation }) {
+function GroupCoralEntries({ navigation }) {
   const pressMain = () => {
     navigation.navigate("Coral");
   };
@@ -252,3 +252,5 @@ const data = {
     },
   ],
 };
+
+export default GroupCoralEntries;

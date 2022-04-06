@@ -5,9 +5,9 @@ import { Text } from "react-native";
 import React from "react";
 
 ///imports from our code
-import CoralEntry from "../app/screens/coralEntry";
+import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
-import GroupCoralEntries from "../app/screens/GroupCoralEntries";
+import GroupCoralEntries from "../app/screens/groupCoralEntries";
 
 const screens = {
   GroupEntries: {
@@ -25,7 +25,7 @@ const screens = {
     },
   },
   Coral: {
-    screen: CoralEntry,
+    screen: UserCoralEntries,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: "Coral Specification",
