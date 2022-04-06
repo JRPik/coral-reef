@@ -1,6 +1,13 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Platform,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
 import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
@@ -56,7 +63,7 @@ const screens = {
         title: "Group Coral Entries",
       };
     },
-  },//END OF GROUPENTRIES 
+  }, //END OF GROUPENTRIES
 }; //END OF SCREENS
 
 const Drawer = createDrawerNavigator(screens, {
@@ -68,8 +75,18 @@ const menuData = [
   { icon: "home", name: "Home", screenName: "Home", key: 1 },
   { icon: "book", name: " New Entry", screenName: "NewEntry", key: 2 },
   { icon: "search", name: "Entry Search", screenName: "EntrySearch", key: 3 },
-  { icon: "folder-open", name: "User's Coral Entries", screenName: "CoralEntries", key: 4 },
-  { icon: "folder-open", name: "Group Coral Entries", screenName: "GroupCoralEntries", key: 5 },
+  {
+    icon: "folder-open",
+    name: "User's Coral Entries",
+    screenName: "CoralEntries",
+    key: 4,
+  },
+  {
+    icon: "folder-open",
+    name: "Group Coral Entries",
+    screenName: "GroupEntries",
+    key: 5,
+  },
   { icon: "sign-out", name: "Log Out", key: 6 },
 ]; //END OF MENUDATA ARRAY
 
@@ -116,7 +133,7 @@ function DrawerItem({ navigation, name, screenName, icon }) {
       <Icon style={styles.icon} name={icon} size={25} color="#333" />
       <Text style={styles.menuItemText}>{name}</Text>
     </TouchableOpacity>
-  );//END OF RETURN
+  ); //END OF RETURN
 } //END OF DRAWERITEMS
 
 const styles = StyleSheet.create({
@@ -141,12 +158,11 @@ const styles = StyleSheet.create({
     margin: 15,
     fontWeight: "bold",
     ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
-          
+      ios: {
+        fontFamily: "Avenir",
       },
-      android:{
-          fontFamily: "Roboto",
+      android: {
+        fontFamily: "Roboto",
       },
     }), //END OF PLATFORM.SELECT
   }, //END OF MENUITEMTEXT

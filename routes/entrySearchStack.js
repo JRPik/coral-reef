@@ -11,21 +11,16 @@ import MyTitles from "../app/components/MyTitles";
 import EntrySearch from "../app/screens/entrySearch";
 
 const screens = {
-    EntrySearch: {
-        screen: EntrySearch,
-        navigationOptions: ({ navigation }) => {
-          return {
-            headerLeft: () => null,
-            headerTitle: () => (
-              <MyTitles>
-                Entry Search
-              </MyTitles>
-            ),
-            gestureEnabled: false,
-          };
-        },
-      }
-
+  EntrySearch: {
+    screen: EntrySearch,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: () => null,
+        headerTitle: () => <MyTitles>Entry Search</MyTitles>,
+        gestureEnabled: false,
+      };
+    },
+  },
 };
 
 export const EntrySearchStack = createStackNavigator(screens);

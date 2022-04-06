@@ -1,10 +1,18 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { ImageBackground, Image, ScrollView, StyleSheet, Text, TouchableOpacity, 
-  View, Platform } from "react-native";
+import {
+  ImageBackground,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Platform,
+} from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular} from "@expo-google-fonts/dev";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -23,9 +31,9 @@ const MainCoralEntry = (props) => (
 CoralPosts = (props) => (
   <View style={[styles.entryContainer]}>
     <TouchableOpacity style={styles.entryImage} onPress={props.func}>
-      <Image source={props.image} style={styles.entryImage}/>
+      <Image source={props.image} style={styles.entryImage} />
     </TouchableOpacity>
-    <View >
+    <View>
       <AppText>{props.name}</AppText>
     </View>
     <View>
@@ -35,7 +43,7 @@ CoralPosts = (props) => (
 );
 
 //component to be rendered
-function GroupCoralEntries({ navigation }) {
+export default function GroupCoralEntries({ navigation }) {
   const pressMain = () => {
     navigation.navigate("Coral");
   };
@@ -76,8 +84,7 @@ function GroupCoralEntries({ navigation }) {
               ))}
             </View>
 
-          <StatusBar style="auto" />
-
+            <StatusBar style="auto" />
           </ScrollView>
         </SafeAreaView>
       </ImageBackground>
@@ -106,12 +113,12 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     justifyContent: "space-evenly",
     ...Platform.select({
-      ios:{
+      ios: {
         width: "35%",
         borderRadius: 50,
         overflow: "hidden",
       },
-      android:{
+      android: {
         width: "45%",
         height: 120,
         borderRadius: 30,
@@ -123,12 +130,12 @@ const styles = StyleSheet.create({
   entryImage: {
     justifyContent: "center",
     ...Platform.select({
-      ios:{
-        width:"100%",
+      ios: {
+        width: "100%",
         height: 150,
         flexBasis: "100%",
       },
-      android:{
+      android: {
         width: "100%",
         height: "10%",
         flexBasis: "92%",
@@ -137,8 +144,8 @@ const styles = StyleSheet.create({
     }),
   },
   mainCoralInfo: {
-    flex: 1, 
-    alignItems: "center" ,
+    flex: 1,
+    alignItems: "center",
   },
   newestCoralContainer: {
     height: "100%",
@@ -150,10 +157,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     ...Platform.select({
-      ios:{
+      ios: {
         width: "85%",
       },
-      android:{
+      android: {
         width: "100%",
       },
     }),
@@ -161,11 +168,11 @@ const styles = StyleSheet.create({
   newestCoralImage: {
     resizeMode: "contain",
     ...Platform.select({
-      ios:{
+      ios: {
         width: "55%",
         height: 250,
       },
-      android:{
+      android: {
         width: "60%",
         height: 150,
       },
@@ -175,16 +182,16 @@ const styles = StyleSheet.create({
     position: "relative",
     fontWeight: "bold",
     ...Platform.select({
-      ios:{
+      ios: {
         fontSize: 20,
         paddingLeft: 8,
       },
-      android:{
+      android: {
         fontSize: 21,
         paddingLeft: 10,
       },
     }),
-  },  
+  },
 });
 
 const data = {
@@ -193,57 +200,55 @@ const data = {
       id: 1,
       name: "Elkhorn",
       image: require("../assets/images/Carysfort_Reef/Elkhorn_Coral_CReef.jpg"),
-      location: "Carysfort Reef"
+      location: "Carysfort Reef",
     },
     {
       id: 2,
       name: "Boulder Star",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_Day_1.jpg"),
-      location: "Carysfort Reef"
+      location: "Carysfort Reef",
     },
     {
       id: 3,
       name: "Boulder Star",
       image: require("../assets/images/Carysfort_Reef/Boulder_Star_Coral_(OA)_003.jpg"),
-      location: "Carysfort Reef"
+      location: "Carysfort Reef",
     },
     {
       id: 4,
       name: "Mountainous Star",
       image: require("../assets/images/Carysfort_Reef/Mountainous_Star_Coral_(OF)_158.jpg"),
-      location: "Carysfort Reef"
+      location: "Carysfort Reef",
     },
     {
       id: 5,
       name: "Staghorn",
       image: require("../assets/images/Carysfort_Reef/Staghorn_CoraL_CReef.jpg"),
-      location: "Carysfort Reef"
+      location: "Carysfort Reef",
     },
     {
       id: 6,
       name: "Mountainous Star",
       image: require("../assets/images/Cheeca_Rocks/Mountainous_Star_Coral_(OF)_ChR.jpg"),
-      location: "Cheeca Rocks"
+      location: "Cheeca Rocks",
     },
     {
       id: 7,
       name: "Staghorn",
       image: require("../assets/images/Looe_Key/Staghorn_Coral_LKey.jpg"),
-      location: "Looe Key"
+      location: "Looe Key",
     },
     {
       id: 8,
       name: "Staghorn",
       image: require("../assets/images/Pickles_Reef/Staghorn_Coral_PReef.jpg"),
-      location: "Pickles Reef"
+      location: "Pickles Reef",
     },
     {
       id: 9,
       name: "Elkhorn",
       image: require("../assets/images/Sombrero_Reef/Elkhorn_Coral_SReef.jpg"),
-      location: "Sombrero Reef"
+      location: "Sombrero Reef",
     },
   ],
 };
-
-export default GroupCoralEntries;
