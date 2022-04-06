@@ -5,8 +5,8 @@ import { Text } from "react-native";
 import React from "react";
 
 ///imports from our code
-import Home from "../app/screens/home";
-import CoralEntry from "../app/screens/coralEntry";
+//import Home from "../app/screens/home";
+//import CoralEntry from "../app/screens/coralEntry";
 import MyTitles from "../app/components/MyTitles";
 import CoralEntries from "../app/screens/coralEntries";
 

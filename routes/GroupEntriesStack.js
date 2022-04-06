@@ -5,13 +5,13 @@ import { Text } from "react-native";
 import React from "react";
 
 ///imports from our code
-import Home from "../app/screens/home";
 import CoralEntry from "../app/screens/coralEntry";
 import MyTitles from "../app/components/MyTitles";
+import GroupCoralEntries from "../app/screens/GroupCoralEntries";
 
 const screens = {
-  Home: {
-    screen: Home,
+  GroupEntries: {
+    screen: GroupCoralEntries,
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: () => null,
@@ -35,4 +35,4 @@ const screens = {
   },
 };
 
-export const MainStack = createStackNavigator(screens);
+export const GroupEntriesStack = createStackNavigator(screens);

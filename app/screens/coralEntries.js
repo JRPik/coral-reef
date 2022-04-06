@@ -8,10 +8,11 @@ import colors from "../config/colors";
 import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
 
-export default function CoralEntries({ navigation }) {
+function CoralEntries({ navigation }) {
+  
   const pressedHandler = () => {
     navigation.navigate("Logon");
-  };
+  }; //END OF PRESSEDHANDLER
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,8 +21,8 @@ export default function CoralEntries({ navigation }) {
       </View>
       <StatusBar style="auto" />
     </SafeAreaView>
-  );
-}
+  ); //END OF RETURN
+} //END OF CORALENTRIES
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -30,17 +31,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 20,
     padding: 10,
-  },
+  }, //END OF BUTTON CONTAINER
   container: {
     flex: 1,
     backgroundColor: colors.backGroundOne,
     alignContent: "center",
-  },
+  }, //END OF CONTAINER
   image: {
     width: 250,
     height: 250,
     resizeMode: "contain",
-  },
+  }, //END OF IMAGE
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
-  },
+  }, //END OF IMAGECONTAINER
   text: {
     marginTop: 70,
     fontSize: 20,
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
       android:{
           fontFamily: "Roboto",
       },
-    }),
-  },
+    }), //END OF PLATFORM.SELECT
+  }, //END OF TEXT
   text2: {
     marginBottom: 15,
     marginTop: 15,
@@ -77,8 +78,8 @@ const styles = StyleSheet.create({
       android:{
           fontFamily: "Roboto",
       },
-    }),
-  },
+    }), //END OF PLATFORM.SELECT
+  }, //END OF TEXT2
   textbox: {
     backgroundColor: colors.backGroundOne,
     height: 40,
@@ -95,6 +96,8 @@ const styles = StyleSheet.create({
       android:{
           fontFamily: "Roboto",
       },
-    }),
-  },
-});
+    }), //END OF PLATFORM.SELECT
+  }, //END OF TEXTBOX
+}); //END OF STYLES.CREATE
+
+export default CoralEntries;
