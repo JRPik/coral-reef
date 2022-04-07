@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     ...Platform.select({
       ios:{
-          fontSize: 20,
+          fontSize: 18,
           fontFamily: "Avenir",
           fontWeight: "bold",
       },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     ...Platform.select({
       ios:{
-          right: "-25%",
+          right: "-10%",
       },
       android:{
           right: 5,

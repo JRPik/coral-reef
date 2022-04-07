@@ -16,12 +16,12 @@ import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 import NewEntry from "../app/screens/newEntry";
 import EntrySearch from "../app/screens/entrySearch";
 import UserCoralEntries from "../app/screens/userCoralEntries";
-import GroupCoralEntries from "../app/screens/groupCoralEntries";
+import GroupCoralEntries from "../app/screens/GroupCoralEntries";
 import { MainStack } from "./mainStack";
 import { NewEntryStack } from "./newEntryStack";
 import { EntrySearchStack } from "./entrySearchStack";
 import { UserEntryStack } from "./userEntriesStack";
-import { GroupEntriesStack } from "./groupEntriesStack";
+import { GroupEntriesStack } from "./GroupEntriesStack";
 
 const screens = {
   Home: {

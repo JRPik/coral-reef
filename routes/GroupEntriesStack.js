@@ -7,7 +7,7 @@ import React from "react";
 ///imports from our code
 import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
-import GroupCoralEntries from "../app/screens/groupCoralEntries";
+import GroupCoralEntries from "../app/screens/GroupCoralEntries";
 import CoralEntryInfo from "../app/screens/coralEntryInfo";
 
 const screens = {
