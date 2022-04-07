@@ -41,7 +41,9 @@ export default function Login({ navigation }) {
   } else {
     return (
       <SafeAreaView>
-        <ScrollView style={{ backgroundColor: "transparent" }}>
+        <ScrollView
+          style={{ backgroundColor: "transparent", paddingTop: "20%" }}
+        >
           <View style={styles.logoImageContiner}>
             <Image
               style={styles.logoImage}

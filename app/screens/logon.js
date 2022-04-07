@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backGroundOne,
     borderRadius: 20,
     margin: "5%",
+    marginTop: "25%",
     paddingBottom: "10%",
   },
 });
