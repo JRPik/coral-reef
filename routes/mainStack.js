@@ -17,7 +17,7 @@ const screens = {
         headerLeft: () => null,
         headerTitle: () => (
           <MyTitles>
-            Coral Spotlight
+            Coral Home Page
           </MyTitles>
         ),
         gestureEnabled: false,

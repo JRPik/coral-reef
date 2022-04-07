@@ -44,7 +44,7 @@ CoralPosts = (props) => (
 );
 
 //component to be rendered
-export default function Home({ navigation }) {
+export default function GroupCoralEntries({ navigation }) {
   const pressMain = () => {
     navigation.navigate("Coral");
   };
@@ -147,13 +147,14 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "flex-start",
     borderColor: colors.primary,
-    flexDirection: "row",
+    flexDirection: "column",
     backgroundColor: colors.backGroundThree,
     borderRadius: 20,
     padding: 10,
     ...Platform.select({
       ios: {
-        width: "85%",
+        paddingTop: 10,
+        width: "80%",
       },
       android: {
         width: "92%",
@@ -164,28 +165,32 @@ const styles = StyleSheet.create({
   newestCoralImage: {
     resizeMode: "cover",
     overflow: "hidden",
+    width: "75%",
+    left: "12%",
     ...Platform.select({
       ios: {
-        width: "55%",
         height: 250,
+        marginTop: 24,
       },
       android: {
-        width: "60%",
-        marginTop: 20,
-        left: "40%",
+        marginTop: 23,
         height: 150,
       },
     }),
   },
   newestCoralText: {
     position: "absolute",
-    left: "25%",
     fontWeight: "bold",
     ...Platform.select({
       ios: {
         fontSize: 20,
+        paddingTop: 5,
+        left: "34%",
+        fontFamily: "Avenir",
       },
       android: {
+        marginTop: 5,
+        left: "28%",
         fontSize: 21,
       },
     }),

@@ -8,13 +8,15 @@ import React from "react";
 import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
 import GroupCoralEntries from "../app/screens/groupCoralEntries";
+import CoralEntryInfo from "../app/screens/coralEntryInfo";
 
 const screens = {
   GroupEntries: {
     screen: GroupCoralEntries,
     navigationOptions: ({ navigation }) => {
       return {
-        headerLeft: () => null,
+        //We should have a back button for all pages. 
+        //headerLeft: () => null,
         headerTitle: () => (
           <MyTitles>
             Coral Spotlight
@@ -25,10 +27,16 @@ const screens = {
     },
   },
   Coral: {
-    screen: UserCoralEntries,
+    screen: CoralEntryInfo,
     navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: "Coral Specification",
+      return {    
+        //We should have a back button for all pages.    
+        //headerLeft: () => null,
+        headerTitle: () => (
+          <MyTitles>
+            Coral Specification
+          </MyTitles>
+        ),
         gestureEnabled: false,
       };
     },

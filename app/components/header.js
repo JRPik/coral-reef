@@ -18,7 +18,7 @@ function Header({ navigation }) {
     return (
       <View style={styles.header}>
         <View>
-          <Text style={styles.headerText}>Coral Restoration</Text>
+          <Text style={styles.headerText}>Coral Restoration Foundation</Text>
         </View>
         <MaterialIcons
           name="menu"

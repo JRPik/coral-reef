@@ -12,7 +12,7 @@ const screens = {
         screen: NewEntry,
         navigationOptions: ({ navigation }) => {
           return {
-            headerLeft: () => null,
+            //headerLeft: () => null,
             headerTitle: () => (
               <MyTitles>
                 New Entry

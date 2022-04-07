@@ -15,7 +15,7 @@ const screens = {
         screen: UserCoralEntries,
         navigationOptions: ({ navigation }) => {
           return {
-            headerLeft: () => null,
+            //headerLeft: () => null,
             headerTitle: () => (
               <MyTitles>
                   My Entries

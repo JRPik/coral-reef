@@ -6,16 +6,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
+import MyHeading from "../components/MyHeading";
 //import MyHeading from "../components/MyHeading";
 
 function CoralEntryInfo({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{backgroundColor:'black'}}>
-        <AppText>Coral Specification Page</AppText>
-      </View>
       <View style={styles.closeIcon}></View>
       <View style={styles.deleteIcon}></View>
+      <View style={{backgroundColor:'black'}}>
+        <MyHeading>Coral Specification Page</MyHeading>
+      </View>
       <StatusBar style="auto" />
     </SafeAreaView>
   );

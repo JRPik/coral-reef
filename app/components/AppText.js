@@ -18,14 +18,13 @@ const styles = StyleSheet.create({
     text: {
         textAlign: "center",
         fontWeight: "bold",
+        fontSize: 12,
         ...Platform.select({
             ios:{
-                fontSize: 12,
                 fontFamily: "Avenir",
                 paddingVertical: 2,
             },
             android:{
-                fontSize: 10,
                 fontFamily: "Roboto",
                 paddingBottom: 14,
             },

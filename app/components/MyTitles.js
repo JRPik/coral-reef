@@ -10,16 +10,20 @@ function MyTitles({children}) {
 const styles = StyleSheet.create({
     text: {
         fontSize: 18,
-        textAlign: "center",
         fontWeight: "bold",
         ...Platform.select({
             ios:{
                 fontSize: 18,
                 fontFamily: "Avenir",
+                /*******The reason there is a center here and not android is because when you
+                put the center on the android it goes over to the right more when you
+                have a back button.*******/
+                textAlign: "center",
             },
             android:{
                 fontSize: 20,
-                fontFamily: "Roboto"
+                fontFamily: "Roboto",
+                left: "25%",
             },
         }),
     },
