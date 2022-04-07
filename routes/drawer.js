@@ -1,6 +1,13 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Platform,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
 import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
@@ -68,8 +75,18 @@ const menuData = [
   { icon: "home", name: "Home", screenName: "Home", key: 1 },
   { icon: "book", name: " New Entry", screenName: "NewEntry", key: 2 },
   { icon: "search", name: "Entry Search", screenName: "EntrySearch", key: 3 },
-  { icon: "folder-open", name: "User's Coral Entries", screenName: "UserCoralEntries", key: 4 },
-  { icon: "folder-open", name: "Group Coral Entries", screenName: "GroupEntries", key: 5 },
+  {
+    icon: "folder-open",
+    name: "User's Coral Entries",
+    screenName: "UserCoralEntries",
+    key: 4,
+  },
+  {
+    icon: "folder-open",
+    name: "Group Coral Entries",
+    screenName: "GroupEntries",
+    key: 5,
+  },
   { icon: "sign-out", name: "Log Out", key: 6 },
 ]; //END OF MENUDATA ARRAY
 

@@ -16,38 +16,39 @@ const screens = {
     navigationOptions: {
       headerTitle: () => {
         <Text
-        style={{
-          textAlign: "center",
-          flex: 1,
-          fontSize: 22,
-          ...Platform.select({
-            ios:{
+          style={{
+            textAlign: "center",
+            flex: 1,
+            fontSize: 22,
+            ...Platform.select({
+              ios: {
                 fontFamily: "Avenir",
-            },
-            android:{
+              },
+              android: {
                 fontFamily: "Roboto",
-            },
-          }),
-        }}
-        >        
-        Login
-        </Text>
+              },
+            }),
+          }}
+        >
+          Login
+        </Text>;
       },
     },
   },
   Logon: {
     screen: Logon,
     navigationOptions: {
-      headerTitle: (
-        <Text           
-        style={{
-          paddingLeft: "20%",
-          flex: 1,
-          fontFamily: "RobotoCondensed_700Bold",
-          fontSize: 22,
-        }}
->          
-Create Account
+      headerTitle: () => (
+        <Text
+          style={{
+            paddingLeft: "17%",
+            flex: 1,
+            fontFamily: "Roboto",
+            fontWeight: "bold",
+            fontSize: 22,
+          }}
+        >
+          Create Account
         </Text>
       ),
     },
