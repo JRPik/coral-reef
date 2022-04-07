@@ -1,7 +1,6 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import {
-  ImageBackground,
   Image,
   ScrollView,
   StyleSheet,
@@ -19,10 +18,12 @@ import colors from "../config/colors";
 import AppText from "../components/AppText";
 
 //Main coral component. This will show the coral that was uploaded most recent.
-const MainCoralEntry = (props) => (
+const MainCoral = (props) => (
   <View style={[styles.newestCoralContainer]}>
     <Image source={props.image} style={styles.newestCoralImage} />
-    <Text style={styles.newestCoralText}>{props.name} </Text>
+    <Text style={styles.newestCoralText}>
+      {props.location}: {props.name}{" "}
+    </Text>
   </View>
 );
 
@@ -43,7 +44,7 @@ CoralPosts = (props) => (
 );
 
 //component to be rendered
-function GroupCoralEntries({ navigation }) {
+export default function Home({ navigation }) {
   const pressMain = () => {
     navigation.navigate("Coral");
   };
@@ -56,38 +57,33 @@ function GroupCoralEntries({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <ImageBackground
-        style={styles.imageBackground}
-        source={require("../assets/images/coralBackground.jpg")}
-      >
-        <SafeAreaView>
-          <ScrollView>
-            <TouchableOpacity onPress={pressMain}>
-              <View style={styles.mainCoralInfo}>
-                <MainCoralEntry
-                  name={data.corals[0].name}
-                  image={data.corals[0].image}
-                  location={data.corals[0].location}
-                />
-              </View>
-            </TouchableOpacity>
-
-            <View style={styles.entriesInfo}>
-              {data.corals.map((coral) => (
-                <CoralPosts
-                  func={pressMain}
-                  key={coral.id}
-                  name={"Coral Name: " + coral.name}
-                  image={coral.image}
-                  location={"Location: " + coral.location}
-                />
-              ))}
+      <SafeAreaView>
+        <ScrollView>
+          <TouchableOpacity onPress={pressMain}>
+            <View style={styles.mainCoralInfo}>
+              <MainCoral
+                name={data.corals[0].name}
+                image={data.corals[0].image}
+                location={data.corals[0].location}
+              />
             </View>
+          </TouchableOpacity>
 
-            <StatusBar style="auto" />
-          </ScrollView>
-        </SafeAreaView>
-      </ImageBackground>
+          <View style={styles.entriesInfo}>
+            {data.corals.map((coral) => (
+              <CoralPosts
+                func={pressMain}
+                key={coral.id}
+                name={"Coral Name: " + coral.name}
+                image={coral.image}
+                location={"Location: " + coral.location}
+              />
+            ))}
+          </View>
+
+          <StatusBar style="auto" />
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -103,14 +99,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    paddingLeft: "2%",
   },
   entryContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
-    backgroundColor: colors.backGroundTwo,
-    borderWidth: 2,
-    borderColor: colors.primary,
+    marginTop: 25,
+    backgroundColor: colors.backGroundThree,
     justifyContent: "space-evenly",
     ...Platform.select({
       ios: {
@@ -120,10 +115,11 @@ const styles = StyleSheet.create({
       },
       android: {
         width: "45%",
-        height: 120,
+        height: 150,
         borderRadius: 30,
         marginRight: 10,
         overflow: "hidden",
+        elevation: 5,
       },
     }),
   },
@@ -150,23 +146,24 @@ const styles = StyleSheet.create({
   newestCoralContainer: {
     height: "100%",
     justifyContent: "flex-start",
-    borderWidth: 2,
     borderColor: colors.primary,
     flexDirection: "row",
-    backgroundColor: colors.backGroundOne,
-    borderRadius: 5,
+    backgroundColor: colors.backGroundThree,
+    borderRadius: 20,
     padding: 10,
     ...Platform.select({
       ios: {
         width: "85%",
       },
       android: {
-        width: "100%",
+        width: "92%",
+        elevation: 5,
       },
     }),
   },
   newestCoralImage: {
-    resizeMode: "contain",
+    resizeMode: "cover",
+    overflow: "hidden",
     ...Platform.select({
       ios: {
         width: "55%",
@@ -174,21 +171,22 @@ const styles = StyleSheet.create({
       },
       android: {
         width: "60%",
+        marginTop: 20,
+        left: "40%",
         height: 150,
       },
     }),
   },
   newestCoralText: {
-    position: "relative",
+    position: "absolute",
+    left: "25%",
     fontWeight: "bold",
     ...Platform.select({
       ios: {
         fontSize: 20,
-        paddingLeft: 8,
       },
       android: {
         fontSize: 21,
-        paddingLeft: 10,
       },
     }),
   },
@@ -252,5 +250,3 @@ const data = {
     },
   ],
 };
-
-export default GroupCoralEntries;
