@@ -1,7 +1,7 @@
 //imports from our third-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import React from "react";
 
 ///imports from our code
@@ -15,10 +15,10 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: () => null,
-        headerTitle: () => (
-          <MyTitles>
+        headerTitle: () => (     
+          <Text style={styles.homeText}>
             Coral Home Page
-          </MyTitles>
+          </Text>
         ),
         gestureEnabled: false,
       };
@@ -34,5 +34,24 @@ const screens = {
     },
   },
 };
+
+const styles = StyleSheet.create({
+  homeText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    ...Platform.select({
+        ios:{
+            fontSize: 18,
+            fontFamily: "Avenir",
+            textAlign: "center",
+        },
+        android:{
+            fontSize: 20,
+            fontFamily: "Roboto",
+            textAlign: "center",
+        },
+    }),
+},
+});
 
 export const MainStack = createStackNavigator(screens);

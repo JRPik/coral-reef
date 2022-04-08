@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   text: {
-    fontFamily: "Roboto_400Regular",
     fontSize: 15,
     padding: 15,
     margin: 5,
@@ -124,6 +123,14 @@ const styles = StyleSheet.create({
     color: colors.backGroundOne,
     borderRadius: 5,
     elevation: 5,
+    ...Platform.select({
+      ios:{
+          fontFamily: "Avenir",
+      },
+      android:{
+          fontFamily: "Roboto",
+      },
+    }),
   },
   searchText: {
     ...Platform.select({
