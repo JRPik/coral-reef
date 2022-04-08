@@ -21,7 +21,7 @@ import { MainStack } from "./mainStack";
 import { NewEntryStack } from "./newEntryStack";
 import { EntrySearchStack } from "./entrySearchStack";
 import { UserEntryStack } from "./userEntriesStack";
-import { GroupEntriesStack } from "./GroupEntriesStack";
+import { GroupEntriesStack } from "./groupEntriesStack";
 
 const screens = {
   Home: {
