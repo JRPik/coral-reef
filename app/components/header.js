@@ -37,17 +37,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
-      },
-      android:{
-          fontFamily: "Roboto",
-      },
-    }),
   },
   headerText: {
-    fontSize: 20,
     ...Platform.select({
       ios:{
           fontSize: 18,
@@ -55,7 +46,7 @@ const styles = StyleSheet.create({
           fontWeight: "bold",
       },
       android:{
-        fontSize: 24,
+        fontSize: 22,
           fontFamily: "Roboto",
           fontWeight: "bold",
       },

@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         textAlign: "center",
         fontWeight: "bold",
+        color: "white",
         ...Platform.select({
             ios:{
                 fontFamily: "Avenir",

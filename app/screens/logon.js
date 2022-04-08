@@ -37,7 +37,7 @@ export default function Logon() {
               style={styles.logoImage}
               source={require("../assets/images/logo.jpg")}
             />
-
+          </View>
             <KeyboardAvoidingView>
               <MyHeading>
                 Enter a Username and Password {"\n"} to make an account
@@ -60,7 +60,6 @@ export default function Logon() {
                 <GreenButton title="Login" />
               </TouchableOpacity>
             </KeyboardAvoidingView>
-          </View>
         </ScrollView>
         <StatusBar style="auto" />
         <ImageBackground
@@ -81,8 +80,9 @@ const styles = StyleSheet.create({
   },
   inputTextbox: {
     backgroundColor: colors.backGroundOne,
+    left: "5%",
     height: 40,
-    width: "100%",
+    width: "85%",
     margin: 5,
     borderRadius: 5,
     paddingLeft: 5,
@@ -122,6 +122,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: "5%",
     marginTop: "25%",
-    paddingBottom: "10%",
   },
 });

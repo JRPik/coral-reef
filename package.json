@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/dev": "^0.2.2",
-    "@expo-google-fonts/inter": "^0.2.2",
-    "@expo-google-fonts/roboto": "^0.2.2",
     "@expo/metro-config": "^0.3.12",
     "@react-native-community/datetimepicker": "4.0.0",
     "@react-navigation/drawer": "^6.3.1",
