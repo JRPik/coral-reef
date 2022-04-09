@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView
 } from "react-native";
 import AppLoading from "expo-app-loading";
+import { firestore } from '../../firebase';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic, 
 RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold, 
@@ -35,6 +36,8 @@ export default function Home({ navigation }) {
   const pressMain = () => {
     navigation.navigate("Coral");
   };
+
+  setData();
 
   let [fontsLoaded] = useFonts({
     RobotoCondensed_400Regular_Italic,
@@ -145,11 +148,13 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
 const data = {
   corals: [
     {
       id: 1,
-      name: "Elkhorn Coral",
+      name: "Staghorn Coral",
       image: require("../assets/images/Carysfort_Reef/Elkhorn_Coral_CReef.jpg"),
       location: "Carysfort Reef",
       diver: "Diver 1",
@@ -212,3 +217,8 @@ const data = {
     },
   ],
 };
+
+/*const setData = async () =>{
+const firestore = setFirestore();
+  await setDoc(doc(firestore, "ReefCollection")), {data};
+  };*/

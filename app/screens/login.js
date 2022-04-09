@@ -13,12 +13,23 @@ RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
 //import from our code
 import colors from "../config/colors";
 import { app } from '../../firebase';
+import { db } from '../../firebase';
 
 export default function Login({ navigation }) {
   // Use states to track changes in input fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
+  const data1 = {
+    corals: [
+      {
+        id: 2,
+        name: "Boulder Star Coral",
+        location: "Carysfort Reef",
+        diver: "Diver 2",
+      }]
+    };
+
   const auth = getAuth(app);
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -33,6 +44,11 @@ export default function Login({ navigation }) {
       const errorMessage = error.message;
     });
   }
+
+  const getData = async () =>{
+      const returnedData = await firestore().collection("ReefCollection").doc('Carysfort Reef').get();
+      console.log(returnedData);
+  };
 
   const pressedHandler = () => {
     navigation.navigate("Logon");
@@ -74,7 +90,7 @@ export default function Login({ navigation }) {
           </KeyboardAvoidingView>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={signIn}
+            onPress={getData}
           >
             <Text
               style={{
