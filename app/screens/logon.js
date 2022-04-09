@@ -4,12 +4,17 @@ import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView,
 KeyboardAvoidingView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, RobotoCondensed_300Light, RobotoCondensed_300Light_Italic,
-RobotoCondensed_400Regular, RobotoCondensed_400Regular_Italic, RobotoCondensed_700Bold,
-RobotoCondensed_700Bold_Italic } from "@expo-google-fonts/dev";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //import from our code
 import colors from "../config/colors";
@@ -48,7 +53,7 @@ export default function Logon({ navigation }) {
   }
 
   let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
+    Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -101,7 +106,7 @@ export default function Logon({ navigation }) {
                 style={{
                   textAlign: "center",
                   color: "white",
-                  fontFamily: "RobotoCondensed_400Regular",
+                  fontFamily: "Roboto_400Regular",
                 }}
               >
                 Login
@@ -132,7 +137,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     textAlign: "center",
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
   },
   textbox: {
     backgroundColor: colors.backGroundOne,
@@ -140,7 +145,7 @@ const styles = StyleSheet.create({
     width: "75%",
     margin: 10,
     borderRadius: 5,
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "Roboto_400Regular",
     shadowColor: colors.shadowOne,
     shadowOpacity: 0.3,
     shadowRadius: 8,
