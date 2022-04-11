@@ -1,5 +1,6 @@
 //imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
+import { getAuth, signOut } from "firebase/auth";
 import {
   StyleSheet,
   Text,
@@ -22,6 +23,7 @@ import { NewEntryStack } from "./newEntryStack";
 import { EntrySearchStack } from "./entrySearchStack";
 import { UserEntryStack } from "./userEntriesStack";
 import { GroupEntriesStack } from "./groupEntriesStack";
+import { app } from '../firebase';
 
 const screens = {
   Home: {
@@ -118,9 +120,14 @@ function DrawerMenu({ navigation }) {
 } //END OF DRAWERMENU
 
 function DrawerItem({ navigation, name, screenName, icon }) {
+  const auth = getAuth(app);
   const navHandler = (screenName, name) => {
     if (name === "Log Out") {
-      navigation.navigate("Login");
+      signOut(auth).then(() => {
+        navigation.navigate("Login");
+      }).catch((error) => {
+        console.log(error);
+      });
     } else {
       navigation.navigate(screenName);
     } //END OF ELSE STATEMENT

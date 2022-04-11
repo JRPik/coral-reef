@@ -1,5 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
   ImageBackground,
   StyleSheet,
@@ -22,14 +24,29 @@ import colors from "../config/colors";
 import GreenButton from "../components/GreenButton";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
+import { app } from '../../firebase';
 
 export default function Login({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const auth = getAuth(app);
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      navigation.navigate("Home");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  }
+
   const pressedHandler = () => {
     navigation.navigate("Logon");
-  };
-
-  const pressedHandler2 = () => {
-    navigation.navigate("Home");
   };
 
   let [fontsLoaded] = useFonts({
@@ -52,15 +69,22 @@ export default function Login({ navigation }) {
           </View>
 
           <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
-            <TextInput placeholder="User ID" style={styles.inputTextbox} />
+            <TextInput 
+              style={styles.inputTextbox}
+              value = {email}
+              placeholder="Email"
+              onChangeText={text => setEmail(text)}
+            />
             <TextInput
               secureTextEntry={true}
-              placeholder="Password"
               style={styles.inputTextbox}
+              placeholder="Password"
+              onChangeText={text => setPassword(text)}
+              value = {password}
             />
-          </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
 
-          <TouchableOpacity onPress={pressedHandler2}>
+          <TouchableOpacity onPress={signIn}>
             <GreenButton title="Login" />
           </TouchableOpacity>
 

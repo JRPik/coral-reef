@@ -1,5 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -20,8 +22,39 @@ import colors from "../config/colors";
 //import AppText from "../components/AppText";
 import MyHeading from "../components/MyHeading";
 import GreenButton from "../components/GreenButton";
+import { app } from '../../firebase';
 
-export default function Logon() {
+export default function Logon({ navigation }) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const auth = getAuth(app);
+  const signUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: firstName + " " + lastName
+        }).then(() => {
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          console.log(error.message);
+        });
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error.code)
+        console.log(error.message);
+        // ..
+      });
+  }
+
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
   });
@@ -44,19 +77,38 @@ export default function Logon() {
               </MyHeading>
 
               <KeyboardAvoidingView>
-                <TextInput placeholder="Email" style={styles.inputTextbox} />
-                <TextInput
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  style={styles.inputTextbox}
-                />
-                <TextInput
-                  secureTextEntry={true}
-                  placeholder="Confirm Password"
-                  style={styles.inputTextbox}
-                />
-              </KeyboardAvoidingView>
-              <TouchableOpacity onPress={() => console.log("Button Pressed")}>
+              <TextInput 
+                style={styles.inputTextbox}
+                value = {firstName}
+                placeholder="First Name"
+                onChangeText={text => setFirstName(text)}
+              />
+              <TextInput 
+                style={styles.inputTextbox}
+                value = {lastName}
+                placeholder="Last Name"
+                onChangeText={text => setLastName(text)}
+              />
+              <TextInput 
+                style={styles.inputTextbox}
+                value = {email}
+                placeholder="Email"
+                onChangeText={text => setEmail(text)}
+              />
+              <TextInput
+                secureTextEntry={true}
+                style={styles.inputTextbox}
+                placeholder="Password"
+                value = {password}
+                onChangeText={text => setPassword(text)}
+              />
+              <TextInput
+                secureTextEntry={true}
+                style={styles.inputTextbox}
+                placeholder="Confirm Password"
+              />
+            </KeyboardAvoidingView>
+              <TouchableOpacity onPress={signUp}>
                 <GreenButton title="Login" />
               </TouchableOpacity>
             </KeyboardAvoidingView>
