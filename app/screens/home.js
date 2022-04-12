@@ -1,6 +1,13 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform
+import { 
+  Image, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View, 
+  Platform
   } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,8 +17,11 @@ import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
 import MyHeading from "../components/MyHeading";
 //import MyHeading from "../components/MyHeading";
+import { app } from '../../firebase';
+
 
 const CoralReefs = (props) => (
   <View style={[styles.entryContainer]}>
@@ -44,10 +54,10 @@ function Home({ navigation }) {
       <SafeAreaView>
         <ScrollView >
           <View style={styles.welcomeContainer}>
-            <Text style={styles.welcomeText}>
+            <Text style={defaultStyles.text} alignContent="center">
               Welcome to our App!
             </Text>
-            <Text style={styles.welcomeText}>
+            <Text style={defaultStyles.text} alignContent="center">
               Where will your Dive take you today?
             </Text>
           </View>
@@ -118,18 +128,6 @@ const styles = StyleSheet.create({
   },
   welcomeContainer:{
     alignItems: "center",
-  },
-  welcomeText: {
-      fontSize:18,
-      alignContent: "center",
-    ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
-      },
-      android:{
-          fontFamily: "Roboto",
-      },
-    }),
   },
 });
 

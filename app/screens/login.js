@@ -22,10 +22,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import GreenButton from "../components/GreenButton";
-//import AppText from "../components/AppText";
-//import MyHeading from "../components/MyHeading";
 import { app } from '../../firebase';
 import ApptTextInput from "../components/ApptTextInput";
+import defaultStyles from "../config/styles";
+
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -90,7 +90,7 @@ export default function Login({ navigation }) {
             <GreenButton title="Login" />
           </TouchableOpacity>
 
-          <Text style={styles.haveAcctText}>Don't Have an Account?</Text>
+          <Text style={defaultStyles.haveAcctText}>Don't Have an Account?</Text>
 
           <TouchableOpacity onPress={pressedHandler}>
             <GreenButton title="Create Account" />
@@ -108,22 +108,7 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  haveAcctText: {
-    marginTop: 5,
-    fontSize: 15,
-    textAlign: "center",
-    color: colors.backGroundOne,
-    fontWeight: "bold",
-    ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
-        marginBottom: -15,
-      },
-      android: {
-        fontFamily: "Roboto",
-      },
-    }),
-  },
+  
   imageBackground: {
     position: "absolute",
     top: 0,

@@ -16,12 +16,13 @@ import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (
   <View style={[styles.newestCoralContainer]}>
     <Image source={props.image} style={styles.newestCoralImage} />
-    <Text style={styles.newestCoralText}>
+    <Text style={defaultStyles.newestCoralText}>
       {props.location}: {props.name}{" "}
     </Text>
   </View>
@@ -89,7 +90,6 @@ export default function GroupCoralEntries({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-
   entriesInfo: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -170,23 +170,6 @@ const styles = StyleSheet.create({
       android: {
         marginTop: 23,
         height: 150,
-      },
-    }),
-  },
-  newestCoralText: {
-    position: "absolute",
-    fontWeight: "bold",
-    ...Platform.select({
-      ios: {
-        fontSize: 20,
-        paddingTop: 5,
-        left: "34%",
-        fontFamily: "Avenir",
-      },
-      android: {
-        marginTop: 5,
-        left: "28%",
-        fontSize: 21,
       },
     }),
   },
