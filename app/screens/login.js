@@ -6,7 +6,6 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   ScrollView,
@@ -18,6 +17,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -25,6 +25,7 @@ import GreenButton from "../components/GreenButton";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
 import { app } from '../../firebase';
+import ApptTextInput from "../components/ApptTextInput";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -69,18 +70,19 @@ export default function Login({ navigation }) {
           </View>
 
           <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
-            <TextInput 
-              style={styles.inputTextbox}
+            <ApptTextInput
               value = {email}
-              placeholder="Email"
+              icon = "envelope-o"
+              placeholder= "Email"
               onChangeText={text => setEmail(text)}
             />
-            <TextInput
+            <ApptTextInput
+              value = {password}
+              icon = "lock"
               secureTextEntry={true}
-              style={styles.inputTextbox}
               placeholder="Password"
               onChangeText={text => setPassword(text)}
-              value = {password}
+              
             />
             </KeyboardAvoidingView>
 
@@ -131,26 +133,6 @@ const styles = StyleSheet.create({
     zIndex: -1,
     width: Dimensions.get("window").width, //for full screen
     height: Dimensions.get("window").height, //for full screen
-  },
-  inputTextbox: {
-    backgroundColor: colors.backGroundOne,
-    height: 40,
-    width: "80%",
-    margin: 5,
-    borderRadius: 5,
-    paddingLeft: 5,
-    ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
-        shadowColor: colors.shadowOne,
-        shadowOpacity: 0.3,
-        shadowOffset: { height: 1, width: 0.3 },
-      },
-      android: {
-        fontFamily: "Roboto",
-        elevation: 5,
-      },
-    }),
   },
   logoImage: {
     width: 250,

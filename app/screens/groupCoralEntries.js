@@ -89,12 +89,7 @@ export default function GroupCoralEntries({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  imageBackground: {
-    flex: 1,
-    backgroundColor: colors.backGroundTwo,
-    alignContent: "center",
-    padding: 40,
-  },
+
   entriesInfo: {
     flexWrap: "wrap",
     flexDirection: "row",
