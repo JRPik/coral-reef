@@ -1,7 +1,7 @@
 //imports from our thrid-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { Text, Platform } from "react-native";
+import { Text, Platform, View } from "react-native";
 import React from "react";
 
 //imports from our code
@@ -40,17 +40,20 @@ const screens = {
     screen: Logon,
     navigationOptions: {
       headerTransparent: true,
+      headerLeft: () => null,
       headerTitle: () => (
         <Text
-          style={{
-            paddingLeft: "17%",
-            flex: 1,
-            fontFamily: "Roboto",
-            fontWeight: "bold",
-            fontSize: 22,
-          }}
+        style={{
+          ...Platform.select({
+            ios: {
+              fontFamily: "Avenir",
+            },
+            android: {
+              fontFamily: "Roboto",
+            },
+          }),
+        }}
         >
-          Create Account
         </Text>
       ),
     },

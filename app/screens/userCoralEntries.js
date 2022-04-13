@@ -2,19 +2,24 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Platform, TouchableOpacity, Image, ScrollView} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FontAwesome } from '@expo/vector-icons';
+
 
 //IMPORT FROM OUR CODE
-import colors from "../config/colors";
 import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
+
 //import MyHeading from "../components/MyHeading";
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const RecentCoral = (props) => (
   <View style={[styles.recentCoralContainer]}>
-    <Image source={props.image} style={styles.recentCoralImage} />
+    <Image source={props.image} style={styles.recentCoralImage}  />
+    
     <Text style={styles.recentCoralText}>
-      {props.location}: {props.name}{" "}
+      {props.location}: {props.name}
     </Text>
+    
   </View>
 );
 
@@ -22,8 +27,13 @@ const RecentCoral = (props) => (
 //everyone who has the app and has uploaded information to it
 const MyCoralPosts = (props) => (
   <View style={[styles.entryContainer]}>
+    
     <TouchableOpacity style={styles.entryImage} onPress={props.func}>
-      <Image source={props.image} style={styles.entryImage} />
+      <Image 
+      source={props.image} 
+      style={styles.entryImage}
+      
+      />
     </TouchableOpacity>
     <View>
       <AppText>{props.name}</AppText>
@@ -95,7 +105,7 @@ const data = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backGroundOne,
+    backgroundColor: defaultStyles.colors.backGroundOne,
     alignContent: "center",
   }, //END OF CONTAINER
   entriesInfo: {
@@ -108,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 25,
-    backgroundColor: colors.backGroundThree,
+    backgroundColor: defaultStyles.colors.backGroundThree,
     justifyContent: "space-evenly",
     ...Platform.select({
       ios: {
@@ -145,10 +155,10 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.backGroundOne,
+    backgroundColor: defaultStyles.colors.backGroundOne,
     margin: 16,
     borderRadius: 8,
-    shadowColor: colors.shadowTwo,
+    shadowColor: defaultStyles.colors.shadowTwo,
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { height: 1, width: 0.3 },
@@ -156,9 +166,9 @@ const styles = StyleSheet.create({
   recentCoralContainer: {
     height: "100%",
     justifyContent: "flex-start",
-    borderColor: colors.primary,
+    borderColor: defaultStyles.colors.primary,
     flexDirection: "column",
-    backgroundColor: colors.backGroundThree,
+    backgroundColor: defaultStyles.colors.backGroundThree,
     borderRadius: 20,
     padding: 10,
     ...Platform.select({

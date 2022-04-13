@@ -17,14 +17,15 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderRadius: 20,
         padding: 10,
+        justifyContent: "space-between",
         ...Platform.select({
             ios:{
-                width: "30%",
+                width: "125%",
                 fontFamily: "Avenir",
                 marginTop: 20,
             },
             android:{
-                width: "40%",
+                width: "120%",
                 fontFamily: "Roboto",
                 marginTop: 10,
             },

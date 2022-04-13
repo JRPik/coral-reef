@@ -7,22 +7,22 @@ import {
   TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
-  TextInput,
   ImageBackground,
   Dimensions,
   View,
   Image,
 } from "react-native";
-import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
-import colors from "../config/colors";
-//import AppText from "../components/AppText";
 import MyHeading from "../components/MyHeading";
 import GreenButton from "../components/GreenButton";
 import { app } from '../../firebase';
+import defaultStyles from "../config/styles";
+import ApptTextInput from "../components/ApptTextInput";
+import Login from "./login";
+
+
 
 export default function Logon({ navigation }) {
   const [firstName, setFirstName] = useState('');
@@ -55,93 +55,102 @@ export default function Logon({ navigation }) {
       });
   }
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
+  const pressedHandler = () => {
+    navigation.navigate("Login");
+  };
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={styles.logoImageContiner}>
-            <Image
-              style={styles.logoImage}
-              source={require("../assets/images/logo.jpg")}
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.logoImageContiner}>
+          <Image
+            style={styles.logoImage}
+            source={imageLogo}
+          />
+        </View>
+        <KeyboardAvoidingView>
+          <MyHeading>
+              Enter a Username and Password {"\n"} to make an account
+          </MyHeading>
+
+          <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
+            <View style={styles.nameContainer}>
+            <ApptTextInput 
+              value = {firstName}
+              icon = "user"
+              placeholder="First Name"
+              onChangeText={text => setFirstName(text)}
             />
-          </View>
-            <KeyboardAvoidingView>
-              <MyHeading>
-                Enter a Username and Password {"\n"} to make an account
-              </MyHeading>
-
-              <KeyboardAvoidingView>
-              <TextInput 
-                style={styles.inputTextbox}
-                value = {firstName}
-                placeholder="First Name"
-                onChangeText={text => setFirstName(text)}
-              />
-              <TextInput 
-                style={styles.inputTextbox}
-                value = {lastName}
-                placeholder="Last Name"
-                onChangeText={text => setLastName(text)}
-              />
-              <TextInput 
-                style={styles.inputTextbox}
-                value = {email}
-                placeholder="Email"
-                onChangeText={text => setEmail(text)}
-              />
-              <TextInput
-                secureTextEntry={true}
-                style={styles.inputTextbox}
-                placeholder="Password"
-                value = {password}
-                onChangeText={text => setPassword(text)}
-              />
-              <TextInput
-                secureTextEntry={true}
-                style={styles.inputTextbox}
-                placeholder="Confirm Password"
-              />
+            <ApptTextInput
+              value = {lastName}
+              placeholder="Last Name"
+              onChangeText={text => setLastName(text)}
+            />
+            </View>
+            <ApptTextInput
+              value = {email}
+              icon = "envelope-o"
+              placeholder="Email"
+              onChangeText={text => setEmail(text)}
+            />
+            <ApptTextInput
+              secureTextEntry
+              value = {password}
+              icon = "lock"
+              placeholder="Password"
+              onChangeText={text => setPassword(text)}
+            />
+            <ApptTextInput
+              secureTextEntry
+              icon = "lock"
+              placeholder="Confirm Password"
+            />
             </KeyboardAvoidingView>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity onPress={pressedHandler}>
+                  <GreenButton title="Cancel" />
+              </TouchableOpacity>
               <TouchableOpacity onPress={signUp}>
                 <GreenButton title="Login" />
               </TouchableOpacity>
-            </KeyboardAvoidingView>
+            </View>
+          </KeyboardAvoidingView>
         </ScrollView>
         <StatusBar style="auto" />
-        <ImageBackground
-          style={styles.imageBackground}
-          source={require("../assets/images/coralReefBackground.jpg")}
-          resizeMode="cover"
-        />
-      </SafeAreaView>
-    );
-  }
+      <ImageBackground
+        style={styles.imageBackground}
+        source={backGroundImage}
+        resizeMode="cover"
+      />
+    </SafeAreaView>
+  );
 }
+
+const backGroundImage = require("../assets/images/coralReefBackground.jpg");
+const imageLogo = require("../assets/images/logo.jpg");
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backGroundOne,
+    backgroundColor: defaultStyles.colors.backGroundOne,
     alignContent: "center",
   },
+  buttonContainer:{
+    justifyContent: "space-evenly",
+    flexDirection:"row",
+  },
   inputTextbox: {
-    backgroundColor: colors.backGroundOne,
-    left: "5%",
+    backgroundColor: defaultStyles.colors.backGroundOne,
     height: 40,
-    width: "85%",
+    width: "80%",
     margin: 5,
     borderRadius: 5,
     paddingLeft: 5,
     ...Platform.select({
       ios: {
         fontFamily: "Avenir",
-        shadowColor: colors.shadowOne,
+        shadowColor: defaultStyles.colors.shadowOne,
         shadowOpacity: 0.3,
         shadowOffset: { height: 1, width: 0.3 },
       },
@@ -153,10 +162,7 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    marginTop: 30,
     zIndex: -1,
     width: Dimensions.get("window").width, //for full screen
     height: Dimensions.get("window").height, //for full screen
@@ -170,9 +176,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.backGroundOne,
+    backgroundColor: defaultStyles.colors.backGroundOne,
     borderRadius: 20,
     margin: "5%",
-    marginTop: "25%",
+    ...Platform.select({
+      ios: {
+        marginTop: "9%",
+      },
+      android: {
+        marginTop: "12%",
+      },
+    }),
+  },
+  nameContainer:{
+    flexDirection:"row",
+    ...Platform.select({
+      ios: {
+        width: "49%",
+      },
+      android: {
+        width: "48.5%",
+      },
+    }),
   },
 });

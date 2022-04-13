@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         width: '82%',
         padding: 5,
         marginVertical: 10,
+        marginRight: 10,
     },
     iconImage:{
         marginRight: 8,
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: colors.backGroundOne,
         height: 25,
-        //width: "90%",
         margin: 5,
         borderRadius: 5,
         //paddingLeft: 5,
