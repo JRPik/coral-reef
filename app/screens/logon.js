@@ -88,22 +88,28 @@ export default function Logon({ navigation }) {
             />
             </View>
             <ApptTextInput
-              value = {email}
+              autoCapitalize = "none"
+              autoCorrect = {false}
               icon = "envelope-o"
-              placeholder="Email"
               onChangeText={text => setEmail(text)}
+              placeholder="Email"
+              value = {email}
             />
             <ApptTextInput
+              autoCapitalize = "none"
+              autoCorrect = {false}
+              icon = "lock"
+              onChangeText={text => setPassword(text)}
+              placeholder="Password"
               secureTextEntry
               value = {password}
-              icon = "lock"
-              placeholder="Password"
-              onChangeText={text => setPassword(text)}
             />
             <ApptTextInput
+              autoCapitalize = "none"
+              autoCorrect = {false}
               secureTextEntry
               icon = "lock"
-              placeholder="Confirm Password"
+              placeholder = "Confirm Password"
             />
             </KeyboardAvoidingView>
             <View style={styles.buttonContainer}>

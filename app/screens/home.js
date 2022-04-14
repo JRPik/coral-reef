@@ -1,27 +1,13 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { 
-  Image, 
-  ScrollView, 
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  View, 
-  Platform
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform
   } from "react-native";
-import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
-
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
-import MyHeading from "../components/MyHeading";
-//import MyHeading from "../components/MyHeading";
-import { app } from '../../firebase';
-
 
 const CoralReefs = (props) => (
   <View style={[styles.entryContainer]}>
@@ -39,43 +25,36 @@ const CoralReefs = (props) => (
 
 //component to be rendered
 function Home({ navigation }) {
+ 
   const pressMain = () => {
     navigation.navigate("Coral");
   };
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
+  return (
+    <SafeAreaView>
+      <ScrollView >
+        <View style={styles.welcomeContainer}>
+          <Text style={defaultStyles.text} alignContent="center">
+            Welcome to our App!
+          </Text>
+          <Text style={defaultStyles.text} alignContent="center">
+            Where will your Dive take you today?
+          </Text>
+        </View>
+        <View style={styles.entriesInfo}>
+          {data.corals.map((coral) => (
+            <CoralReefs
+              func={pressMain}
+              key={coral.id}
+              image={coral.image}
+            />
+          ))}
+        </View>
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <SafeAreaView>
-        <ScrollView >
-          <View style={styles.welcomeContainer}>
-            <Text style={defaultStyles.text} alignContent="center">
-              Welcome to our App!
-            </Text>
-            <Text style={defaultStyles.text} alignContent="center">
-              Where will your Dive take you today?
-            </Text>
-          </View>
-          <View style={styles.entriesInfo}>
-            {data.corals.map((coral) => (
-              <CoralReefs
-                func={pressMain}
-                key={coral.id}
-                image={coral.image}
-              />
-            ))}
-          </View>
-
-          <StatusBar style="auto" />
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+        <StatusBar style="auto" />
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

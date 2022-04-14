@@ -8,11 +8,10 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, Image,
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //IMPORT FROM OUR CODE
-import GreenButton from "../components/GreenButton";
 import { app } from '../../firebase';
 import ApptTextInput from "../components/ApptTextInput";
 import defaultStyles from "../config/styles";
-
+import GreenButton from "../components/GreenButton";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -51,17 +50,21 @@ export default function Login({ navigation }) {
 
         <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
           <ApptTextInput
-            value = {email}
+            autoCapitalize = "none"
+            autoCorrect = {false}
             icon = "envelope-o"
-            placeholder= "Email"
-            onChangeText={text => setEmail(text)}
+            onChangeText = {text => setEmail(text)}
+            placeholder = "Email"
+            value = {email}
           />
           <ApptTextInput
+            autoCapitalize = "none"
+            autoCorrect = {false}
+            icon = "lock"
+            onChangeText = {text => setPassword(text)}
+            placeholder = "Password"
             secureTextEntry //already true so you dont need to put true
             value = {password}
-            icon = "lock"
-            placeholder="Password"
-            onChangeText={text => setPassword(text)}
           />
         </KeyboardAvoidingView>
         <View style={styles.buttonContainer}>
