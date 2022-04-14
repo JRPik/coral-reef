@@ -1,17 +1,19 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View, TouchableOpacity
+import { Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
+import {Picker} from '@react-native-picker/picker';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
+import GreenButton from "../components/GreenButton";
 
 export default function NewEntry({ navigation }) {
   //States used to set date and time
@@ -20,6 +22,9 @@ export default function NewEntry({ navigation }) {
   const [show, setShow] = useState(false);
   const [dateText, setDateText] = useState("Empty");
   const [timeText, setTimeText] = useState("Empty");
+  const [selectedBoat, setSelectedBoat] = useState();
+  const [selectedWeather, setSelectedWeather] = useState();
+  const [selectedWater, setSelectedWater] = useState();
 
   //When changed show it
   const onChange = (event, selectedDate) => {
@@ -75,7 +80,13 @@ export default function NewEntry({ navigation }) {
   };
 
   const pressedHandler = () => {
-    navigation.navigate("Logon");
+    navigation.navigate("NewEntryTwo", {
+        dateText: dateText,
+        timeText: timeText,
+        boat: selectedBoat,
+        weather: selectedWeather,
+        water: selectedWater
+    });
   };
 
   let [fontsLoaded] = useFonts({
@@ -87,58 +98,99 @@ export default function NewEntry({ navigation }) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={styles.text}>{dateText}</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => showMode("date")}
+        <ScrollView>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
           >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto_400Regular",
-              }}
+            <Text style={styles.text}>{dateText}</Text>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => showMode("date")}
             >
-              Select Date
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}>{timeText}</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => showMode("time")}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto_400Regular",
-              }}
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontFamily: "Roboto_400Regular",
+                }}
+              >
+                Select Date
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <Text style={styles.text}>{timeText}</Text>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => showMode("time")}
             >
-              Select Time
-            </Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontFamily: "Roboto_400Regular",
+                }}
+              >
+                Select Time
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={false}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+
+          <Text style={styles.text}>Choose a Boat:</Text>
+          <Picker
+            selectedValue={selectedBoat}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedBoat(itemValue)
+            }>
+            <Picker.Item label="Boat A" value="Boat A" />
+            <Picker.Item label="Boat B" value="Boat B" />
+            <Picker.Item label="Boat C" value="Boat C" />
+          </Picker>
+          
+          <Text style={styles.text}>Weather Conditions: </Text>
+          <Picker
+            selectedValue={selectedWeather}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedWeather(itemValue)
+            }>
+            <Picker.Item label="Overcast" value="Overcast" />
+            <Picker.Item label="Rainy" value="Rainy" />
+            <Picker.Item label="Sunny" value="Sunny" />
+            <Picker.Item label="Partly Cloudy" value="Partly Cloudy" />
+            <Picker.Item label="Windy" value="Windy" />
+          </Picker>
+
+          <Text style={styles.text}>Choose Water State: </Text>  
+          <Picker
+            selectedValue={selectedWater}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedWater(itemValue)
+            }>
+            <Picker.Item label="Calm" value="Calm" />
+            <Picker.Item label="Rough" value="Rough" />
+            <Picker.Item label="Choppy" value="Choppy" />
+          </Picker>
+
+          <TouchableOpacity onPress={pressedHandler}>
+            <GreenButton title="Next" />
           </TouchableOpacity>
-        </View>
 
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={false}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-
-        <StatusBar style="auto" />
+          <StatusBar style="auto" />
+        </ScrollView>
       </SafeAreaView>
     );
   }
