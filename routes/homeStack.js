@@ -7,6 +7,8 @@ import Login from "../screens/login";
 import Logon from "../screens/logon";
 import Drawer from "../routes/drawer";
 import Header from "../shared/header";
+import Picture from "../screens/picture";
+import Gallery from "../screens/gallery";
 
 const screens = {
   Login: {
@@ -53,6 +55,40 @@ const screens = {
       };
     },
   },
+  Picture: {
+    screen: Picture,
+    navigationOptions: {
+      headerTitle: (
+        <Text
+          style={{
+            paddingLeft: "20%",
+            flex: 1,
+            fontFamily: "RobotoCondensed_700Bold",
+            fontSize: 22,
+          }}
+        >
+          Take A Picture
+        </Text>
+      ),
+    },
+  },
+  Gallery: {
+    screen: Gallery,
+    navigationOptions: {
+      headerTitle: (
+        <Text
+          style={{
+            paddingLeft: "20%",
+            flex: 1,
+            fontFamily: "RobotoCondensed_700Bold",
+            fontSize: 22,
+          }}
+        >
+          Gallery
+        </Text>
+      ),
+    },
+  }
 };
 
 export const HomeStack = createStackNavigator(screens);

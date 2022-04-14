@@ -98,6 +98,17 @@ export default function Home({ navigation }) {
   }
 }
 
+export function pictureButton({text, onPress })
+{
+  return (
+    <TouchableOpacity> onPress = {onPress}
+      <view style = {styles.buttonContainer}>
+        <Text> style = {styles.text}{text}</Text>
+      </view>
+    </TouchableOpacity>
+  )
+}
+
 const styles = StyleSheet.create({
   card: {
     height: "100%",
