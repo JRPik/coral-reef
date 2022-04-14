@@ -1,26 +1,40 @@
+//imports from our thrid-parties
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { NavigationContainer } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { Text, Platform, View } from "react-native";
 import React from "react";
-import Login from "../screens/login";
-import Logon from "../screens/logon";
+
+//imports from our code
+import Login from "../app/screens/login";
+import Logon from "../app/screens/logon";
 import Drawer from "../routes/drawer";
+<<<<<<< HEAD
 import Header from "../shared/header";
 import Picture from "../screens/picture";
 import Gallery from "../screens/gallery";
+=======
+import Header from "../app/components/header";
+>>>>>>> fc3d3e01ff2246993383fb70257d689a0f49b80c
 
 const screens = {
   Login: {
     screen: Login,
     navigationOptions: {
+      headerTransparent: true,
       headerTitle: () => {
         <Text
           style={{
             textAlign: "center",
             flex: 1,
-            fontFamily: "RobotoCondensed_700Bold",
             fontSize: 22,
+            ...Platform.select({
+              ios: {
+                fontFamily: "Avenir",
+              },
+              android: {
+                fontFamily: "Roboto",
+              },
+            }),
           }}
         >
           Login
@@ -31,16 +45,21 @@ const screens = {
   Logon: {
     screen: Logon,
     navigationOptions: {
-      headerTitle: (
+      headerTransparent: true,
+      headerLeft: () => null,
+      headerTitle: () => (
         <Text
-          style={{
-            paddingLeft: "20%",
-            flex: 1,
-            fontFamily: "RobotoCondensed_700Bold",
-            fontSize: 22,
-          }}
+        style={{
+          ...Platform.select({
+            ios: {
+              fontFamily: "Avenir",
+            },
+            android: {
+              fontFamily: "Roboto",
+            },
+          }),
+        }}
         >
-          Create Account
         </Text>
       ),
     },

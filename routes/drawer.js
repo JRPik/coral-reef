@@ -1,73 +1,77 @@
+//imports from our third-parties
 import { createDrawerNavigator } from "react-navigation-drawer";
+import { getAuth, signOut } from "firebase/auth";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
-  Image,
   FlatList,
+  Platform,
 } from "react-native";
-import Home from "../screens/home";
-import NewEntry from "../screens/newEntry";
-import EntrySearch from "../screens/entrySearch";
-import CoralEntries from "../screens/coralEntries";
-import { StackActions } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
-import { borderBottomColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
-import CoralEntry from "../screens/coralEntry";
-import { InStack } from "./inStack";
+import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
+
+//imports from our code
+import NewEntry from "../app/screens/newEntry";
+import EntrySearch from "../app/screens/entrySearch";
+import UserCoralEntries from "../app/screens/userCoralEntries";
+import GroupCoralEntries from "../app/screens/groupCoralEntries";
+import { MainStack } from "./mainStack";
+import { NewEntryStack } from "./newEntryStack";
+import { EntrySearchStack } from "./entrySearchStack";
+import { UserEntryStack } from "./userEntriesStack";
+import { GroupEntriesStack } from "./groupEntriesStack";
+import { app } from '../firebase';
 
 const screens = {
   Home: {
-    screen: InStack,
+    screen: MainStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Thing",
       };
     },
-  },
+  }, //END OF HOME
   NewEntry: {
-    screen: NewEntry,
+    screen: NewEntryStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "New Entry",
       };
     },
-  },
+  }, //END OF NEWENTRY
   EntrySearch: {
-    screen: EntrySearch,
+    screen: EntrySearchStack,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Entry Search",
       };
     },
-  },
-  CoralEntries: {
-    screen: CoralEntries,
+  }, //END OF ENTRYSEARCH
+  UserCoralEntries: {
+    screen: UserEntryStack,
     navigationOptions: ({ navigation }) => {
       return {
-        title: "Coral Entries",
+        title: "My Entries",
       };
     },
-  },
-};
+  }, //END OF CORALENTRIES
+  GroupEntries: {
+    screen: GroupEntriesStack,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Group Coral Entries",
+      };
+    },
+  }, //END OF GROUPENTRIES
+}; //END OF SCREENS
 
 const Drawer = createDrawerNavigator(screens, {
   drawerPosition: "right",
   contentComponent: DrawerMenu,
-});
+}); //END OF DRAWER
 
 const menuData = [
   { icon: "home", name: "Home", screenName: "Home", key: 1 },
@@ -75,17 +79,23 @@ const menuData = [
   { icon: "search", name: "Entry Search", screenName: "EntrySearch", key: 3 },
   {
     icon: "folder-open",
-    name: "Coral Entries",
-    screenName: "CoralEntries",
+    name: "User's Coral Entries",
+    screenName: "UserCoralEntries",
     key: 4,
   },
-  { icon: "sign-out", name: "Log Out", key: 5 },
-];
+  {
+    icon: "folder-open",
+    name: "Group Coral Entries",
+    screenName: "GroupEntries",
+    key: 5,
+  },
+  { icon: "sign-out", name: "Log Out", key: 6 },
+]; //END OF MENUDATA ARRAY
 
 function DrawerMenu({ navigation }) {
   let [fontsLoaded] = useFonts({
     RobotoCondensed_400Regular,
-  });
+  }); //END OF USEFONTS
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -102,20 +112,26 @@ function DrawerMenu({ navigation }) {
               name={item.name}
               key={item.key}
             />
-          )}
+          )} //END OF RENDERITEMS
         />
       </View>
-    );
-  }
-}
+    ); //END OF RETURN
+  } //END OF ELSE STATEMENT
+} //END OF DRAWERMENU
+
 function DrawerItem({ navigation, name, screenName, icon }) {
+  const auth = getAuth(app);
   const navHandler = (screenName, name) => {
     if (name === "Log Out") {
-      navigation.navigate("Login");
+      signOut(auth).then(() => {
+        navigation.navigate("Login");
+      }).catch((error) => {
+        console.log(error);
+      });
     } else {
       navigation.navigate(screenName);
-    }
-  };
+    } //END OF ELSE STATEMENT
+  }; //END OF NAVHANDLER
   return (
     <TouchableOpacity
       style={styles.menuItem}
@@ -124,39 +140,39 @@ function DrawerItem({ navigation, name, screenName, icon }) {
       <Icon style={styles.icon} name={icon} size={25} color="#333" />
       <Text style={styles.menuItemText}>{name}</Text>
     </TouchableOpacity>
-  );
-}
+  ); //END OF RETURN
+} //END OF DRAWERITEMS
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(255,255,255,0.43)",
     paddingTop: 70,
-  },
+  }, //END OF CONTAINER
+  icon: {
+    paddingTop: 10,
+    paddingLeft: 10,
+  }, //END OF ICON
   menuItem: {
     flexDirection: "row",
-
     borderStyle: "solid",
     borderBottomWidth: 2,
     borderBottomColor: "black",
-  },
-  icon: {
-    paddingTop: 10,
-    paddingLeft: 5,
-  },
+  }, //END OF MENUITEM
   menuItemText: {
     fontSize: 15,
     fontWeight: "300",
     margin: 15,
-    fontFamily: "RobotoCondensed_400Regular",
-  },
-
-  menuItemText: {
-    fontSize: 15,
-    fontWeight: "300",
-    margin: 15,
-    fontFamily: "RobotoCondensed_400Regular",
-  },
-});
+    fontWeight: "bold",
+    ...Platform.select({
+      ios: {
+        fontFamily: "Avenir",
+      },
+      android: {
+        fontFamily: "Roboto",
+      },
+    }), //END OF PLATFORM.SELECT
+  }, //END OF MENUITEMTEXT
+}); //END OF STYLESHEET.CREATE
 
 export default Drawer;
