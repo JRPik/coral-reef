@@ -20,7 +20,6 @@ import GreenButton from "../components/GreenButton";
 import { app } from '../../firebase';
 import defaultStyles from "../config/styles";
 import ApptTextInput from "../components/ApptTextInput";
-import Login from "./login";
 
 
 

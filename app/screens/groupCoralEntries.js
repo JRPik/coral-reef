@@ -9,9 +9,7 @@ import {
   View,
   Platform,
 } from "react-native";
-import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -50,13 +48,6 @@ export default function GroupCoralEntries({ navigation }) {
     navigation.navigate("Coral");
   };
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
     return (
       <SafeAreaView>
         <ScrollView>
@@ -86,7 +77,6 @@ export default function GroupCoralEntries({ navigation }) {
         </ScrollView>
       </SafeAreaView>
     );
-  }
 }
 
 const styles = StyleSheet.create({
