@@ -151,7 +151,7 @@ export default function NewEntry({ navigation }) {
           )}
 
           <Text style={styles.text}>Choose a Boat:</Text>
-          <Picker
+          <Picker style={{ width: "75%" }}
             selectedValue={selectedBoat}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedBoat(itemValue)
@@ -162,7 +162,7 @@ export default function NewEntry({ navigation }) {
           </Picker>
           
           <Text style={styles.text}>Weather Conditions: </Text>
-          <Picker
+          <Picker style={{ width: "75%" }}
             selectedValue={selectedWeather}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedWeather(itemValue)
@@ -175,7 +175,7 @@ export default function NewEntry({ navigation }) {
           </Picker>
 
           <Text style={styles.text}>Choose Water State: </Text>  
-          <Picker
+          <Picker style={{ width: "75%" }}
             selectedValue={selectedWater}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedWater(itemValue)
