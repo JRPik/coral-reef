@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AppLoading from "expo-app-loading";
-import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 
 //imports from our code
 import NewEntry from "../app/screens/newEntry";
@@ -23,7 +22,7 @@ import { NewEntryStack } from "./newEntryStack";
 import { EntrySearchStack } from "./entrySearchStack";
 import { UserEntryStack } from "./userEntriesStack";
 import { GroupEntriesStack } from "./groupEntriesStack";
-import { app } from '../firebase';
+import { app } from "../firebase";
 
 const screens = {
   Home: {
@@ -93,13 +92,7 @@ const menuData = [
 ]; //END OF MENUDATA ARRAY
 
 function DrawerMenu({ navigation }) {
-  let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
-  }); //END OF USEFONTS
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  {
     return (
       <View style={styles.container}>
         <FlatList
@@ -123,11 +116,13 @@ function DrawerItem({ navigation, name, screenName, icon }) {
   const auth = getAuth(app);
   const navHandler = (screenName, name) => {
     if (name === "Log Out") {
-      signOut(auth).then(() => {
-        navigation.navigate("Login");
-      }).catch((error) => {
-        console.log(error);
-      });
+      signOut(auth)
+        .then(() => {
+          navigation.navigate("Login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       navigation.navigate(screenName);
     } //END OF ELSE STATEMENT

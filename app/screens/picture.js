@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Camera } from "expo-camera";
 
 //Camera Feature function
 export default function App() {
@@ -10,12 +9,11 @@ export default function App() {
   const gallery = () => {
     navigation.navigate("Gallery");
   };
-  
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
@@ -37,24 +35,21 @@ export default function App() {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-            }}>
+            }}
+          >
             <Text style={styles.text}> Flip {"\n"} Camera </Text>
           </TouchableOpacity>
         </View>
       </Camera>
 
-
-       <View style={styles.buttonContainer}>
-         <TouchableOpacity style={styles.button} onPress={(gallery)}>
-            <Text style={styles.text}> Photo {"\n"} Gallery </Text>
-            </TouchableOpacity>
-       </View> 
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={gallery}>
+          <Text style={styles.text}> Photo {"\n"} Gallery </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-
-  
 }
-
 
 /* Take picture function
   const takePhoto = async () => {
@@ -74,34 +69,33 @@ export default function App() {
   }
 */
 
-  // Styles for text and container
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: 'black',
+// Styles for text and container
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "black",
+  },
+  camera: {
+    flex: 1,
+  },
+  // Button for  feature
+  buttonContainer: {
+    width: "50%",
+    height: "10%",
+    backgroundColor: "powderblue",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "stretch",
+    shadowColor: "black",
+    shadowOpacity: 0.3,
+    shadowOffset: { height: 1, width: 0.3 },
+  },
 
-    },
-    camera: {
-      flex: 1,
-
-    },
-    // Button for  feature
-    buttonContainer: {
-      width: '50%', height: '10%' , backgroundColor: 'powderblue',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'stretch',
-      shadowColor: "black",
-      shadowOpacity: 0.3,
-      shadowOffset: { height: 1, width: 0.3 },
-    },
-  
-    text:{
-      fontSize: 30,
-      color: 'white',
-      textAlign: "center",
-      fontFamily: "RobotoCondensed_400Regular",
-    },
-
-  })
+  text: {
+    fontSize: 30,
+    color: "white",
+    textAlign: "center",
+    fontFamily: "Roboto",
+  },
+});

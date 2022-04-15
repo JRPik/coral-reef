@@ -16,7 +16,6 @@ import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
 //import {Picker} from '@react-native-picker/picker';
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -115,14 +114,7 @@ export default function NewEntry({ navigation }) {
       </RNPickerSelect>
     );
   };
-
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  {
     return (
       <SafeAreaView style={styles.container}>
         <View
@@ -140,7 +132,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "Roboto_400Regular",
+                fontFamily: "Roboto",
               }}
             >
               Select Date
@@ -157,7 +149,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "Roboto_400Regular",
+                fontFamily: "Roboto",
               }}
             >
               Select Time
@@ -186,7 +178,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto",
               }}
             >
               Take Picture
@@ -201,7 +193,7 @@ export default function NewEntry({ navigation }) {
               style={{
                 textAlign: "center",
                 color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
+                fontFamily: "Roboto",
               }}
             >
               Upload Picture
