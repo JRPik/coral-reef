@@ -8,13 +8,9 @@ import React from "react";
 import Login from "../app/screens/login";
 import Logon from "../app/screens/logon";
 import Drawer from "../routes/drawer";
-<<<<<<< HEAD
-import Header from "../shared/header";
-import Picture from "../screens/picture";
-import Gallery from "../screens/gallery";
-=======
+import Picture from "../app/screens/picture";
+import Gallery from "../app/screens/gallery";
 import Header from "../app/components/header";
->>>>>>> fc3d3e01ff2246993383fb70257d689a0f49b80c
 
 const screens = {
   Login: {
@@ -49,18 +45,17 @@ const screens = {
       headerLeft: () => null,
       headerTitle: () => (
         <Text
-        style={{
-          ...Platform.select({
-            ios: {
-              fontFamily: "Avenir",
-            },
-            android: {
-              fontFamily: "Roboto",
-            },
-          }),
-        }}
-        >
-        </Text>
+          style={{
+            ...Platform.select({
+              ios: {
+                fontFamily: "Avenir",
+              },
+              android: {
+                fontFamily: "Roboto",
+              },
+            }),
+          }}
+        ></Text>
       ),
     },
   },
@@ -107,7 +102,7 @@ const screens = {
         </Text>
       ),
     },
-  }
+  },
 };
 
 export const HomeStack = createStackNavigator(screens);

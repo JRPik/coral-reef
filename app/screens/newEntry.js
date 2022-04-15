@@ -1,6 +1,5 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-<<<<<<< HEAD:screens/newEntry.js
 import {
   Platform,
   StyleSheet,
@@ -11,34 +10,18 @@ import {
   TouchableOpacity,
   Image,
   Picker,
-=======
-import { Platform, StyleSheet, Text, View, TouchableOpacity
->>>>>>> fc3d3e01ff2246993383fb70257d689a0f49b80c:app/screens/newEntry.js
 } from "react-native";
 import React, { useState, userEffect } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-<<<<<<< HEAD:screens/newEntry.js
-import {
-  useFonts,
-  RobotoCondensed_300Light,
-  RobotoCondensed_300Light_Italic,
-  RobotoCondensed_400Regular,
-  RobotoCondensed_400Regular_Italic,
-  RobotoCondensed_700Bold,
-  RobotoCondensed_700Bold_Italic,
-} from "@expo-google-fonts/dev";
 //import {Picker} from '@react-native-picker/picker';
-
-=======
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
->>>>>>> fc3d3e01ff2246993383fb70257d689a0f49b80c:app/screens/newEntry.js
 
 export default function NewEntry({ navigation }) {
   //States used to set date and time
@@ -116,31 +99,26 @@ export default function NewEntry({ navigation }) {
   const [selectedLanguage, setSelectedLanguage] = useState();
 
   const selectedItem = {
-    title: 'Selected item title',
-    description: 'Secondary long descriptive text ...',
-};
+    title: "Selected item title",
+    description: "Secondary long descriptive text ...",
+  };
 
-const Dropdown = () => {
-  return (
+  const Dropdown = () => {
+    return (
       <RNPickerSelect
-          pickerProps={{
-              accessibilityLabel: selectedItem.title,
-          }}
+        pickerProps={{
+          accessibilityLabel: selectedItem.title,
+        }}
       >
-          <Text>{selectedItem.title}</Text>
-          <Text>{selectedItem.description}</Text>
+        <Text>{selectedItem.title}</Text>
+        <Text>{selectedItem.description}</Text>
       </RNPickerSelect>
-  );
-};
-
-  
+    );
+  };
 
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
   });
-
-
-  
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -199,10 +177,10 @@ const Dropdown = () => {
         <StatusBar style="auto" />
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text> 
+          <Text style={styles.text}></Text>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={(takePicture)}
+            onPress={takePicture}
           >
             <Text
               style={{
@@ -211,17 +189,14 @@ const Dropdown = () => {
                 fontFamily: "RobotoCondensed_400Regular",
               }}
             >
-              Take Picture 
+              Take Picture
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text> 
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={(gallery)}
-          >
+          <Text style={styles.text}></Text>
+          <TouchableOpacity style={styles.buttonContainer} onPress={gallery}>
             <Text
               style={{
                 textAlign: "center",
@@ -229,19 +204,14 @@ const Dropdown = () => {
                 fontFamily: "RobotoCondensed_400Regular",
               }}
             >
-              Upload Picture 
+              Upload Picture
             </Text>
           </TouchableOpacity>
         </View>
-
-
-    
-
       </SafeAreaView>
     );
   }
 }
-
 
 /* Picker for color
 
@@ -258,7 +228,6 @@ const Dropdown = () => {
 
 
 */
-
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -294,11 +263,11 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
+      ios: {
+        fontFamily: "Avenir",
       },
-      android:{
-          fontFamily: "Roboto",
+      android: {
+        fontFamily: "Roboto",
       },
     }),
   },
@@ -318,7 +287,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { height: 1, width: 0.3 },
   },
-<<<<<<< HEAD:screens/newEntry.js
   text2: {
     marginBottom: 15,
     marginTop: 15,
@@ -341,9 +309,4 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
   },
-  
-  
-
-=======
->>>>>>> fc3d3e01ff2246993383fb70257d689a0f49b80c:app/screens/newEntry.js
 });
