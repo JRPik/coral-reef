@@ -1,20 +1,10 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Platform,
-} from "react-native";
-import AppLoading from "expo-app-loading";
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View
+  } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
-import colors from "../config/colors";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
 
@@ -50,43 +40,35 @@ export default function GroupCoralEntries({ navigation }) {
     navigation.navigate("Coral");
   };
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <SafeAreaView>
-        <ScrollView>
-          <TouchableOpacity onPress={pressMain}>
-            <View style={styles.mainCoralInfo}>
-              <MainCoral
-                name={data.corals[0].name}
-                image={data.corals[0].image}
-                location={data.corals[0].location}
-              />
-            </View>
-          </TouchableOpacity>
-
-          <View style={styles.entriesInfo}>
-            {data.corals.map((coral) => (
-              <CoralPosts
-                func={pressMain}
-                key={coral.id}
-                name={"Coral Name: " + coral.name}
-                image={coral.image}
-                location={"Location: " + coral.location}
-              />
-            ))}
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <TouchableOpacity onPress={pressMain}>
+          <View style={styles.mainCoralInfo}>
+            <MainCoral
+              name={data.corals[0].name}
+              image={data.corals[0].image}
+              location={data.corals[0].location}
+            />
           </View>
+        </TouchableOpacity>
 
-          <StatusBar style="auto" />
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+        <View style={styles.entriesInfo}>
+          {data.corals.map((coral) => (
+            <CoralPosts
+              func={pressMain}
+              key={coral.id}
+              name={"Coral Name: " + coral.name}
+              image={coral.image}
+              location={"Location: " + coral.location}
+            />
+          ))}
+        </View>
+
+        <StatusBar style="auto" />
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -100,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 25,
-    backgroundColor: colors.backGroundThree,
+    backgroundColor: defaultStyles.colors.backGroundThree,
     justifyContent: "space-evenly",
     ...Platform.select({
       ios: {
@@ -141,9 +123,9 @@ const styles = StyleSheet.create({
   newestCoralContainer: {
     height: "100%",
     justifyContent: "flex-start",
-    borderColor: colors.primary,
+    borderColor: defaultStyles.colors.primary,
     flexDirection: "column",
-    backgroundColor: colors.backGroundThree,
+    backgroundColor: defaultStyles.colors.backGroundThree,
     borderRadius: 20,
     padding: 10,
     ...Platform.select({

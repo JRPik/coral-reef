@@ -17,6 +17,7 @@ const screens = {
     screen: Login,
     navigationOptions: {
       headerTransparent: true,
+      headerLeft: () => null,
       headerTitle: () => {
         <Text
           style={{
@@ -71,6 +72,7 @@ const screens = {
   },
   Picture: {
     screen: Picture,
+    headerLeft: () => null,
     navigationOptions: {
       headerTitle: (
         <Text
@@ -88,6 +90,7 @@ const screens = {
   },
   Gallery: {
     screen: Gallery,
+    headerLeft: () => null,
     navigationOptions: {
       headerTitle: (
         <Text

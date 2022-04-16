@@ -1,10 +1,9 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, Image,
-  ScrollView, KeyboardAvoidingView, View, Dimensions,
-  } from "react-native";
+import { useState } from 'react';
+import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet,
+  Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //IMPORT FROM OUR CODE

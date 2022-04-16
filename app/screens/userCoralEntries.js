@@ -1,9 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Platform, TouchableOpacity, Image, ScrollView} from "react-native";
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome } from '@expo/vector-icons';
-
 
 //IMPORT FROM OUR CODE
 import AppText from "../components/AppText";
@@ -16,7 +14,7 @@ const RecentCoral = (props) => (
   <View style={[styles.recentCoralContainer]}>
     <Image source={props.image} style={styles.recentCoralImage}  />
     
-    <Text style={styles.recentCoralText}>
+    <Text style={defaultStyles.recentCoralText}>
       {props.location}: {props.name}
     </Text>
     
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     paddingLeft: "2%",
-  },
+  },//END OF ENTRIESINFO
   entryContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
     }),
-  },
+  },//END OF ENTRYCONTAINER
   entryImage: {
     justifyContent: "center",
     ...Platform.select({
@@ -151,17 +149,13 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
       },
     }),
-  },
+  },//END OF ENTRYIMAGE
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: defaultStyles.colors.backGroundOne,
     margin: 16,
     borderRadius: 8,
-    shadowColor: defaultStyles.colors.shadowTwo,
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    shadowOffset: { height: 1, width: 0.3 },
   }, //END OF IMAGECONTAINER
   recentCoralContainer: {
     height: "100%",
@@ -181,7 +175,7 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
     }),
-  },
+  },//END OF RECENTCORALCONTAINER
   recentCoralImage: {
     resizeMode: "cover",
     overflow: "hidden",
@@ -197,28 +191,11 @@ const styles = StyleSheet.create({
         height: 150,
       },
     }),
-  },
+  },//END OF RECENTCORALIMAGE
   recentCoralInfo: {
     flex: 1,
     alignItems: "center",
-  },
-  recentCoralText: {
-    position: "absolute",
-    fontWeight: "bold",
-    ...Platform.select({
-      ios: {
-        fontSize: 20,
-        paddingTop: 5,
-        left: "34%",
-        fontFamily: "Avenir",
-      },
-      android: {
-        marginTop: 5,
-        left: "28%",
-        fontSize: 21,
-      },
-    }),
-  },
+  },//END OF RECENTCORALINFO
 }); //END OF STYLES.CREATE
 
 export default UserCoralEntries;

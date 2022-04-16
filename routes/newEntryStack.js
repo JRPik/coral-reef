@@ -7,12 +7,13 @@ import React from "react";
 ///imports from our code
 import MyTitles from "../app/components/MyTitles";
 import NewEntry from "../app/screens/newEntry";
+
 const screens = {
     NewEntry: {
         screen: NewEntry,
         navigationOptions: ({ navigation }) => {
           return {
-            //headerLeft: () => null,
+            headerLeft: () => null,
             headerTitle: () => (
               <MyTitles>
                 New Entry
@@ -22,8 +23,6 @@ const screens = {
           };
         },
       },
-  
- 
 };
 
 export const NewEntryStack= createStackNavigator(screens);

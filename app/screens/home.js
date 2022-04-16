@@ -107,6 +107,7 @@ function Home({ navigation }) {
               func={pressMain}
               key={coral.id}
               image={coral.image}
+              location={"Location: " + coral.location}
             />
           ))}
         </View>
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         height: 190,
-        flexBasis: "100%",
+        flexBasis: "115%",
       },
       android: {
         flexBasis: 198,
