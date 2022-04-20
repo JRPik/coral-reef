@@ -2,19 +2,12 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
-import { useFonts, RobotoCondensed_400Regular } from "@expo-google-fonts/dev";
 
 function Header({ navigation }) {
   const openMenu = () => {
     navigation.toggleDrawer();
   };
-  let [fontsLoaded] = useFonts({
-    RobotoCondensed_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  {
     return (
       <View style={styles.header}>
         <View>
@@ -40,26 +33,26 @@ const styles = StyleSheet.create({
   },
   headerText: {
     ...Platform.select({
-      ios:{
-          fontSize: 18,
-          fontFamily: "Avenir",
-          fontWeight: "bold",
+      ios: {
+        fontSize: 18,
+        fontFamily: "Avenir",
+        fontWeight: "bold",
       },
-      android:{
+      android: {
         fontSize: 22,
-          fontFamily: "Roboto",
-          fontWeight: "bold",
+        fontFamily: "Roboto",
+        fontWeight: "bold",
       },
     }),
   },
   icon: {
     position: "absolute",
     ...Platform.select({
-      ios:{
-          right: "-10%",
+      ios: {
+        right: "-10%",
       },
-      android:{
-          right: 5,
+      android: {
+        right: 5,
       },
     }),
   },

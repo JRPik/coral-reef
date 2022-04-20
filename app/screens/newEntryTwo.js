@@ -1,6 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import * as Location from  'expo-location';
 
 import {
   ImageBackground,
@@ -19,8 +20,10 @@ import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Picker } from '@react-native-picker/picker';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, GeoPoint } from 'firebase/firestore';
 import  Slider  from '@react-native-community/slider';
+import { getAuth } from "firebase/auth";
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -29,26 +32,66 @@ import GreenButton from "../components/GreenButton";
 //import MyHeading from "../components/MyHeading";
 import { app, db } from '../../firebase';
 import ApptTextInput from "../components/ApptTextInput";
+import { loadAsync } from "expo-font";
 //import { selectedBoat, selectedWeather, selectedWater} from "./newEntry";
 
-export default function Login({ navigation, route }) {
+export default function NewEntryTwo({ navigation, route }) {
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [location, setLocation] = useState(null);
+  
+  useEffect(() => {
+     load()
+  }, [])
+  async function load() {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== 'granted') {
+        setErrorMessage('Access to location is needed to run the app')
+        return
+      }
+      let location = await Location.getCurrentPositionAsync()
+
+      setLocation(location);
+    }
+    catch(error) {
+
+    }
+  }
   const [coralName, setCoralName] = useState();
   const [temperature, setTemperature] = useState('0');
   const [depth, setDepth] = useState();
   const [bleach, setBleach] = useState();
   const [wildLife, setWildlife] = useState();
+  let displayName = "";
+  let text = 'Waiting..';
+  if (errorMessage) {
+    text = errorMessage;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
 
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  if (user) {
+    displayName = user.displayName;
+  } else {
+    // No user is signed in.
+  }
   const addEntry = async() => {
     await addDoc(collection(db, "CoralReefProject/Entries/EntriesCollection"), {
+      documentedBy: displayName,
       timeText: navigation.getParam('timeText', ""),
       dateText: navigation.getParam('dateText', ""),
-      boat: navigation.getParam('boat', ""),
-      weather: navigation.getParam('weather', ""),
-      water: navigation.getParam('water', ""),
+      boat: navigation.getParam('boat', "Boat A"),
+      weather: navigation.getParam('weather', "Sunny"),
+      water: navigation.getParam('water', "Choppy"),
       coralName: coralName,
       wildLife: wildLife,
-      temperature: temperature
+      temperature: temperature,
+      location: location,
     })
+    navigation.dispatch(StackActions.popToTop());
     navigation.navigate("Coral");
   };
 
@@ -86,11 +129,13 @@ export default function Login({ navigation, route }) {
           </Picker>
 
           <Text>{(Math.round(temperature * 100) / 100).toFixed(2)}</Text>
-          <Slider style={{ marginBottom: "" }}
+          <Slider 
             minimumValue={-459.67}
             maximumValue={459.67}
             onValueChange={(value) => setTemperature(value)}
           />
+
+          <Text style={styles.text}>{text}</Text>
 
         <TouchableOpacity onPress={addEntry}>
           <GreenButton title="Add Entry" />

@@ -6,8 +6,6 @@ import React, { useState, userEffect } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-//import {Picker} from '@react-native-picker/picker';
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 import {Picker} from '@react-native-picker/picker';
 
 //IMPORT FROM OUR CODE
@@ -121,16 +119,10 @@ export default function NewEntry({ navigation }) {
       </RNPickerSelect>
     );
   };
-
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  {
     return (
       <SafeAreaView style={styles.container}>
+        <ScrollView>
           <View
             style={{
               flexDirection: "row",
@@ -181,6 +173,37 @@ export default function NewEntry({ navigation }) {
               onChange={onChange}
             />
           )}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles.text}></Text>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={takePicture}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontFamily: "Roboto",
+              }}
+            >
+              Take Picture
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles.text}></Text>
+          <TouchableOpacity style={styles.buttonContainer} onPress={gallery}>
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontFamily: "Roboto",
+              }}
+            >
+              Upload Picture
+            </Text>
+          </TouchableOpacity>
+        </View>
 
           <Text style={styles.text}>Choose a Boat:</Text>
           <Picker style={{ width: "75%" }}
@@ -221,39 +244,7 @@ export default function NewEntry({ navigation }) {
             <GreenButton title="Next" />
           </TouchableOpacity>
         <StatusBar style="auto" />
-
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={takePicture}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
-              }}
-            >
-              Take Picture
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text>
-          <TouchableOpacity style={styles.buttonContainer} onPress={gallery}>
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "RobotoCondensed_400Regular",
-              }}
-            >
-              Upload Picture
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }

@@ -77,7 +77,7 @@ const screens = {
           style={{
             paddingLeft: "20%",
             flex: 1,
-            fontFamily: "RobotoCondensed_700Bold",
+            fontFamily: "Roboto",
             fontSize: 22,
           }}
         >
@@ -94,7 +94,7 @@ const screens = {
           style={{
             paddingLeft: "20%",
             flex: 1,
-            fontFamily: "RobotoCondensed_700Bold",
+            fontFamily: "Roboto",
             fontSize: 22,
           }}
         >
