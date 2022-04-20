@@ -1,27 +1,19 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
+import { createUserWithEmailAndPassword, getAuth,  updateProfile } from "firebase/auth";
 import { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  KeyboardAvoidingView,
-  ImageBackground,
-  Dimensions,
-  View,
-  Image,
-} from "react-native";
+import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet,    
+  TouchableOpacity, View,  } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-//IMPORT FROM OUR CODE
-import MyHeading from "../components/MyHeading";
-import GreenButton from "../components/GreenButton";
-import { app } from '../../firebase';
-import defaultStyles from "../config/styles";
-import ApptTextInput from "../components/ApptTextInput";
-import Login from "./login";
 
+
+//IMPORT FROM OUR CODE
+import { app } from '../../firebase';
+import ApptTextInput from "../components/ApptTextInput";
+import defaultStyles from "../config/styles";
+import GreenButton from "../components/GreenButton";
+import MyHeading from "../components/MyHeading";
 
 
 export default function Logon({ navigation }) {
@@ -117,7 +109,7 @@ export default function Logon({ navigation }) {
                   <GreenButton title="Cancel" />
               </TouchableOpacity>
               <TouchableOpacity onPress={signUp}>
-                <GreenButton title="Login" />
+                <GreenButton title="Submit" />
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
@@ -145,26 +137,6 @@ const styles = StyleSheet.create({
   buttonContainer:{
     justifyContent: "space-evenly",
     flexDirection:"row",
-  },
-  inputTextbox: {
-    backgroundColor: defaultStyles.colors.backGroundOne,
-    height: 40,
-    width: "80%",
-    margin: 5,
-    borderRadius: 5,
-    paddingLeft: 5,
-    ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
-        shadowColor: defaultStyles.colors.shadowOne,
-        shadowOpacity: 0.3,
-        shadowOffset: { height: 1, width: 0.3 },
-      },
-      android: {
-        fontFamily: "Roboto",
-        elevation: 5,
-      },
-    }),
   },
   imageBackground: {
     position: "absolute",

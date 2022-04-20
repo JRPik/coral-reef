@@ -26,6 +26,7 @@ const screens = {
   },
   Coral: {
     screen: UserCoralEntries,
+    headerLeft: () => null,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: "Coral Specification",
