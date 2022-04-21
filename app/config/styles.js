@@ -15,7 +15,7 @@ export default {
       },
       android:{
         fontFamily: "Roboto",
-        paddingBottom: 14,
+        paddingBottom: 20,
       },
     }),
   },//END OF CORALTEXT

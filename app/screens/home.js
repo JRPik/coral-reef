@@ -1,15 +1,20 @@
 //IMPORTS FROM OUR THIRD-PARTIES
+import * as Location from  'expo-location';
 import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform
+import { getAuth } from "firebase/auth";
+import { useEffect, useState } from 'react';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View 
   } from "react-native";
+import MapView from 'react-native-maps';
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import MapView from 'react-native-maps';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
+import { app, db } from '../../firebase';
+
 
 const CoralReefs = (props) => (
   <View style={[styles.entryContainer]}>
@@ -27,10 +32,50 @@ const CoralReefs = (props) => (
 
 //component to be rendered
 function Home({ navigation }) {
- 
-  const pressMain = () => {
-    navigation.navigate("Coral");
-  };
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    load()
+ }, [])
+ async function load() {
+   try {
+     let { status } = await Location.requestForegroundPermissionsAsync();
+
+     if (status !== 'granted') {
+       setErrorMessage('Access to location is needed to run the app')
+       return
+     }
+     let location = await Location.getCurrentPositionAsync()
+
+     setLocation(location);
+     //console.log(location);
+     //console.log(latitude);
+     //console.log(longitude);
+   }
+   catch(error) {
+
+   }
+ }
+ let displayName = "";
+ let text = 'Waiting..';
+ if (errorMessage) {
+   text = errorMessage;
+ } else if (location) {
+   text = JSON.stringify(location);
+ }
+
+ const auth = getAuth(app);
+ const user = auth.currentUser;
+ if (user) {
+   displayName = user.displayName;
+ } else {
+   // No user is signed in.
+ }
+
+ const pressMain = () => {
+  navigation.navigate("Coral");
+};
 
   return (
     <SafeAreaView>
@@ -38,7 +83,7 @@ function Home({ navigation }) {
         <View style={styles.mapContainer}>
           <MapView style={styles.map}
             region={{
-              latitude: 24.92111663334837,
+              latitude: 24.92111663334837, //Center Point of map, and could be location of user
               longitude: -80.83632183783237,
               latitudeDelta: .9,
               longitudeDelta: .9,
@@ -155,7 +200,7 @@ const styles = StyleSheet.create({
         flexBasis: "115%",
       },
       android: {
-        flexBasis: 198,
+        flexBasis: 170,
         paddingBottom: 15,
       },
     }),
