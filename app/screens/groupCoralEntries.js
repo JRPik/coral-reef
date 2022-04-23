@@ -3,10 +3,12 @@ import { StatusBar } from "expo-status-bar";
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View
   } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from "firebase/firestore";
 //IMPORT FROM OUR CODE
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
+import { app, db } from '../../firebase';
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const MainCoral = (props) => (
@@ -36,6 +38,20 @@ CoralPosts = (props) => (
 
 //component to be rendered
 export default function GroupCoralEntries({ navigation }) {
+  const [coralEntries, setCoralEntries] = useState([])
+
+  const fetchEntries=async()=>{
+    const querySnapshot = await getDocs(collection(db, "CoralReefProject/Entries/EntriesCollection"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let data = doc.data()
+      data.id = doc.id
+      setCoralEntries(coralEntries => [...coralEntries, data]);
+    });
+  }
+  useEffect(() => {
+    fetchEntries();
+  }, [])
   const pressMain = () => {
     navigation.navigate("Coral");
   };
@@ -54,15 +70,15 @@ export default function GroupCoralEntries({ navigation }) {
         </TouchableOpacity>
 
         <View style={styles.entriesInfo}>
-          {data.corals.map((coral) => (
+          {coralEntries && coralEntries.map(coral => { return (
             <CoralPosts
               func={pressMain}
               key={coral.id}
-              name={"Coral Name: " + coral.name}
-              image={coral.image}
-              location={"Location: " + coral.location}
+              name={"Coral Name: " + coral.coralName}
+              //image={coral.image}
+              location={"Location: " + coral.timeText}
             />
-          ))}
+          )})}
         </View>
 
         <StatusBar style="auto" />
