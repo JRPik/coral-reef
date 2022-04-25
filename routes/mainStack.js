@@ -1,13 +1,17 @@
 //imports from our third-parties
+import { getAuth } from "firebase/auth";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { Text, StyleSheet } from "react-native";
-import React from "react";
 
 ///imports from our code
 import Home from "../app/screens/home";
 import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
+import { app } from '../firebase';
+
+const auth = getAuth(app);
+const user = auth.currentUser;
 
 const screens = {
   Home: {
@@ -17,7 +21,7 @@ const screens = {
         headerLeft: () => null,
         headerTitle: () => (     
           <Text style={styles.homeText}>
-            Coral Home Page
+          {user.displayName}, Welcome to our App!
           </Text>
         ),
         gestureEnabled: false,

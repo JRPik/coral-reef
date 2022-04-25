@@ -1,44 +1,90 @@
 //IMPORTS FROM OUR THIRD-PARTIES
+import { map } from '@firebase/util';
 import * as Location from  'expo-location';
-import { StatusBar } from "expo-status-bar";
 import { getAuth } from "firebase/auth";
-import { useEffect, useState } from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View 
-  } from "react-native";
-import MapView from 'react-native-maps';
-import { SafeAreaView } from "react-native-safe-area-context";
+import {  useEffect } from 'react';
+import { Alert, Dimensions, Image, Platform, StyleSheet, Text,
+  TouchableOpacity, View } from "react-native";
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import Carousel from 'react-native-snap-carousel';
+
 
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
-import AppText from "../components/AppText";
-import defaultStyles from "../config/styles";
 import { app, db } from '../../firebase';
 
+export default function Home ({ navigation }) {
 
-const CoralReefs = (props) => (
-  <View style={[styles.entryContainer]}>
-    <TouchableOpacity style={styles.entryImage} onPress={props.func}>
-      <Image source={props.image} style={styles.entryImage} />
-    </TouchableOpacity>
-    <View>
-      <AppText>{props.name}</AppText>
-    </View>
-    <View>
-      <AppText>{props.location}</AppText>
-    </View>
-  </View>
-);
+  const state = {
+    coordinates: [
+      { id: 1, 
+        image: require("../assets/images/Carysfort_Reef/Carysfort_Reef_LightHouse.jpg"), 
+        title: "Carysfort Reef",
+        description: "Site #1",
+        latitude: 25.266252761346873, 
+        longitude: -80.2037020105647
+      },
+      {
+        id: 2,
+        image: require("../assets/images/Pickles_Reef/Pickles_Reef_Carousel.jpg"),
+        title: "Pickles Reef",
+        description: "Site #2",
+        latitude: 25.035037492918256, 
+        longitude: -80.41518883328074
+      },
+      {
+        id: 3,
+        image: require("../assets/images/Cheeca_Rocks/Cheeca_Rocks_Carousel.jpg"),
+        title: "Cheeca Rocks",
+        description: "Site #3",
+        latitude: 24.94790775726182, 
+        longitude: -80.62392907388357
+      },
+      {
+        id: 4,
+        image: require("../assets/images/Sombrero_Reef/Sombrero_Reef_Carousel.jpg"),
+        title: "Sombrero Reef",
+        description: "Site #4",
+        latitude: 24.671174776090865,  
+        longitude: -81.1128206900323
+      },
+      {
+        id: 5,
+        image: require("../assets/images/Looe_Key/Looe_Key_Carousel.jpg"),
+        title: "Looe Key",
+        description: "Site #5",
+        latitude: 24.5987735822097,  
+        longitude: -81.42043788671018
+      },
+    ],
+    landMarks: [
+      {
+        id: 6,
+        title: "Coral Restoration Headquarters",
+        description: "CRF HQ",
+        latitude: 24.983136944828253,  
+        longitude: -80.54633408066032
+      },
+      {
+        id: 7,
+        title: "Coral Restoration Foundation Exploration Center",
+        description: "CRF Exploration Center",
+        latitude: 25.088260875057543,  
+        longitude: -80.44105376124482
+      }
+    ],
+    markers: []
+  }
 
-//component to be rendered
-function Home({ navigation }) {
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [location, setLocation] = useState(null);
+  const pressMain = () => {
+    navigation.navigate("Coral");
+  }
 
   useEffect(() => {
     load()
- }, [])
- async function load() {
+  }, [])
+  async function load() {
    try {
      let { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -47,224 +93,173 @@ function Home({ navigation }) {
        return
      }
      let location = await Location.getCurrentPositionAsync()
-
      setLocation(location);
-     //console.log(location);
-     //console.log(latitude);
-     //console.log(longitude);
    }
    catch(error) {
-
    }
- }
- let displayName = "";
- let text = 'Waiting..';
- if (errorMessage) {
-   text = errorMessage;
- } else if (location) {
-   text = JSON.stringify(location);
- }
+  }
 
  const auth = getAuth(app);
  const user = auth.currentUser;
  if (user) {
-   displayName = user.displayName;
- } else {
+   console.log(JSON.stringify(user.displayName));
+  } else {
    // No user is signed in.
- }
+  }
 
- const pressMain = () => {
-  navigation.navigate("Coral");
-};
+  //This function will allow you to click on a marker and once
+  //you do that it will move the carousel to the correct one
+  //that is associated with the marker.
+  const onMarkerPressed = (location, index) => {
+    MapView.mapView.animateToRegion({
+      latitude: location.latitude, 
+      longitude: location.longitude,
+      latitudeDelta: 1.6,
+      longitudeDelta: .9,
+    })
+    Carousel.carousel.snapToItem(index);
+  }//END OF ONMARKERPRESSED
 
-  return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.mapContainer}>
+  //This function will let you scroll through the carousel and as
+  //do it will highlight the maker point and bring up that markers
+  //information.
+  const onCarouselItemChange = (index) => {
+    let location = state.coordinates[index];
+    MapView.mapView.animateToRegion({
+      latitude: location.latitude, 
+      longitude: location.longitude,
+      latitudeDelta: 1.6,
+      longitudeDelta: .9,
+    })
+
+    state.markers[index].showCallout();
+  }//END OF ONCAROUSELITEMCHANGE
+
+  //This function is what you see in the carousel. You have tiitle and
+  //image.
+  const renderCarouselItem = ({item}) =>
+  <TouchableOpacity onPress={pressMain}>
+    <View style={styles.reefContainer}>
+      <Text style={styles.reefText}>{item.title}</Text>
+      <Image style={styles.reefImage} source={item.image}/>
+    </View>
+  </TouchableOpacity>
+  //END OF RENDERCAROUSELITEM
+  return(
+        <View style={styles.container}>
           <MapView style={styles.map}
+          ref = {(ref)=>MapView.mapView=ref}
+          provider={PROVIDER_GOOGLE}
+          showsUserLocation={true} // This will show the users location
             region={{
-              latitude: 24.92111663334837, //Center Point of map, and could be location of user
+              latitude: 24.92111663334837, //Center Point of map
               longitude: -80.83632183783237,
-              latitudeDelta: .9,
+              latitudeDelta: 1.6,
               longitudeDelta: .9,
             }}
           > 
-
-          <MapView.Marker
-            coordinate={{
-              latitude: 25.257143291215307,
-              longitude: -80.21837837858074,
-            }}
-            title={"Carysfort Reef"}
-            description={"Site #1"}
-          />
-
-          <MapView.Marker
-            coordinate={{
-              latitude: 25.025561188665616,
-              longitude: -80.40558242867321,
-            }}
-            title={"Pickles Reef"}
-            description={"Site #2"}
-          />      
-
-
-          <MapView.Marker
-            coordinate={{
-              latitude: 24.93535454950194,
-              longitude: -80.62167171268246,
-            }}
-            title={"Cheeca Rocks"}
-            description={"Site #3"}
-          />
-
-          <MapView.Marker
-            coordinate={{
-              latitude: 24.659587286421992,
-              longitude: -81.11189074725391,
-            }}
-            title={"Sombrero Reef"}
-            description={"Site #4"}
-          />         
-
-          <MapView.Marker
-            coordinate={{
-              latitude: 24.594828748407213,
-              longitude: -81.42359969775684,
-            }}
-            title={"Looe Key"}
-            description={"Site #5"}
-          />      
-
-          </MapView>
-        </View>
-        <View style={styles.welcomeContainer}>
-          <Text style={defaultStyles.text} alignContent="center">
-            Welcome to our App!
-          </Text>
-          <Text style={defaultStyles.text} alignContent="center">
-            Where will your Dive take you today?
-          </Text>
-        
-        <View style={styles.entriesInfo}>
-          {data.corals.map((coral) => (
-            <CoralReefs
-              func={pressMain}
-              key={coral.id}
-              image={coral.image}
-              location={"Location: " + coral.location}
-            />
+          <View >
+            {state.coordinates.map((marker, index) => (                  
+            <Marker
+              coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+              description={marker.description}
+              key={marker.title}
+              onPress={() => onMarkerPressed(marker, index)}
+              ref={ref => state.markers[index] = ref}
+              title={marker.title}>
+            </Marker>
           ))}
+          </View>
+          <View>
+            {state.landMarks.map((marker) => (                  
+              <Marker
+                coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+                description={marker.description}
+                key={marker.title}
+                title={marker.title}>
+              <Image style={styles.imgMarker} 
+              source={require('../assets/images/blueCoralLogo.jpg')}/>
+              </Marker>
+            ))}
+          </View>
+          </MapView>
+          <Carousel
+            containerCustomStyle={styles.carousel}
+            data={state.coordinates}
+            itemWidth={200}
+            onSnapToItem={(index) => onCarouselItemChange(index)}
+            ref={(c) => { Carousel.carousel = c; }}
+            renderItem={renderCarouselItem}
+            //removeClippedSubviews={false}
+            sliderWidth={Dimensions.get('window').width}
+          />
         </View>
-        </View>
-
-        <StatusBar style="auto" />
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+  );//END OF RETURN
+}//END OF HOME
 
 const styles = StyleSheet.create({
-  entriesInfo: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingLeft: "2%",
-  },
-  entryContainer: {
-    marginTop: 25,
-    backgroundColor: colors.backGroundThree,
-    justifyContent: "space-evenly",
-    ...Platform.select({
-      ios: {
-        width: "35%",
-        borderRadius: 50,
-        overflow: "hidden",
-      },
-      android: {
-        width: "47%",
-        height: 170,
-        borderRadius: 30,
-        marginRight: 10,
-        overflow: "hidden",
-        elevation: 5,
-      },
-    }),
-  },
-  entryImage: {
-    justifyContent: "center",
-    width: "100%",
-    ...Platform.select({
-      ios: {
-        height: 190,
-        flexBasis: "115%",
-      },
-      android: {
-        flexBasis: 170,
-        paddingBottom: 15,
-      },
-    }),
-  },
-  mapContainer:{
+  carousel:{
     position: "absolute",
-    top: 10,
-    left: 10,
-    bottom: "70%",
-    right: 10,
-    justifyContent: "flex-start",
-    alignItems: "center",  
-  },
-  map:{
-    position: "absolute",
-    top: 0,
-    left: 0,
     bottom: 0,
-    right: 0
+    marginBottom:48 
   },
-  welcomeContainer:{
-    alignItems: "center",
-    flexDirection: "column",
-    flexWrap: "wrap",
+  container: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  imgMarker: {
+    height: 30,
+    width: 30
+  },
+  
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  reefContainer: {
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    borderRadius: 24,
     ...Platform.select({
       ios: {
-        marginTop:"50%",
+        height: 220,
+        padding: 17,
+        width:200, 
+        
       },
       android: {
-        marginTop:"70%",
+        height: 140,
+        padding: 14,
+        width: 200,
+      },
+    }),
+  },
+  reefImage: {
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    position: "absolute",
+    ...Platform.select({
+      ios: {
+        bottom: 0,
+        height: 160,
+        width: 200,
+      },
+      android: {
+        bottom: 0,
+        height: 80,
+        width: 200,
+      },
+    }),
+  },
+  reefText: {
+    alignSelf: "center",
+    color: colors.backGroundOne,
+    ...Platform.select({
+      ios: {
+        fontFamily: "Avenir",
+        fontSize: 22,
+      },
+      android: {
+        fontFamily: "Roboto",
+        fontSize: 22,
       },
     }),
   },
 });
-
-const data = {
-  corals: [
-    {
-      id: 1,
-      image: require("../assets/images/Carysfort_Reef/Carysfort_Reef.jpg"),
-      location: "Carysfort Reef",
-    },
-    {
-      id: 2,
-      image: require("../assets/images/Pickles_Reef/Pickles_Reef.jpg"),
-      location: "Pickles Reef",
-    },
-    {
-      id: 3,
-      image: require("../assets/images/Cheeca_Rocks/Cheeca_Rocks.jpg"),
-      location: "Cheeca Rocks",
-    },
-    {
-      id: 4,
-      image: require("../assets/images/Sombrero_Reef/Sombrero_Reef.jpg"),
-      location: "Sombrero Reef",
-    },
-    {
-      id: 5,
-      image: require("../assets/images/Looe_Key/Looe_Key.jpg"),
-      location: "Looe Key",
-    },
-
-  ],
-};
-
-export default Home;

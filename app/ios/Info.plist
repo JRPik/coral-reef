@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+  <!-- 🚨 Keep only the permissions used in your app 🚨 -->
+
+  <key>NSCameraUsageDescription</key>
+  <string>YOUR TEXT</string>
+
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>YOUR TEXT</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>YOUR TEXT</string>
+
+  <!-- … -->
+
+</dict>
+</plist>
