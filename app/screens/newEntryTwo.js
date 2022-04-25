@@ -110,11 +110,19 @@ export default function NewEntryTwo({ navigation, route }) {
             justifyContent: "space-between",
           }}
         ></View>
-        <ApptTextInput
-          value={coralName}
-          placeholder="Coral Name"
-          onChangeText={text => setCoralName(text)}
-        />
+        <Text style={styles.text}>Coral Name: </Text>
+          <Picker style={{ width: "75%" }}
+            selectedValue={coralName}
+            onValueChange={(itemValue, itemIndex) =>
+              setCoralName(itemValue)
+            }
+            mode='dropdown'
+            >
+            <Picker.Item label="Boulder Star" value="Boulder Star" />
+            <Picker.Item label="Elkhorn" value="Elkhorn" />
+            <Picker.Item label="Mountainous Star" value="Mountainous Star" />
+            <Picker.Item label="Staghorn" value="Staghorn" />
+          </Picker>
 
         <Text style={styles.text}>Wildlife Present: </Text>
           <Picker style={{ width: "75%" }}

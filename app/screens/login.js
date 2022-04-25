@@ -1,35 +1,46 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
-import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet,
-  Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import {
+  Alert,
+  Dimensions,
+  Image,
+  ImageBackground,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //IMPORT FROM OUR CODE
-import { app } from '../../firebase';
+import { app } from "../../firebase";
 import ApptTextInput from "../components/ApptTextInput";
 import defaultStyles from "../config/styles";
 import GreenButton from "../components/GreenButton";
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const auth = getAuth(app);
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // ...
-      navigation.navigate("Home");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-  }
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message + "\nInvaild Email or Password";
+        Alert.alert("Login Error", errorMessage);
+      });
+  };
 
   const pressedHandler = () => {
     navigation.navigate("Logon");
@@ -37,63 +48,58 @@ export default function Login({ navigation }) {
 
   return (
     <SafeAreaView>
-      <ScrollView
-        style={{ backgroundColor: "transparent", paddingTop: "5%" }}
-      >
+      <ScrollView style={{ backgroundColor: "transparent", paddingTop: "5%" }}>
         <View style={styles.logoImageContiner}>
-          <Image
-            style={styles.logoImage}
-            source={imageLogo}
-          />
+          <Image style={styles.logoImage} source={imageLogo} />
         </View>
 
         <KeyboardAvoidingView style={{ paddingLeft: "15%" }}>
           <ApptTextInput
-            autoCapitalize = "none"
-            autoCorrect = {false}
-            icon = "envelope-o"
-            onChangeText = {text => setEmail(text)}
-            placeholder = "Email"
-            value = {email}
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="envelope-o"
+            onChangeText={(text) => setEmail(text)}
+            placeholder="Email"
+            value={email}
           />
           <ApptTextInput
-            autoCapitalize = "none"
-            autoCorrect = {false}
-            icon = "lock"
-            onChangeText = {text => setPassword(text)}
-            placeholder = "Password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="lock"
+            onChangeText={(text) => setPassword(text)}
+            placeholder="Password"
             secureTextEntry //already true so you dont need to put true
-            value = {password}
+            value={password}
           />
         </KeyboardAvoidingView>
         <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={signIn}>
-          <GreenButton title="Login" />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={signIn}>
+            <GreenButton title="Login" />
+          </TouchableOpacity>
 
-        <Text style={defaultStyles.haveAcctText}>Don't Have an Account?</Text>
+          <Text style={defaultStyles.haveAcctText}>Don't Have an Account?</Text>
 
-        <TouchableOpacity onPress={pressedHandler}>
-          <GreenButton title="Create Account" />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={pressedHandler}>
+            <GreenButton title="Create Account" />
+          </TouchableOpacity>
         </View>
-        </ScrollView>
-        
-        <ImageBackground
-          style={styles.imageBackground}
-          source={backGroundImage}
-          resizeMode="cover"
-        />
-        <StatusBar style="auto" />
-      </SafeAreaView>
-    );
+      </ScrollView>
+
+      <ImageBackground
+        style={styles.imageBackground}
+        source={backGroundImage}
+        resizeMode="cover"
+      />
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
 }
 
 const backGroundImage = require("../assets/images/coralReefBackground.jpg");
 const imageLogo = require("../assets/images/logo.jpg");
 
 const styles = StyleSheet.create({
-  buttonContainer:{
+  buttonContainer: {
     alignSelf: "center",
   },
   imageBackground: {
