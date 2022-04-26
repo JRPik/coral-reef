@@ -32,7 +32,7 @@ const screens = {
             headerLeft: () => null,
             headerTitle: () => (
               <MyTitles>
-                Coral Specification
+                Coral Specifications
               </MyTitles>
             ),
             gestureEnabled: false,

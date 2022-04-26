@@ -27,9 +27,11 @@
     "expo-font": "~10.0.4",
     "expo-image-picker": "~12.0.1",
     "expo-location": "~14.0.1",
+    "expo-permissions": "~13.1.0",
     "expo-radio-button": "^1.0.8",
     "expo-status-bar": "~1.2.0",
     "firebase": "^9.6.10",
+    "formik": "^2.2.9",
     "global": "^4.4.0",
     "install": "^0.13.0",
     "lodash.filter": "^4.6.0",
@@ -50,7 +52,8 @@
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
     "react-navigation-drawer": "^2.7.2",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

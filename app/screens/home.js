@@ -1,6 +1,7 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { map } from '@firebase/util';
 import * as Location from  'expo-location';
+//import * as Permissions from 'expo-permissions';
 import { getAuth } from "firebase/auth";
 import {  useEffect } from 'react';
 import { Alert, Dimensions, Image, Platform, StyleSheet, Text,
@@ -10,9 +11,12 @@ import Carousel from 'react-native-snap-carousel';
 
 
 
+
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 import { app, db } from '../../firebase';
+import CoralEntryInfo from './coralEntryInfo';
+import { NavigationEvents } from 'react-navigation';
 
 export default function Home ({ navigation }) {
 
@@ -77,32 +81,34 @@ export default function Home ({ navigation }) {
     markers: []
   }
 
+  //need this to go to each of the respective pages
   const pressMain = () => {
     navigation.navigate("Coral");
+  };
+
+  const load = async () => {
+    try {
+      let { granted } = await Location.requestForegroundPermissionsAsync();
+      
+      if (!granted) {
+       setErrorMessage('Access to location is needed to run the app')
+       return
+      }
+      let location = await Location.getCurrentPositionAsync()
+      setLocation(location);
+    }
+    catch(error) {
+    }
   }
 
   useEffect(() => {
-    load()
+    load();
   }, [])
-  async function load() {
-   try {
-     let { status } = await Location.requestForegroundPermissionsAsync();
 
-     if (status !== 'granted') {
-       setErrorMessage('Access to location is needed to run the app')
-       return
-     }
-     let location = await Location.getCurrentPositionAsync()
-     setLocation(location);
-   }
-   catch(error) {
-   }
-  }
-
- const auth = getAuth(app);
- const user = auth.currentUser;
- if (user) {
-   console.log(JSON.stringify(user.displayName));
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  if (user) {
+    console.log(JSON.stringify(user.displayName));
   } else {
    // No user is signed in.
   }
@@ -145,6 +151,7 @@ export default function Home ({ navigation }) {
     </View>
   </TouchableOpacity>
   //END OF RENDERCAROUSELITEM
+
   return(
         <View style={styles.container}>
           <MapView style={styles.map}
