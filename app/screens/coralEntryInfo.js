@@ -73,17 +73,12 @@ function CoralEntryInfo({ navigation }) {
               />
             </View>
           </TouchableOpacity>
-          
-            <FlatList 
-            
-            />
-
             <AppForm
               initialValues={{email: "", password:""}}
               onSubmit={(values) => console.log(values)}
               validationSchema={validationSchema}
             >
-            <View style={styles.bleachContainer}>
+            {/* //<View> */}
               <AppFormField
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -101,7 +96,7 @@ function CoralEntryInfo({ navigation }) {
                 secureTextEntry
                 textContentType="password"
               />
-              </View> {/* END OF BLEACHCONTAINER */}
+              {/* </View> END OF BLEACHCONTAINER */}
       
               {/* for the submit button */}
               <SubmitButton title="Submit" />
@@ -114,20 +109,6 @@ function CoralEntryInfo({ navigation }) {
   );
 }
 
-
-<View style={styles.nameContainer}>
-            <ApptTextInput 
-              value = {firstName}
-              icon = "user"
-              placeholder="First Name"
-              onChangeText={text => setFirstName(text)}
-            />
-            <ApptTextInput
-              value = {lastName}
-              placeholder="Last Name"
-              onChangeText={text => setLastName(text)}
-            />
-            </View>
 const styles = StyleSheet.create({
   closeIcon:{
     width: 50,
