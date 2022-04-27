@@ -10,4 +10,5 @@ export default {
   backGroundThree: "aqua",
   shadowOne: "black",
   shadowTwo: "grey",
+  medium: "#6e6969",
 };
