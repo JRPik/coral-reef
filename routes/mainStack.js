@@ -1,13 +1,19 @@
 //imports from our third-parties
+import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { getAuth } from "firebase/auth";
 import { Text, StyleSheet } from "react-native";
-import React from "react";
 
 ///imports from our code
+import CraysfortReef from '../app/screens/craysfortReef';
 import Home from "../app/screens/home";
-import UserCoralEntries from "../app/screens/userCoralEntries";
 import MyTitles from "../app/components/MyTitles";
+import { app } from '../firebase';
+
+const auth = getAuth(app);
+const user = auth.currentUser;
+//{user.displayName}
 
 const screens = {
   Home: {
@@ -17,7 +23,7 @@ const screens = {
         headerLeft: () => null,
         headerTitle: () => (     
           <Text style={styles.homeText}>
-            Coral Home Page
+           Welcome to our App!
           </Text>
         ),
         gestureEnabled: false,
@@ -25,10 +31,11 @@ const screens = {
     },
   },
   Coral: {
-    screen: UserCoralEntries,
+    screen: CraysfortReef,
+    headerLeft: () => null,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: "Coral Specification",
+        headerTitle: "Craysfort Reef Coral",
         gestureEnabled: false,
       };
     },

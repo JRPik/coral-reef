@@ -1,17 +1,22 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
+<<<<<<< HEAD
 import {Platform,StyleSheet,Text,View,Button,TextInput,TouchableOpacity,Image,Picker,ImagePickerIOS,Alert,
+=======
+import { Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView
+>>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
 } from "react-native";
 import React, { useState, userEffect, useEffect, useRef } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
-//import {Picker} from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
+import GreenButton from "../components/GreenButton";
 
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
@@ -24,6 +29,9 @@ export default function NewEntry({ navigation }) {
   const [show, setShow] = useState(false);
   const [dateText, setDateText] = useState("Empty");
   const [timeText, setTimeText] = useState("Empty");
+  const [selectedBoat, setSelectedBoat] = useState();
+  const [selectedWeather, setSelectedWeather] = useState();
+  const [selectedWater, setSelectedWater] = useState();
 
   //const [country, setCountry] = useState('Unknown');
 
@@ -148,7 +156,17 @@ export default function NewEntry({ navigation }) {
 
   const Login = () => {
     navigation.navigate("Logon");
-  };
+  }
+  
+  const pressedHandler = () => {
+    navigation.navigate("NewEntryTwo", {
+        dateText: dateText,
+        timeText: timeText,
+        boat: selectedBoat,
+        weather: selectedWeather,
+        water: selectedWater
+    });
+  }
 
   /*const takePicture = () => {
     navigation.navigate("Picture");
@@ -169,6 +187,7 @@ export default function NewEntry({ navigation }) {
   {
     return (
       <SafeAreaView style={styles.container}>
+<<<<<<< HEAD
         <View> 
          {useCamera ? (
         <View>
@@ -267,14 +286,21 @@ export default function NewEntry({ navigation }) {
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => showMode("date")}
+=======
+        <ScrollView>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+>>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
           >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto",
-              }}
+            <Text style={styles.text}>{dateText}</Text>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => showMode("date")}
             >
+<<<<<<< HEAD
               Select Date
             </Text>
           </TouchableOpacity>
@@ -312,7 +338,119 @@ export default function NewEntry({ navigation }) {
         )}
         <StatusBar style="auto" />
 
+=======
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontFamily: "Roboto_400Regular",
+                }}
+              >
+                Select Date
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <Text style={styles.text}>{timeText}</Text>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => showMode("time")}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontFamily: "Roboto_400Regular",
+                }}
+              >
+                Select Time
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={false}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles.text}></Text>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={takePicture}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontFamily: "Roboto",
+              }}
+            >
+              Take Picture
+            </Text>
+          </TouchableOpacity>
         </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles.text}></Text>
+          <TouchableOpacity style={styles.buttonContainer} onPress={gallery}>
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontFamily: "Roboto",
+              }}
+            >
+              Upload Picture
+            </Text>
+          </TouchableOpacity>
+>>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
+        </View>
+
+          <Text style={styles.text}>Choose a Boat:</Text>
+          <Picker style={{ width: "75%" }}
+            selectedValue={selectedBoat}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedBoat(itemValue)
+            }>
+            <Picker.Item label="Boat A" value="Boat A" />
+            <Picker.Item label="Boat B" value="Boat B" />
+            <Picker.Item label="Boat C" value="Boat C" />
+          </Picker>
+          
+          <Text style={styles.text}>Weather Conditions: </Text>
+          <Picker style={{ width: "75%" }}
+            selectedValue={selectedWeather}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedWeather(itemValue)
+            }>
+            <Picker.Item label="Overcast" value="Overcast" />
+            <Picker.Item label="Rainy" value="Rainy" />
+            <Picker.Item label="Sunny" value="Sunny" />
+            <Picker.Item label="Partly Cloudy" value="Partly Cloudy" />
+            <Picker.Item label="Windy" value="Windy" />
+          </Picker>
+
+          <Text style={styles.text}>Choose Water State: </Text>  
+          <Picker style={{ width: "75%" }}
+            selectedValue={selectedWater}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedWater(itemValue)
+            }>
+            <Picker.Item label="Calm" value="Calm" />
+            <Picker.Item label="Rough" value="Rough" />
+            <Picker.Item label="Choppy" value="Choppy" />
+          </Picker>
+
+          <TouchableOpacity onPress={pressedHandler}>
+            <GreenButton title="Next" />
+          </TouchableOpacity>
+        <StatusBar style="auto" />
+        </ScrollView>
       </SafeAreaView>
     );
   }

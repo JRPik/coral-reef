@@ -34,7 +34,7 @@ const screens = {
     },
   }, //END OF HOME
   NewEntry: {
-    screen: NewEntryStack,
+    screen: NewEntryStack, 
     navigationOptions: ({ navigation }) => {
       return {
         title: "New Entry",

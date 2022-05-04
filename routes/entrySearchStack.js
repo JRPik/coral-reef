@@ -13,7 +13,7 @@ const screens = {
     screen: EntrySearch,
     navigationOptions: ({ navigation }) => {
       return {
-        //headerLeft: () => null,
+        headerLeft: () => null,
         headerTitle: () => <MyTitles>Entry Search</MyTitles>,
         gestureEnabled: false,
       };

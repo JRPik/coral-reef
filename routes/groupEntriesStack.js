@@ -15,8 +15,7 @@ const screens = {
     screen: GroupCoralEntries,
     navigationOptions: ({ navigation }) => {
       return {
-        //We should have a back button for all pages. 
-        //headerLeft: () => null,
+        headerLeft: () => null,
         headerTitle: () => (
           <MyTitles>
             Coral Spotlight
@@ -29,9 +28,8 @@ const screens = {
   Coral: {
     screen: CoralEntryInfo,
     navigationOptions: ({ navigation }) => {
-      return {    
-        //We should have a back button for all pages.    
-        //headerLeft: () => null,
+      return { 
+        headerLeft: () => null,   
         headerTitle: () => (
           <MyTitles>
             Coral Specification
