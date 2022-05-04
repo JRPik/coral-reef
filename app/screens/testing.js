@@ -1,6 +1,17 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import {Platform,StyleSheet,Text,View,Button,TextInput,TouchableOpacity,Image,Picker,ImagePickerIOS,Alert,
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Picker,
+  ImagePickerIOS,
+  Alert,
 } from "react-native";
 import React, { useState, userEffect, useEffect, useRef } from "react";
 import AppLoading from "expo-app-loading";
@@ -14,7 +25,6 @@ import colors from "../config/colors";
 //import MyHeading from "../components/MyHeading";
 
 import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
 
 
 export default function NewEntry({ navigation }) {
@@ -25,7 +35,7 @@ export default function NewEntry({ navigation }) {
   const [dateText, setDateText] = useState("Empty");
   const [timeText, setTimeText] = useState("Empty");
 
-  //const [country, setCountry] = useState('Unknown');
+  const [country, setCountry] = useState('Unknown');
 
   const [hasPermission, setHasPermission] = useState(null);
   const [image, setImage] = useState(null);
@@ -68,7 +78,7 @@ export default function NewEntry({ navigation }) {
   }
 
   // Function to get picture from gallery
-  /*const pickImage = async () => {
+  const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePickcer.MediaTypeOptions.All,
       allowsEditing: true,
@@ -76,21 +86,7 @@ export default function NewEntry({ navigation }) {
       quality: 1,
     })
   }
-*/
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      quality: 1,
-      allowsEditing: true,
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      quality: 1,
-    });
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
 
 
   //When changed show it
@@ -155,10 +151,9 @@ export default function NewEntry({ navigation }) {
   };
   */
 
-  /*const gallery = () => {
+  const gallery = () => {
     navigation.navigate("Gallery");
   };
-*/
 
   const selectedItem = {
     title: "Selected item title",
@@ -172,7 +167,7 @@ export default function NewEntry({ navigation }) {
         <View> 
          {useCamera ? (
         <View>
-          <Camera style={{}} type={type} ref={cameraRef}>
+          <Camera style={styles.camera} type={type} ref={cameraRef}>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
@@ -228,7 +223,7 @@ export default function NewEntry({ navigation }) {
                 <Text style={{
                   textAlign: "center",
                   color: "white",
-                  fontFamily: "Roboto"}}> Upload Picture </Text>
+                  fontFamily: "Roboto"}}> Photo Gallery </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.buttonContainer}
@@ -248,7 +243,7 @@ export default function NewEntry({ navigation }) {
               {true && (
                 <Image
                   source={{ uri: image }}
-                  style={{ width: 250, height: 250, backgroundColor: 'aquamarine' }}
+                  style={{ width: 200, height: 200, backgroundColor: 'aquamarine' }}
                 />
               )}
             </View>
