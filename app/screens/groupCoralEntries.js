@@ -1,10 +1,10 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Modal, Pressable, Button
   } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useEffect } from 'react';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, onSnapshot, query } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 //IMPORT FROM OUR CODE
 import AppText from "../components/AppText";
@@ -25,7 +25,7 @@ MainCoral = (props) => (
 //everyone who has the app and has uploaded information to it
 CoralPosts = (props) => (
   <View style={[styles.entryContainer]}>
-    <TouchableOpacity style={styles.entryImage} onPress={props.func}>
+    <TouchableOpacity style={styles.entryImage} onPress={props.func} onLongPress={() => props.function(props.id)}>
       <Image source={{uri:props.image}} style={styles.entryImage} />
     </TouchableOpacity>
     <View>
@@ -44,15 +44,29 @@ export default function GroupCoralEntries({ navigation }) {
   }, [coralEntries])
   const [coralEntries, setCoralEntries] = useState([])
   const storage = getStorage();
-  
+  const [modalVisible, setModalVisible] = useState(false);
+  const [id, setId] = useState();
   const fetchEntries=async()=>{
-    const querySnapshot = await getDocs(collection(db, "CoralReefProject/Entries/EntriesCollection"));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      let data = doc.data()
-      data.id = doc.id
-      setCoralEntries(coralEntries => [...coralEntries, data]);
+    const q = query(collection(db, "CoralReefProject/Entries/EntriesCollection"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setCoralEntries([])
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let data = doc.data()
+        data.id = doc.id
+        setCoralEntries(coralEntries => [...coralEntries, data]);
+      });
     });
+  }
+
+  const moreOptions = (id) => {
+    setModalVisible(true)
+    setId(id)
+  }
+
+  const deleteEntry = async() => {
+    await deleteDoc(doc(db, "CoralReefProject/Entries/EntriesCollection", id));
+    setModalVisible(false)
   }
 
   const pressMain = () => {
@@ -77,13 +91,41 @@ export default function GroupCoralEntries({ navigation }) {
           {coralEntries && coralEntries.map(coral => { return (
             <CoralPosts
               func={pressMain}
+              function={moreOptions}
               key={coral.id}
+              id={coral.id}
               name={"Coral Name: " + coral.coralName}
               image={coral.image}
               location={"Time: " + coral.timeText}
             />
           )})}
         </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Button
+              onPress={deleteEntry}
+              title="Delete"
+            />
+              
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Hide Options</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
 
         <StatusBar style="auto" />
       </ScrollView>
@@ -174,5 +216,27 @@ const styles = StyleSheet.create({
         height: 150,
       },
     }),
+  },
+  // https://reactnative.dev/docs/modal
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
   },
 });
