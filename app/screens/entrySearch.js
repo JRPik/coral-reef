@@ -1,11 +1,17 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, FlatList, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  FlatList,
+  Platform,
+} from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
-import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -76,7 +82,7 @@ export default function EntrySearch({ navigation }) {
 
   //Allows the fonts to be loaded
   let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
+    Roboto,
   });
 
   if (!fontsLoaded) {
@@ -124,21 +130,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
     ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
+      ios: {
+        fontFamily: "Avenir",
       },
-      android:{
-          fontFamily: "Roboto",
+      android: {
+        fontFamily: "Roboto",
       },
     }),
   },
   searchText: {
     ...Platform.select({
-      ios:{
-          fontFamily: "Avenir",
+      ios: {
+        fontFamily: "Avenir",
       },
-      android:{
-          fontFamily: "Roboto",
+      android: {
+        fontFamily: "Roboto",
       },
     }),
   },
