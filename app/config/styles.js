@@ -6,7 +6,7 @@ export default {
   colors,
   coralText: {
     textAlign: "center",
-    //fontWeight: "bold",
+    fontWeight: "bold",
     fontSize: 14,
     ...Platform.select({
       ios:{

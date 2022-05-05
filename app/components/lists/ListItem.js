@@ -1,6 +1,6 @@
 //FROM OUR THIRD-PARTIES
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Platform, Text, View } from 'react-native';
 
 //FROM OUR CODE
 import defaultStyles from "../../config/styles"
@@ -24,10 +24,20 @@ const styles = StyleSheet.create({
       flexDirection: "row",
   },
   itemImg: {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
-      marginRight: 10,
+    
+    borderRadius: 30,
+    marginRight: 10,
+    ...Platform.select({
+        ios: {
+            width: 60,
+            height: 60,
+        },
+        android: {
+            width: 40,
+            height: 40,
+        },
+      }),
+      
   },
   subTitle:{
     color: defaultStyles.colors.medium

@@ -29,7 +29,7 @@ import { color } from 'react-native-reanimated';
 
 //Main coral component. This will show the coral that was uploaded most recent.
 const Coral = (props) => (
-  <View style={styles.coralContainerRow}>
+  <View style={[styles.coralContainerRow]}>
     <Image source={props.image} style={styles.coralImage}  />
     
     <View style={[styles.coralContainerCol]}>
@@ -46,7 +46,6 @@ const Coral = (props) => (
     </View> 
    </View> 
 );
-
 
 const data = {
   myCoralEntries: [
@@ -80,9 +79,8 @@ function CoralEntryInfo({ navigation }) {
       {/* <View style={styles.closeIcon}></View> */}
       {/* <View style={styles.deleteIcon}></View> */}
       <ScrollView>
-        <View style={styles.imageCont}>
           <TouchableOpacity onPress={pressMain}>
-            <View style={styles.recentCoralInfo}>
+            <View style={styles.coralInfo}>
               <Coral
                 name={data.myCoralEntries[0].name}
                 image={data.myCoralEntries[0].image}
@@ -90,7 +88,6 @@ function CoralEntryInfo({ navigation }) {
               />
             </View>
           </TouchableOpacity>
-        </View>
           {/* I need a drop down menu with yes or no. if they click yes then
           it will open up the % slider */}
 
@@ -99,11 +96,11 @@ function CoralEntryInfo({ navigation }) {
            <View style={styles.bleachLabelRow}>
              <View style={styles.bleachLabelCol}>
               <Text>Bleach</Text>
-              <Text>Bleach Answer</Text>
+              <Text>Bleach Ans</Text>
             </View>
             <View style={styles.bleachLabelCol}>
               <Text>Bleach %</Text>
-              <Text>Bleach % Answer</Text>
+              <Text>Bleach % Ans</Text>
             </View>
            </View>
            </View>
@@ -112,19 +109,19 @@ function CoralEntryInfo({ navigation }) {
            <View style={styles.measureLabelRow}>
              <View style={styles.measureLabelCol}>
               <Text>Old Height</Text>
-              <Text>Old Height Answer</Text>
+              <Text>Old Height Ans</Text>
             </View>
             <View style={styles.measureLabelCol}>
               <Text>Old Width</Text>
-              <Text>Old Width Answer</Text>
+              <Text>Old Width Ans</Text>
             </View>
             <View style={styles.measureLabelCol}>
               <Text>New Height</Text>
-              <Text>New Height Answer</Text>
+              <Text>New Height Ans</Text>
             </View>
             <View style={styles.measureLabelCol}>
               <Text>New Width</Text>
-              <Text>New Width Answer</Text>
+              <Text>New Width Ans</Text>
             </View>
            </View>
            </View>
@@ -133,11 +130,11 @@ function CoralEntryInfo({ navigation }) {
            <View style={styles.depthLabelRow}>
              <View style={styles.depthLabelCol}>
               <Text>Old Depth</Text>
-              <Text>Old Depth Answer</Text>
+              <Text>Old Depth Ans</Text>
             </View>
             <View style={styles.depthLabelCol}>
               <Text>New Dept</Text>
-              <Text>New Depth Answer</Text>
+              <Text>New Depth Ans</Text>
             </View>
            </View>
            </View>
@@ -145,20 +142,20 @@ function CoralEntryInfo({ navigation }) {
            <View style={styles.locationContainer}>
            <View style={styles.locationLabelRow}>
              <View style={styles.locationLabelCol}>
-              <Text>Old Latitude</Text>
-              <Text>Old Latitude Answer</Text>
+              <Text>Old Lat.</Text>
+              <Text>Old Lat. An</Text>
             </View>
             <View style={styles.locationLabelCol}>
-              <Text>Old Longitude</Text>
-              <Text>Old Longitude Answer</Text>
+              <Text>Old Long.</Text>
+              <Text>Old Long. Ans</Text>
             </View>
             <View style={styles.locationLabelCol}>
-              <Text>New Latitude</Text>
-              <Text>New Latitude Answer</Text>
+              <Text>New Lat.</Text>
+              <Text>New Lat. Ans</Text>
             </View>
             <View style={styles.locationLabelCol}>
-              <Text>New Longitude</Text>
-              <Text>New Longitude Answer</Text>
+              <Text>New Long.</Text>
+              <Text>New Long. Ans</Text>
             </View>
            </View>
            </View>
@@ -167,7 +164,7 @@ function CoralEntryInfo({ navigation }) {
             <View style={styles.updatedLabelRow}>
               <View style={styles.updatedLabelCol}>
                 <Text>Last Update</Text>
-                <Text>Update Answer</Text>
+                <Text>Update Ans</Text>
               </View>
             </View>
            </View>
@@ -185,14 +182,27 @@ function CoralEntryInfo({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+
+
+
+  
   bleachContainer:{
     
   },
   bleachLabelCol: {
     flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
     backgroundColor: "lightblue", //delete this
+    ...Platform.select({
+      ios: {
+        marginLeft: 20,
+        width: 150,
+      },
+      android: {
+        marginLeft: 15,
+        width: 82,
+      },
+    }),
+
   },
   bleachLabelRow: {
     flexDirection: "row",
@@ -205,10 +215,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.backGroundOne,
     alignContent: "center",
-  },
+  },//END OF CONTAINER
   coralContainerCol:{
     flexDirection: "column",
-    marginLeft: 30
+    
+    ...Platform.select({
+      ios: {
+        marginLeft: 30,
+      },
+      android: {
+        marginLeft: 20,
+      },
+    }),
   },
   coralContainerRow: {
     height: "100%",
@@ -219,15 +237,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     //marginBottom: -75,
-    left: 40,
+    
     ...Platform.select({
       ios: {
         paddingTop: 5,
         width: "90%",
+        left: 40,
       },
       android: {
-        width: "92%",
+        width: "90%",
         elevation: 5,
+        left: 20,
       },
     }),
   },//END OF CORALCONTAINER
@@ -242,17 +262,18 @@ const styles = StyleSheet.create({
         marginTop: 10,
       },
       android: {
-        marginTop: 23,
+        marginTop: 8,
         height: 150,
       },
     }),
   },//END OF CORALIMAGE
   coralInfo: {
-    flex: 1,
-    alignItems: "center",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    paddingLeft: "2%",
   },//END OF CORALINFO
   coralText: {
-    //position: "absolute",
     fontWeight: "bold",
     ...Platform.select({
       ios: {
@@ -262,9 +283,9 @@ const styles = StyleSheet.create({
         fontFamily: "Avenir",
       },
       android: {
-        marginTop: 5,
-        left: "28%",
-        fontSize: 21,
+        marginTop: 10,
+        fontSize: 15,
+        fontFamily: "Roboto",
       },
     }),
   },
@@ -273,17 +294,37 @@ const styles = StyleSheet.create({
   },
   depthLabelCol:{
     flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
     backgroundColor: "lightblue", //delete this
+    ...Platform.select({
+      ios: {
+        marginLeft: 20,
+        width: 150,
+      },
+      android: {
+        marginLeft: 15,
+        width: 82,
+      },
+    }),
   },
   depthLabelRow: {
     flexDirection: "row",
   },
   formContainer:{
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    paddingLeft: "2%",
     position: "absolute",
-    marginTop: 350,
-    marginLeft: 30,
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        marginTop: 350,
+        marginLeft: 30,
+      },
+      android: {
+        marginTop: 50,
+      },
+    }),
   },
   imageCont:{
     marginTop: 20,
@@ -293,33 +334,76 @@ const styles = StyleSheet.create({
   },
   updatedLabelCol:{
     flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
+    
     backgroundColor: "lightblue", //delete this
+    ...Platform.select({
+      ios: {
+        marginLeft: 20,
+        width: 150,
+      },
+      android: {
+        marginLeft: 15,
+        width: 82,
+      },
+    }),
   },
   updatedLabelRow:{
     flexDirection: "row",
   },
   locationContainer:{
-    marginVertical: 30
+    
+    ...Platform.select({
+      ios: {
+        marginVertical: 30
+      },
+      android: {
+
+      },
+    }),
   },
   locationLabelCol:{
     flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
+
     backgroundColor: "lightblue", //delete this
+    ...Platform.select({
+      ios: {
+        marginLeft: 20,
+        width: 150,
+      },
+      android: {
+        marginLeft: 15,
+        width: 82,
+      },
+    }),
   },
   locationLabelRow: {
     flexDirection: "row",
   },
   measureContainer:{
-    marginVertical: 30
+    ...Platform.select({
+      ios: {
+        marginVertical: 30
+      },
+      android: {
+
+      },
+    }),
+    
   },
   measureLabelCol: {
     flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
+
     backgroundColor: "lightblue", //delete this
+    ...Platform.select({
+      ios: {
+        marginLeft: 20,
+        width: 150,
+      },
+      android: {
+        marginLeft: 15,
+        width: 82,
+      },
+    }),
   },
   measureLabelRow: {
     flexDirection: "row",
