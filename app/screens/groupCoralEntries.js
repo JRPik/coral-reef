@@ -118,10 +118,10 @@ export default function GroupCoralEntries({ navigation }) {
             />
               
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={styles.buttonClose}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>Hide Options</Text>
+              <Text style={styles.modalText}>Hide Options</Text>
             </Pressable>
           </View>
         </View>
@@ -230,13 +230,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5
   },
+  buttonClose: {
+    margin: 5,
+    padding: 10
+  },
+  modalText: {
+    fontWeight: "bold",
+    fontSize: 20
+  }
 });
