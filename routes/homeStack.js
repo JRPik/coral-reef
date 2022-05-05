@@ -70,42 +70,7 @@ const screens = {
       };
     },
   },
-  Picture: {
-    screen: Picture,
-    headerLeft: () => null,
-    navigationOptions: {
-      headerTitle: (
-        <Text
-          style={{
-            paddingLeft: "20%",
-            flex: 1,
-            fontFamily: "Roboto",
-            fontSize: 22,
-          }}
-        >
-          Take A Picture
-        </Text>
-      ),
-    },
-  },
-  Gallery: {
-    screen: Gallery,
-    headerLeft: () => null,
-    navigationOptions: {
-      headerTitle: (
-        <Text
-          style={{
-            paddingLeft: "20%",
-            flex: 1,
-            fontFamily: "Roboto",
-            fontSize: 22,
-          }}
-        >
-          Gallery
-        </Text>
-      ),
-    },
-  },
+  
 };
 
 export const HomeStack = createStackNavigator(screens);

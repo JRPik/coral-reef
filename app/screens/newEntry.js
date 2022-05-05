@@ -1,16 +1,14 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-<<<<<<< HEAD
-import {Platform,StyleSheet,Text,View,Button,TextInput,TouchableOpacity,Image,Picker,ImagePickerIOS,Alert,
-=======
-import { Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView
->>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
+import { Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView, Image
 } from "react-native";
-import React, { useState, userEffect, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {Picker} from '@react-native-picker/picker';
+import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
@@ -18,31 +16,7 @@ import colors from "../config/colors";
 //import MyHeading from "../components/MyHeading";
 import GreenButton from "../components/GreenButton";
 
-import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
-
-
 export default function NewEntry({ navigation }) {
-  //States used to set date and time
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
-  const [dateText, setDateText] = useState("Empty");
-  const [timeText, setTimeText] = useState("Empty");
-  const [selectedBoat, setSelectedBoat] = useState();
-  const [selectedWeather, setSelectedWeather] = useState();
-  const [selectedWater, setSelectedWater] = useState();
-
-  //const [country, setCountry] = useState('Unknown');
-
-  const [hasPermission, setHasPermission] = useState(null);
-  const [image, setImage] = useState(null);
-  const[useCamera, setUseCamera] = useState (false);
-  const cameraRef = useRef(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
-
-
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -55,51 +29,52 @@ export default function NewEntry({ navigation }) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+  //States used to set date and time
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+  const [dateText, setDateText] = useState("Empty");
+  const [timeText, setTimeText] = useState("Empty");
+  const [selectedBoat, setSelectedBoat] = useState();
+  const [selectedWeather, setSelectedWeather] = useState();
+  const [selectedWater, setSelectedWater] = useState();
 
+  const [hasPermission, setHasPermission] = useState(null);
+  const [image, setImage] = useState(null);
+  const[useCamera, setUseCamera] = useState (false);
+  const cameraRef = useRef(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
 
-
-  // Function to take picture
-  const takePic = async () => {
-    if (cameraRef){
-      console.log('Picture taken');
-      try {
-        let photo = await cameraRef.current.takePictureAsync({
-          allowsEditing: true,
-          aspect: [4,3],
-          quality: 1,
-        });
-        return photo;
-      } catch (e) {
-        console.log(e);
+    // Function to take picture
+    const takePic = async () => {
+      if (cameraRef){
+        console.log('Picture taken');
+        try {
+          let photo = await cameraRef.current.takePictureAsync({
+            allowsEditing: true,
+            aspect: [5,5],
+            quality: 1,
+          });
+          return photo;
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
-  }
 
-  // Function to get picture from gallery
-  /*const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePickcer.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4,3],
-      quality: 1,
-    })
-  }
-*/
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      quality: 1,
-      allowsEditing: true,
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      quality: 1,
-    });
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
-
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        quality: 1,
+        allowsEditing: true,
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        quality: 1,
+      });
+      console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    };
 
   //When changed show it
   const onChange = (event, selectedDate) => {
@@ -168,30 +143,41 @@ export default function NewEntry({ navigation }) {
     });
   }
 
-  /*const takePicture = () => {
+  const takePicture = () => {
     navigation.navigate("Picture");
   };
-  */
 
-  /*const gallery = () => {
+  const gallery = () => {
     navigation.navigate("Gallery");
   };
-*/
+
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   const selectedItem = {
     title: "Selected item title",
     description: "Secondary long descriptive text ...",
   };
 
-  
+  const Dropdown = () => {
+    return (
+      <RNPickerSelect
+        pickerProps={{
+          accessibilityLabel: selectedItem.title,
+        }}
+      >
+        <Text>{selectedItem.title}</Text>
+        <Text>{selectedItem.description}</Text>
+      </RNPickerSelect>
+    );
+  };
   {
     return (
       <SafeAreaView style={styles.container}>
-<<<<<<< HEAD
+        <ScrollView>
         <View> 
          {useCamera ? (
         <View>
-          <Camera style={{}} type={type} ref={cameraRef}>
+          <Camera style={{width: '100%', height: '60%'}} type={type} ref={cameraRef}>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
@@ -200,6 +186,9 @@ export default function NewEntry({ navigation }) {
                 }}>
                 <Text style={styles.text}>Back</Text>
               </TouchableOpacity>
+            </View>
+
+            <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
@@ -211,6 +200,9 @@ export default function NewEntry({ navigation }) {
                 }}>
                 <Text style={styles.text}>Flip</Text>
               </TouchableOpacity>
+            </View>
+
+            <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={[styles.button]}
                 onPress={async () => {
@@ -225,15 +217,14 @@ export default function NewEntry({ navigation }) {
                 <Text style={styles.text}>Take Picture</Text>
               </TouchableOpacity>
             </View>
+
+
           </Camera>
         </View>
       ) : (
         <>
           <View style={{ width: '100%' }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={async () => {
@@ -249,6 +240,9 @@ export default function NewEntry({ navigation }) {
                   color: "white",
                   fontFamily: "Roboto"}}> Upload Picture </Text>
               </TouchableOpacity>
+            </View>
+
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={async () => {
@@ -263,82 +257,28 @@ export default function NewEntry({ navigation }) {
             </View>
 
             
-            <View style={{ width: '100%', alignItems: 'center' }}>
-              {true && (
-                <Image
-                  source={{ uri: image }}
-                  style={{ width: 250, height: 250, backgroundColor: 'aquamarine' }}
-                />
-              )}
+              <View style={{ width: '100%', alignItems: 'center' }}>
+                {true && (
+                  <Image
+                    source={{ uri: image }}
+                    style={{ width: 250, height: 250, backgroundColor: 'aquamarine' }}
+                  />
+                )}
+              </View>
             </View>
-          </View>
-        </>
-      )}
-  
-
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={styles.text}>{dateText}</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => showMode("date")}
-=======
-        <ScrollView>
+          </>
+        )}
           <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
             }}
->>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
           >
             <Text style={styles.text}>{dateText}</Text>
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={() => showMode("date")}
             >
-<<<<<<< HEAD
-              Select Date
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}>{timeText}</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => showMode("time")}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto",
-              }}
-            >
-              Select Time
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={false}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-        <StatusBar style="auto" />
-
-=======
               <Text
                 style={{
                   textAlign: "center",
@@ -378,38 +318,7 @@ export default function NewEntry({ navigation }) {
               onChange={onChange}
             />
           )}
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={takePicture}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto",
-              }}
-            >
-              Take Picture
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.text}></Text>
-          <TouchableOpacity style={styles.buttonContainer} onPress={gallery}>
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontFamily: "Roboto",
-              }}
-            >
-              Upload Picture
-            </Text>
-          </TouchableOpacity>
->>>>>>> 3f248896e9b7be2a51300257ef5bf378d0001759
-        </View>
+     
 
           <Text style={styles.text}>Choose a Boat:</Text>
           <Picker style={{ width: "75%" }}
@@ -450,52 +359,12 @@ export default function NewEntry({ navigation }) {
             <GreenButton title="Next" />
           </TouchableOpacity>
         <StatusBar style="auto" />
+        </View>
         </ScrollView>
       </SafeAreaView>
     );
   }
 }
-
-
-/*
-
-
-<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.buttonContainer}>Select color</Text>
-          <Picker
-            selectedValue={country}
-            onValueChange={(value, index) => setCountry(value)}
-            mode="dropdown" // Android only
-            style={styles.picker}
-          >
-          <Picker.Item label="Please select your country" value="Unknown" />
-          <Picker.Item label="Australia" value="Australia" />
-          <Picker.Item label="Belgium" value="Belgium" />
-          <Picker.Item label="Canada" value="Canada" />
-          <Picker.Item label="India" value="India" />
-          <Picker.Item label="Japan" value="Japan" />
-         </Picker>
-        <Text style={styles.buttonContainer}>Your conuntry: {country}</Text>
-      </View>
-
-
-
-           <View>style={{ flexDirection: "row", alignSelf: 'center' }}
-          <Text> style={styles.text}
-            <Picker>
-              <Picker.Item label = "Please select a color" value ="disabled"/> 
-              <Picker.Item label = "Blue" value ="Blue"/> 
-              <Picker.Item label = "Red" value ="Red"/> 
-              <Picker.Item label = "Green" value ="Green"/> 
-              <Picker.Item label = "Yellow" value ="Yellow"/> 
-            
-            </Picker>
-            Color
-            </Text> 
-          
-        </View>
-
-      */
 
 /* Picker for color
 
@@ -592,13 +461,5 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     borderRadius: 20,
     padding: 10,
-  },
-
-  picker: {
-    marginVertical: 30,
-    width: 250,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#666",
   },
 });
