@@ -79,36 +79,26 @@ export default function EntrySearch({ navigation }) {
   const pressedHandler = () => {
     navigation.navigate("Logon");
   };
-
-  //Allows the fonts to be loaded
-  let [fontsLoaded] = useFonts({
-    Roboto,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <SafeAreaView style={styles.container}>
-        <SearchBar
-          placeholder="Search coral here"
-          onClear={(text) => searchFilterFunction("")}
-          onChangeText={(text) => searchFilterFunction(text)}
-          textInputStyle={styles.searchText}
-          style={{ elevation: 5 }}
+  return (
+    <SafeAreaView style={styles.container}>
+      <SearchBar
+        placeholder="Search coral here"
+        onClear={(text) => searchFilterFunction("")}
+        onChangeText={(text) => searchFilterFunction(text)}
+        textInputStyle={styles.searchText}
+        style={{ elevation: 5 }}
+      />
+      <View style={styles.list}>
+        <FlatList
+          data={filteredDataSource}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={ItemView}
         />
-        <View style={styles.list}>
-          <FlatList
-            data={filteredDataSource}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={ItemView}
-          />
-        </View>
+      </View>
 
-        <StatusBar style="auto" />
-      </SafeAreaView>
-    );
-  }
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

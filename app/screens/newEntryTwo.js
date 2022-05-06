@@ -90,61 +90,52 @@ export default function NewEntryTwo({ navigation, route }) {
     navigation.dispatch(StackActions.popToTop());
     navigation.navigate("Coral");
   };
+  return (
+    <SafeAreaView style={styles.container}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      ></View>
+      <Text style={styles.text}>Coral Name: </Text>
+      <Picker
+        style={{ width: "75%" }}
+        selectedValue={coralName}
+        onValueChange={(itemValue, itemIndex) => setCoralName(itemValue)}
+        mode="dropdown"
+      >
+        <Picker.Item label="Boulder Star" value="Boulder Star" />
+        <Picker.Item label="Elkhorn" value="Elkhorn" />
+        <Picker.Item label="Mountainous Star" value="Mountainous Star" />
+        <Picker.Item label="Staghorn" value="Staghorn" />
+      </Picker>
 
-  let [fontsLoaded] = useFonts({
-    Roboto,
-  });
+      <Text style={styles.text}>Wildlife Present: </Text>
+      <Picker
+        style={{ width: "75%" }}
+        selectedValue={wildLife}
+        onValueChange={(itemValue, itemIndex) => setWildlife(itemValue)}
+        mode="dropdown"
+      >
+        <Picker.Item label="true" value="true" />
+        <Picker.Item label="false" value="false" />
+      </Picker>
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        ></View>
-        <Text style={styles.text}>Coral Name: </Text>
-        <Picker
-          style={{ width: "75%" }}
-          selectedValue={coralName}
-          onValueChange={(itemValue, itemIndex) => setCoralName(itemValue)}
-          mode="dropdown"
-        >
-          <Picker.Item label="Boulder Star" value="Boulder Star" />
-          <Picker.Item label="Elkhorn" value="Elkhorn" />
-          <Picker.Item label="Mountainous Star" value="Mountainous Star" />
-          <Picker.Item label="Staghorn" value="Staghorn" />
-        </Picker>
+      <Text>{(Math.round(temperature * 100) / 100).toFixed(2)}</Text>
+      <Slider
+        minimumValue={-459.67}
+        maximumValue={459.67}
+        onValueChange={(value) => setTemperature(value)}
+      />
 
-        <Text style={styles.text}>Wildlife Present: </Text>
-        <Picker
-          style={{ width: "75%" }}
-          selectedValue={wildLife}
-          onValueChange={(itemValue, itemIndex) => setWildlife(itemValue)}
-          mode="dropdown"
-        >
-          <Picker.Item label="true" value="true" />
-          <Picker.Item label="false" value="false" />
-        </Picker>
+      <Text style={styles.text}>{text}</Text>
 
-        <Text>{(Math.round(temperature * 100) / 100).toFixed(2)}</Text>
-        <Slider
-          minimumValue={-459.67}
-          maximumValue={459.67}
-          onValueChange={(value) => setTemperature(value)}
-        />
-
-        <Text style={styles.text}>{text}</Text>
-
-        <TouchableOpacity onPress={addEntry}>
-          <GreenButton title="Add Entry" />
-        </TouchableOpacity>
-      </SafeAreaView>
-    );
-  }
+      <TouchableOpacity onPress={addEntry}>
+        <GreenButton title="Add Entry" />
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

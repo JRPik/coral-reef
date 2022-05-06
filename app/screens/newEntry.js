@@ -239,11 +239,11 @@ export default function NewEntry({ navigation }) {
                   <View
                     style={{
                       flexDirection: "row",
-                      justifyContent: "space-between",
+                      justifyContent: "center",
                     }}
                   >
                     <TouchableOpacity
-                      style={styles.buttonContainer}
+                      style={styles.cameraButtonContainer}
                       onPress={async () => {
                         console.log("in pick photo");
                         const r = await pickImage();
@@ -269,11 +269,11 @@ export default function NewEntry({ navigation }) {
                   <View
                     style={{
                       flexDirection: "row",
-                      justifyContent: "space-between",
+                      justifyContent: "center",
                     }}
                   >
                     <TouchableOpacity
-                      style={styles.buttonContainer}
+                      style={styles.cameraButtonContainer}
                       onPress={async () => {
                         console.log("in pick camera");
                         setUseCamera(true);
@@ -436,6 +436,14 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     borderRadius: 20,
     padding: 10,
+  },
+  cameraButtonContainer: {
+    margin: 10,
+    backgroundColor: colors.primary,
+    width: "75%",
+    alignSelf: "flex-end",
+    borderRadius: 20,
+    padding: 15,
   },
   container: {
     flex: 1,
