@@ -7,6 +7,7 @@ import React from "react";
 ///imports from our code
 import MyTitles from "../app/components/MyTitles";
 import EntrySearch from "../app/screens/entrySearch";
+import EntryDisplay from "../app/screens/entryDisplay";
 
 const screens = {
   EntrySearch: {
@@ -19,6 +20,17 @@ const screens = {
       };
     },
   },
+
+  EntryDisplay: {
+    screen: EntryDisplay,
+    navigationOptions: ({ navigation }) => {
+      return {
+        //headerLeft: () => null,
+        headerTitle: () => <MyTitles>Entry Display</MyTitles>,
+        gestureEnabled: false,
+      };
+    },
+  }
 };
 
 export const EntrySearchStack = createStackNavigator(screens);

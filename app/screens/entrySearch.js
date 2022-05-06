@@ -1,34 +1,22 @@
 //IMPORTS FROM OUR THIRD-PARTIES
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  FlatList,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, FlatList, Platform } from "react-native";
 import AppLoading from "expo-app-loading";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "react-native-dynamic-search-bar";
 import React, { useEffect, useState } from "react";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/dev";
+import GreenButton from "../components/GreenButton";
+import {TouchableOpacity} from 'react-native';
+import { collection, getDocs, addDoc, setDoc, doc} from "firebase/firestore"; 
+import { db } from '../../firebase';
 
 //IMPORT FROM OUR CODE
 import colors from "../config/colors";
 //import AppText from "../components/AppText";
 //import MyHeading from "../components/MyHeading";
-
 //Array of data with all the coral and reefs we service
-const data = [
-  { reef: "Carysfort Reef", coral: "Boulder Star" },
-  { reef: "Carysfort Reef", coral: "Elkhorn" },
-  { reef: "Carysfort Reef", coral: "Mountainous Star" },
-  { reef: "Carysfort Reef", coral: "Staghorn" },
-  { reef: "Cheeca Rocks", coral: "Mountainous Star" },
-  { reef: "Looe Key", coral: "Staghorn" },
-  { reef: "Pickle's Reef", coral: "Staghorn" },
-  { reef: "Sombrero Reef", coral: "Elkhorn" },
-];
+const queryArray = [];
 
 export default function EntrySearch({ navigation }) {
   //States used to get the data
@@ -38,18 +26,25 @@ export default function EntrySearch({ navigation }) {
 
   //puts the data into those values (could be made into an online data pull)
   useEffect(() => {
-    setFilteredDataSource(data);
-    setMasterDataSource(data);
+    loadEntries();
   }, []);
+
+  let loadEntries = async () => {
+    const querySnapshot = await getDocs(collection(db, 'CoralReefProject/Entries/EntriesCollection'));
+    querySnapshot.forEach((doc) => {
+      queryArray.push(doc.data());
+    })
+    setFilteredDataSource(queryArray);
+    setMasterDataSource(queryArray);
+  }
 
   //Function that filters the results
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
+
     if (text) {
       const newData = masterDataSource.filter(function (item) {
-        const itemData = item.coral
-          ? item.coral.toUpperCase()
-          : "".toUpperCase();
+        const itemData = item.boat ? item.boat.toUpperCase() : "".toUpperCase();
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
@@ -62,43 +57,45 @@ export default function EntrySearch({ navigation }) {
     }
   };
 
-  //Function that alerts when clicked (will be changed to go to pages)
-  const getItem = (item) => {
-    alert(item.reef + "\n" + item.coral);
-  };
-
   //Function that styles each entry in the FlatList
-  const ItemView = ({ item }) => {
+  const ItemView = ({ item, index }) => {
+    console.log(queryArray[index])
     return (
-      <Text style={styles.text} onPress={() => getItem(item)}>
-        {item.reef + ": " + item.coral}
+      <Text style={styles.text} onPress={() => navigation.navigate("EntryDisplay", {queryObj: item })}>
+        {"Date: " + item.dateText + "\nUser: " + item.documentedBy}
       </Text>
     );
   };
 
-  const pressedHandler = () => {
-    navigation.navigate("Logon");
-  };
-  return (
-    <SafeAreaView style={styles.container}>
-      <SearchBar
-        placeholder="Search coral here"
-        onClear={(text) => searchFilterFunction("")}
-        onChangeText={(text) => searchFilterFunction(text)}
-        textInputStyle={styles.searchText}
-        style={{ elevation: 5 }}
-      />
-      <View style={styles.list}>
-        <FlatList
-          data={filteredDataSource}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={ItemView}
-        />
-      </View>
+  //Allows the fonts to be loaded
+  let [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+  });
 
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <SearchBar
+          placeholder="Search coral here"
+          onClear={(text) => searchFilterFunction("")}
+          onChangeText={(text) => searchFilterFunction(text)}
+          textInputStyle={styles.searchText}
+          style={{ elevation: 5 }}
+        />
+        <View style={styles.list}>
+          <FlatList
+            data={filteredDataSource}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={(item, index) => ItemView(item, index)}
+          />
+        </View>
+
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -120,21 +117,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
     ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
+      ios:{
+          fontFamily: "Avenir",
       },
-      android: {
-        fontFamily: "Roboto",
+      android:{
+          fontFamily: "Roboto",
       },
     }),
   },
   searchText: {
     ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
+      ios:{
+          fontFamily: "Avenir",
       },
-      android: {
-        fontFamily: "Roboto",
+      android:{
+          fontFamily: "Roboto",
       },
     }),
   },
