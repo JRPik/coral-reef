@@ -83,9 +83,9 @@ function CoralEntryInfo({ navigation }) {
       {/* <View style={styles.closeIcon}></View> */}
       {/* <View style={styles.deleteIcon}></View> */}
       <ScrollView>
-        <View style={styles.imageCont}>
+        
           <TouchableOpacity onPress={pressMain}>
-            <View style={styles.recentCoralInfo}>
+            <View style={styles.imgCoralInfo}>
               <Coral
                 name={data.myCoralEntries[0].name}
                 image={data.myCoralEntries[0].image}
@@ -93,87 +93,87 @@ function CoralEntryInfo({ navigation }) {
               />
             </View>
           </TouchableOpacity>
-        </View>
           {/* I need a drop down menu with yes or no. if they click yes then
           it will open up the % slider */}
 
          <View style={styles.formContainer}>
            <View style={styles.bleachContainer}>
-           <View style={styles.bleachLabelRow}>
-             <View style={styles.bleachLabelCol}>
-              <Text>Bleach</Text>
-              <Text>Bleach Answer</Text>
+           <View style={styles.labelRow}>
+             <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Bleach:</Text>
+              <Text style={styles.labelText}>Bleach Ans</Text>
             </View>
-            <View style={styles.bleachLabelCol}>
-              <Text>Bleach %</Text>
-              <Text>Bleach % Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Bleach %:</Text>
+              <Text style={styles.labelText}>Bleach % Ans</Text>
             </View>
            </View>
            </View>
 
            <View style={styles.measureContainer}>
-           <View style={styles.measureLabelRow}>
-             <View style={styles.measureLabelCol}>
-              <Text>Old Height</Text>
-              <Text>Old Height Answer</Text>
+           <View style={styles.labelRow}>
+             <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Old Height:</Text>
+              <Text style={styles.labelText}>Old Height Ans</Text>
             </View>
-            <View style={styles.measureLabelCol}>
-              <Text>Old Width</Text>
-              <Text>Old Width Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Old Width:</Text>
+              <Text style={styles.labelText}>Old Width Ans</Text>
             </View>
-            <View style={styles.measureLabelCol}>
-              <Text>New Height</Text>
-              <Text>New Height Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>New Height:</Text>
+              <Text style={styles.labelText}>New Height Ans</Text>
             </View>
-            <View style={styles.measureLabelCol}>
-              <Text>New Width</Text>
-              <Text>New Width Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>New Width:</Text>
+              <Text style={styles.labelText}>New Width Ans</Text>
             </View>
            </View>
            </View>
 
            <View style={styles.depthContainer}>
-           <View style={styles.depthLabelRow}>
-             <View style={styles.depthLabelCol}>
-              <Text>Old Depth</Text>
-              <Text>Old Depth Answer</Text>
+           <View style={styles.labelRow}>
+             <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Old Depth:</Text>
+              <Text style={styles.labelText}>Old Depth Ans</Text>
             </View>
-            <View style={styles.depthLabelCol}>
-              <Text>New Dept</Text>
-              <Text>New Depth Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>New Dept:</Text>
+              <Text style={styles.labelText}>New Depth Ans</Text>
             </View>
            </View>
            </View>
 
            <View style={styles.locationContainer}>
-           <View style={styles.locationLabelRow}>
-             <View style={styles.locationLabelCol}>
-              <Text>Old Latitude</Text>
-              <Text>Old Latitude Answer</Text>
+           <View style={styles.labelRow}>
+             <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Old Lat:</Text>
+              <Text style={styles.labelText} >Old Lat Ans</Text>
             </View>
-            <View style={styles.locationLabelCol}>
-              <Text>Old Longitude</Text>
-              <Text>Old Longitude Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>Old Long:</Text>
+              <Text style={styles.labelText}>Old Long Ans</Text>
             </View>
-            <View style={styles.locationLabelCol}>
-              <Text>New Latitude</Text>
-              <Text>New Latitude Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>New Lat:</Text>
+              <Text style={styles.labelText}>New Lat Ans</Text>
             </View>
-            <View style={styles.locationLabelCol}>
-              <Text>New Longitude</Text>
-              <Text>New Longitude Answer</Text>
+            <View style={styles.labelCol}>
+              <Text style={styles.labelText}>New Long:</Text>
+              <Text style={styles.labelText}>New Long Ans</Text>
             </View>
            </View>
            </View>
 
            <View style={styles.updatedContainer}>
-            <View style={styles.updatedLabelRow}>
-              <View style={styles.updatedLabelCol}>
-                <Text>Last Update</Text>
-                <Text>Update Answer</Text>
+            <View style={styles.labelRow}>
+              <View style={styles.labelCol}>
+                <Text style={styles.labelText}>Last Update:</Text>
+                <Text style={styles.labelText}>Update Ans</Text>
               </View>
             </View>
            </View>
+           
            <View style={styles.buttonContainer}>
             <TouchableOpacity>
               <GreenButton title="Submit" />
@@ -191,18 +191,32 @@ const styles = StyleSheet.create({
   bleachContainer:{
     
   },
-  bleachLabelCol: {
+  labelCol: {
     flexDirection: "column",
     marginLeft: 20,
-    width: 150,
+    width: 110,
     backgroundColor: "lightblue", //delete this
   },
-  bleachLabelRow: {
+  labelRow: {
     flexDirection: "row",
+  },
+  labelText: {
+
+    ...Platform.select({
+      ios: {
+        fontFamily: "Avenir",
+      },
+      android: {
+        fontSize: 14,
+        fontWeight: "700",
+        fontFamily: "Roboto",
+      },
+    }),
   },
   buttonContainer: {
     alignSelf: "center",
-    left: 300,
+    left: 150,
+    paddingBottom: 10,
   },
   container: {
     flex: 1,
@@ -211,7 +225,7 @@ const styles = StyleSheet.create({
   },
   coralContainerCol:{
     flexDirection: "column",
-    marginLeft: 30
+    marginLeft: 5
   },
   coralContainerRow: {
     height: "100%",
@@ -222,7 +236,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     //marginBottom: -75,
-    left: 40,
     ...Platform.select({
       ios: {
         paddingTop: 5,
@@ -238,14 +251,13 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     overflow: "hidden",
     width: "50%",
-    left: "5%",
     ...Platform.select({
       ios: {
         height: 250,
         marginTop: 10,
       },
       android: {
-        marginTop: 23,
+        marginTop: 5,
         height: 150,
       },
     }),
@@ -266,27 +278,17 @@ const styles = StyleSheet.create({
       },
       android: {
         marginTop: 5,
-        left: "28%",
-        fontSize: 21,
+        left: "5%",
+        fontSize: 16,
+        fontFamily: "Roboto",
       },
     }),
   },
   depthContainer:{
 
   },
-  depthLabelCol:{
-    flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
-    backgroundColor: "lightblue", //delete this
-  },
-  depthLabelRow: {
-    flexDirection: "row",
-  },
   formContainer:{
-    position: "absolute",
-    marginTop: 350,
-    marginLeft: 30,
+    marginTop: 20,
   },
   imageCont:{
     marginTop: 20,
@@ -294,42 +296,19 @@ const styles = StyleSheet.create({
   updatedContainer:{
     
   },
-  updatedLabelCol:{
-    flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
-    backgroundColor: "lightblue", //delete this
-  },
-  updatedLabelRow:{
-    flexDirection: "row",
-  },
   locationContainer:{
     marginVertical: 30
-  },
-  locationLabelCol:{
-    flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
-    backgroundColor: "lightblue", //delete this
-  },
-  locationLabelRow: {
-    flexDirection: "row",
   },
   measureContainer:{
     marginVertical: 30
   },
-  measureLabelCol: {
-    flexDirection: "column",
-    marginLeft: 20,
-    width: 150,
-    backgroundColor: "lightblue", //delete this
-  },
-  measureLabelRow: {
-    flexDirection: "row",
-  },
   userContainer:{
     marginVertical: 10,
   },
+  imgCoralInfo: {
+    flex: 1,
+    alignItems: "center",
+  },//END OF IMGCORALINFO
 });
 
 export default CoralEntryInfo;

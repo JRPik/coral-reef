@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
       flexDirection: "row",
   },
   itemImg: {
-    
     borderRadius: 30,
     marginRight: 10,
+    marginLeft: 10,
     ...Platform.select({
         ios: {
             width: 60,
@@ -36,14 +36,33 @@ const styles = StyleSheet.create({
             width: 40,
             height: 40,
         },
-      }),
-      
+      }),  
   },
   subTitle:{
-    color: defaultStyles.colors.medium
+    color: defaultStyles.colors.medium,
+    ...Platform.select({
+      ios: {
+          fontSize: 8,
+          fontFamily: "Avenir",
+      },
+      android: {
+          fontSize: 10,
+          fontFamily: "Roboto",
+      },
+    }),
   },
   title: {
     fontWeight: "700",
+    ...Platform.select({
+      ios: {
+          fontSize: 10,
+          fontFamily: "Avenir",
+      },
+      android: {
+          fontSize: 13,
+          fontFamily: "Roboto",
+      },
+    }),
   },
 });
 
